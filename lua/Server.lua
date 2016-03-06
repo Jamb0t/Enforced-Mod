@@ -1,4 +1,4 @@
-Script.Load("lua/ModularExo_Shared.lua")
+Script.Load("lua/Shared.lua")
 
 function MarineTeam:InitTechTree()
    

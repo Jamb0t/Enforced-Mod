@@ -1,15 +1,15 @@
 
-Script.Load("lua/ModularExo_Exo.lua")
-Script.Load("lua/ModularExo_Armory.lua")
-Script.Load("lua/ModularExo_JetPackMarine.lua")
-Script.Load("lua/ModularExo_HitSounds.lua")
+Script.Load("lua/Exo.lua")
+Script.Load("lua/Armory.lua")
+Script.Load("lua/JetPackMarine.lua")
+Script.Load("lua/HitSounds.lua")
 
-Script.Load("lua/ModularExo_MarineBuy_Client.lua")
-Script.Load("lua/ModularExo_Marine.lua")
+Script.Load("lua/MarineBuy_Client.lua")
+Script.Load("lua/Marine.lua")
 
-Script.Load("lua/ModularExo_Lerk.lua")
-Script.Load("lua/ModularExo_Skulk.lua")
-Script.Load("lua/ModularExo_Onos.lua")
+Script.Load("lua/Lerk.lua")
+Script.Load("lua/Skulk.lua")
+Script.Load("lua/Onos.lua")
 Script.Load("lua/Weapons/Marine/HeavyMachineGun.lua")
 Script.Load("lua/Weapons/Alien/Doomsday.lua")
 

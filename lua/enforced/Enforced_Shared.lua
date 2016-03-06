@@ -1,4 +1,4 @@
-Script.Load("lua/ModularExo_Shared.lua")
+Script.Load("lua/Shared.lua")
 Script.Load( "lua/Enforced/Elixer_Utility.lua" )
 Elixer.UseVersion( 1.8 )
 

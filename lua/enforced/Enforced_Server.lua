@@ -1,2 +1,2 @@
 Script.Load("lua/Enforced/Enforced_Shared.lua")
-Script.Load("lua/ModularExo_Server.lua")
+Script.Load("lua/Server.lua")
