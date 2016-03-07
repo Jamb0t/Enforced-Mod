@@ -1,17 +1,24 @@
 kElixerVersion = 1.8
 Script.Load("lua/Enforced/Elixer_Utility.lua")
-Elixer.UseVersion( kElixerVersion ) 
+Elixer.UseVersion( kElixerVersion )
+
+Script.Load("Class.lua")
 
 -- Add the techIds to the list
 local newTechIds = { 
 	'Electrify', 
 	'HeavyMachineGun', 
-	'NapalmGrenade',  'NapalmGrenadeProjectile', 
+	'NapalmGrenade',
+	'NapalmGrenadeProjectile', 
 	'Doomsday', 
 }
 
-for _, v in ipairs( newTechIds ) do
-	AppendToEnum( kTechId, v )
+local kTechId = GetUpValue( StringToTechId, "gTechIdToString" )
+
+if kTechId then
+	for _, v in ipairs(newTechIds) do
+		AppendToEnum( kTechId, v )
+	end
 end
 
 -- Research/Upgrade

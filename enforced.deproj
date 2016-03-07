@@ -1,85 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
   <file>
-    <filename>lua\Armory.lua</filename>
+    <filename>lua\enforced\AlienTechMap.lua</filename>
   </file>
   <file>
-    <filename>lua\Babbler.lua</filename>
+    <filename>lua\enforced\Armory.lua</filename>
+  </file>
+  <file>
+    <filename>lua\enforced\Babbler.lua</filename>
   </file>
   <file>
     <filename>lua\Weapons\Alien\BiteLeap.lua</filename>
   </file>
   <file>
-    <filename>lua\Client.lua</filename>
-  </file>
-  <file>
-    <filename>lua\DamageEffects.lua</filename>
-  </file>
-  <file>
     <filename>lua\Weapons\Alien\Doomsday.lua</filename>
   </file>
   <file>
-    <filename>lua\ElectrifyMixin.lua</filename>
+    <filename>lua\enforced\Drifter.lua</filename>
+  </file>
+  <file>
+    <filename>lua\enforced\EffectManager.lua</filename>
+  </file>
+  <file>
+    <filename>lua\enforced\ElectrifyMixin.lua</filename>
   </file>
   <file>
     <filename>lua\enforced\Elixer_Utility.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced\Enforced_Client.lua</filename>
+    <filename>lua\enforced\Exo.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced\Enforced_Server.lua</filename>
+    <filename>lua\enforced\Extractor.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced\Enforced_Shared.lua</filename>
+    <filename>lua\enforced\GUIActionIcon.lua</filename>
   </file>
   <file>
-    <filename>lua\Exo.lua</filename>
+    <filename>lua\enforced\GUIMarineBuyMenu.lua</filename>
   </file>
   <file>
-    <filename>lua\Extractor.lua</filename>
+    <filename>lua\enforced\GUIMinimap.lua</filename>
   </file>
   <file>
-    <filename>lua\GUIActionIcon.lua</filename>
-  </file>
-  <file>
-    <filename>lua\GUIMarineBuyMenu.lua</filename>
-  </file>
-  <file>
-    <filename>lua\GUIMinimap.lua</filename>
-  </file>
-  <file>
-    <filename>lua\GUIPickups.lua</filename>
+    <filename>lua\enforced\GUIPickups.lua</filename>
   </file>
   <file>
     <filename>lua\Weapons\Marine\HeavyMachineGun.lua</filename>
   </file>
   <file>
-    <filename>lua\HitSounds.lua</filename>
+    <filename>lua\enforced\HitSounds.lua</filename>
   </file>
   <file>
-    <filename>lua\JetPackMarine.lua</filename>
+    <filename>lua\enforced\JetPackMarine.lua</filename>
   </file>
   <file>
-    <filename>lua\Lerk.lua</filename>
+    <filename>lua\enforced\Lerk.lua</filename>
   </file>
   <file>
-    <filename>lua\MAC.lua</filename>
+    <filename>lua\enforced\MAC.lua</filename>
   </file>
   <file>
-    <filename>lua\Marine.lua</filename>
+    <filename>lua\enforced\Marine.lua</filename>
   </file>
   <file>
-    <filename>lua\MarineBuy_Client.lua</filename>
+    <filename>lua\enforced\MarineCommander.lua</filename>
   </file>
   <file>
-    <filename>lua\MarineCommander.lua</filename>
-  </file>
-  <file>
-    <filename>lua\MarineCommander_Server.lua</filename>
-  </file>
-  <file>
-    <filename>lua\MarineWeaponEffects.lua</filename>
+    <filename>lua\enforced\MarineCommander_Server.lua</filename>
   </file>
   <file>
     <filename>lua\CommAbilities\Alien\MucousMembrane.lua</filename>
@@ -91,27 +79,27 @@
     <filename>lua\Weapons\Marine\NapalmGrenadeThrower.lua</filename>
   </file>
   <file>
-    <filename>lua\Onos.lua</filename>
+    <filename>lua\enforced\Onos.lua</filename>
   </file>
   <file>
-    <filename>lua\PushableMixin.lua</filename>
+    <filename>lua\enforced\PushableMixin.lua</filename>
   </file>
   <file>
-    <filename>lua\Server.lua</filename>
+    <filename>lua\enforced\Skulk.lua</filename>
   </file>
   <file>
-    <filename>lua\Shared.lua</filename>
+    <filename>lua\enforced\TechTree.lua</filename>
   </file>
   <file>
-    <filename>lua\Skulk.lua</filename>
+    <filename>lua\enforced\_Client.lua</filename>
   </file>
   <file>
-    <filename>lua\TechTreeConstants.lua</filename>
+    <filename>lua\enforced\_FileHooks.lua</filename>
   </file>
   <file>
-    <filename>lua\shine\extensions\changes\client.lua</filename>
+    <filename>lua\enforced\_Server.lua</filename>
   </file>
   <file>
-    <filename>lua\shine\extensions\changes\shared.lua</filename>
+    <filename>lua\enforced\_Shared.lua</filename>
   </file>
 </project>

@@ -7,7 +7,7 @@ orig_GUIMinimap_Initialize = Class_ReplaceMethod( "GUIMinimap", "Initialize",
 	function (self)
 		self.highlightWorldColor = Color(0, 0.8, 0, 1)
 	
-		for i, table in ipairs(self.blipColorTable)
+		for i, table in ipairs(self.blipColorTable) do
 			if i == kBlipColorType.HighlightWorld then
 				self.blipColorTable[i] = self.highlightWorldColor
 			end

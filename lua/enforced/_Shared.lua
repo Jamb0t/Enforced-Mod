@@ -2,17 +2,24 @@ kElixerVersion = 1.8
 Script.Load("lua/Enforced/Elixer_Utility.lua")
 Elixer.UseVersion( kElixerVersion )
 
-Script.Load("lua/Exo.lua")
-Script.Load("lua/Armory.lua")
-Script.Load("lua/JetPackMarine.lua")
-Script.Load("lua/HitSounds.lua")
+Script.Load("lua/Enforced/Armory.lua")
 
-Script.Load("lua/MarineBuy_Client.lua")
-Script.Load("lua/Marine.lua")
+Script.Load("lua/Enforced/Exo.lua")
+Script.Load("lua/Enforced/Extractor.lua")
+Script.Load("lua/Enforced/JetPackMarine.lua")
+Script.Load("lua/Enforced/HitSounds.lua")
 
-Script.Load("lua/Lerk.lua")
-Script.Load("lua/Skulk.lua")
-Script.Load("lua/Onos.lua")
+Script.Load("lua/Enforced/JetPackMarine.lua")
+Script.Load("lua/Enforced/MAC.lua")
+Script.Load("lua/Enforced/Marine.lua")
+Script.Load("lua/Enforced/MarineCommander.lua")
+
+Script.Load("lua/Enforced/Lerk.lua")
+Script.Load("lua/Enforced/Skulk.lua")
+Script.Load("lua/Enforced/Onos.lua")
+Script.Load("lua/Enforced/Babbler.lua")
+Script.Load("lua/Enforced/Drifter.lua")
+
 Script.Load("lua/Weapons/Marine/HeavyMachineGun.lua")
 Script.Load("lua/Weapons/Alien/Doomsday.lua")
 
@@ -112,7 +119,6 @@ original_PowerPoint_CanBeCompletedByScriptActor = Class_ReplaceMethod( "PowerPoi
 		return original_PowerPoint_CanBeCompletedByScriptActor(self, player)
 	end
 )
-
 
 -- Call this once to generate the basics
 GetTexCoordsForTechId(kTechId.Rifle)
