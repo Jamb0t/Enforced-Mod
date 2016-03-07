@@ -1,0 +1,6 @@
+modEntry = [[
+Client: lua/Enforced/_Client.lua,
+Server: lua/Enforced/_Server.lua,
+Shared: lua/Enforced/_Shared.lua,
+Priority: 100
+]]
