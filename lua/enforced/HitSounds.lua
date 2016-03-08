@@ -3,11 +3,11 @@ Script.Load("lua/Enforced/Elixer_Utility.lua")
 Elixer.UseVersion( kElixerVersion ) 
 
 if Server then
-    local kHitSoundEnabledForWeapon = GetUpValue( HitSound_IsEnabledForWeapon, "kHitSoundEnabledForWeapon" )
+    local soundTable = GetUpValue( HitSound_IsEnabledForWeapon, "kHitSoundEnabledForWeapon" )
 
-    if kHitSoundEnabledForWeapon then
-        if type(kHitSoundEnabledForWeapon) == "table" then
-            table.insert(kHitSoundEnabledForWeapon, kTechId.HeavyMachineGun)
+    if soundTable then
+        if type(soundTable) == "table" then
+            table.insert(soundTable, kTechId.HeavyMachineGun)
         end
     end
 end
