@@ -2,12 +2,14 @@ kElixerVersion = 1.8
 Script.Load("lua/Enforced/Elixer_Utility.lua")
 Elixer.UseVersion( kElixerVersion )
 
+Script.Load("lua/Enforced/TechTree.lua")
+Script.Load("lua/Enforced/HitSounds.lua")
+
 Script.Load("lua/Enforced/Armory.lua")
 
 Script.Load("lua/Enforced/Exo.lua")
 Script.Load("lua/Enforced/Extractor.lua")
 Script.Load("lua/Enforced/JetPackMarine.lua")
-Script.Load("lua/Enforced/HitSounds.lua")
 
 Script.Load("lua/Enforced/JetPackMarine.lua")
 Script.Load("lua/Enforced/MAC.lua")
@@ -90,8 +92,12 @@ kRoboticsFactorySupply = 10
 kCragSupply = 10
 kShadeSupply = 15
 
-GetTexCoordsForTechId(kTechId.GasGrenade)
-gTechIdPosition[kTechId.NapalmGrenade] = kDeathMessageIcon.GasGrenade
+-- Add napalm and hmg icons
+local techIdPosition = GetUpValue(GetTexCoordsForTechId, "gTechIdPosition")
+if techIdPosition then
+	gTechIdPosition[kTechId.NapalmGrenade] = kDeathMessageIcon.GasGrenade
+	gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.Rifle
+end
 
 EvolutionChamber.kUpgradeButtons ={                            
     [kTechId.SkulkMenu] = { kTechId.Leap, kTechId.Xenocide, kTechId.None, kTechId.None,
@@ -119,10 +125,3 @@ original_PowerPoint_CanBeCompletedByScriptActor = Class_ReplaceMethod( "PowerPoi
 		return original_PowerPoint_CanBeCompletedByScriptActor(self, player)
 	end
 )
-
--- Call this once to generate the basics
-GetTexCoordsForTechId(kTechId.Rifle)
--- Add HMG
-gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.Rifle
-
-AppendToEnum( kPlayerStatus, 'HeavyMachineGun' )

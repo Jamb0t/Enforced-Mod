@@ -43,7 +43,8 @@ orig_Marine_GetPlayerStatusDesc = Class_ReplaceMethod("Marine", "GetPlayerStatus
 	end
 )
 
-Class_AddMethod( "Marine", "ModifyGravityForce",
+local orig_Marine_ModifyGravityForce
+orig_Marine_ModifyGravityForce = Class_ReplaceMethod("Marine", "ModifyGravityForce",
 	function (self, gravityTable)
 		if self:GetIsOnGround() or self:GetRecentlyJumped() then
 			gravityTable.gravity = 0

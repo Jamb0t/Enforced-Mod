@@ -3,7 +3,7 @@ Script.Load("lua/Enforced/Elixer_Utility.lua")
 Elixer.UseVersion( kElixerVersion ) 
 
 Script.Load("lua/EnergyMixin.lua")
-Script.Load("lua/ElectrifyMixin.lua")
+Script.Load("lua/Enforced/ElectrifyMixin.lua")
 Script.Load("lua/DamageMixin.lua")
 
 local networkVars = {}
@@ -21,7 +21,8 @@ orig_Extractor_OnCreate = Class_ReplaceMethod( "Extractor", "OnCreate",
 	end
 )
 
-Class_AddMethod( "Extractor", "GetTechButtons",
+local orig_Extractor_GetTechButtons
+orig_Extractor_GetTechButtons = Class_ReplaceMethod( "Extractor", "GetTechButtons", 
 	function(self, techId)
 		local result = ResourceTower.GetTechButtons(self)
 

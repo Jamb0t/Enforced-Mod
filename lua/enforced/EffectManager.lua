@@ -1,4 +1,4 @@
-Script.Load("lua/EffectManager.lua")
+Script.Load("lua/Class.lua")
 
 local hmgMaterial = {decal = "cinematics/vfx_materials/decals/bullet_hole_01.material", scale = 0.15, doer = "HeavyMachineGun", done = true}
 local hmgDrawSound = {player_sound = "sound/compmod.fev/compmod/marine/hmg/hmg_draw", classname = "HeavyMachineGun", done = true}

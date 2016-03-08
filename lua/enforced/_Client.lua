@@ -4,6 +4,11 @@ Elixer.UseVersion( kElixerVersion )
 
 Script.Load("lua/Enforced/_Shared.lua")
 
+Script.Load("lua/Enforced/GUIActionIcon.lua")
+Script.Load("lua/Enforced/GUIMarineBuyMenu.lua")
+Script.Load("lua/Enforced/GUIMinimap.lua")
+Script.Load("lua/Enforced/GUIPickups.lua")
+
 --
 local kNewGrenades = {
     kTechId.ClusterGrenade,

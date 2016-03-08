@@ -73,7 +73,8 @@ Class_AddMethod( "MAC", "OverrideGetStatusInfo",
 	end
 )
 
-Class_AddMethod( "MAC", "GetTechAllowed",
+local original_MAC_GetTechAllowed
+original_MAC_GetTechAllowed = Class_ReplaceMethod( "MAC", "GetTechAllowed",
 	function (self, techId, techNode, player)
 		local allowed, canAfford = ScriptActor.GetTechAllowed(self, techId, techNode, player)
 
@@ -88,7 +89,8 @@ Class_AddMethod( "MAC", "GetTechAllowed",
 	end
 )
 
-Class_AddMethod( "MAC", "GetTechButtons",
+local original_MAC_GetTechButtons
+original_MAC_GetTechButtons = Class_ReplaceMethod( "MAC", "GetTechButtons",
 	function (self, techId)
 		return { kTechId.MACEMP, kTechId.Stop, kTechId.Welding, kTechId.None,
 				 kTechId.None, kTechId.None, kTechId.None, kTechId.None }

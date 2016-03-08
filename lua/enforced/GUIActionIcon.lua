@@ -1,5 +1,5 @@
 kElixerVersion = 1.8
-Script.Load("lua/NS2Plus/Elixer_Utility.lua")
+Script.Load("lua/Enforced/Elixer_Utility.lua")
 Elixer.UseVersion( kElixerVersion ) 
 
 local kIconOffsets = GetUpValue( GUIActionIcon.ShowIcon, "kIconOffsets", { LocateRecurse = true } )

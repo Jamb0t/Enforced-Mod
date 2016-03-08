@@ -2,7 +2,7 @@ kElixerVersion = 1.8
 Script.Load("lua/Enforced/Elixer_Utility.lua")
 Elixer.UseVersion( kElixerVersion ) 
 
-Script.Load("lua/PushableMixin.lua")
+Script.Load("lua/Enforced/PushableMixin.lua")
 
 local networkVars = {}
 AddMixinNetworkVars(PushableMixin, networkVars)

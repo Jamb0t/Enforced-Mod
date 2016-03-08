@@ -103,8 +103,11 @@ Class_AddMethod( "Onos", "GetMovementSpecialCooldown",
 	end
 )
 
-Class_AddMethod( "Onos", "GetTierThreeTechId",
-	function (self)
-		return kTechId.Doomsday
-	end
-)
+if Server then
+    local orig_Onos_GetTierThreeTechId
+    orig_Onos_GetTierThreeTechId = Class_ReplaceMethod( "Onos", "GetTierThreeTechId",
+        function (self)
+            return kTechId.Doomsday
+        end
+    )
+end
