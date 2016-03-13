@@ -15,3 +15,5 @@ kStructureWeldRate = 93
 kExosuitArmorPerUpgradeLevel = 55
 kExosuitArmor = 320
 kThrusterDuration = 1.2
+
+kOnosHealth = 1000

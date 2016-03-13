@@ -38,3 +38,9 @@ kElectrifyEnergyCost = 0
 
 kSkulkBiteRange = 1.41
 kSkulkEnzymedRange = 1.51
+
+kOnosChargeCost = 30
+kOnosChargeDamage = 8
+kOnosChargeStunCheckInterval = 0.08
+kOnosChargeStunDuration = 0.6
+kOnosMaxSpeed = 7.3

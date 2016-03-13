@@ -1,3 +1,4 @@
+Script.Load("lua/NS2Utility.lua")
 Script.Load("lua/Class.lua")
 
 kElixerVersion = 1.8
@@ -44,7 +45,7 @@ local function AppendListToEnum( target, newTech, limit )
     end
 end
 
-local techIdPosition = GetUpValue(GetTexCoordsForTechId, "gTechIdPosition")
+
 local firstTech = rawget( kTechId, newTechIds[1] )
 if firstTech == nil then
     if kTechId then
@@ -52,8 +53,9 @@ if firstTech == nil then
     end
     
     -- Add napalm and hmg icons
-    if techIdPosition then
-        techIdPosition[kTechId.NapalmGrenade] = kDeathMessageIcon.GasGrenade
-        techIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.Rifle
+    GetTexCoordsForTechId(kTechId.Rifle)
+    if gTechIdPosition and not gTechIdPosition[kTechId.HeavyMachineGun] then
+        gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.Rifle
+        gTechIdPosition[kTechId.NapalmGrenade] = kDeathMessageIcon.GasGrenade
     end
 end

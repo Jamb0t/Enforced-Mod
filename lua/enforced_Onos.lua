@@ -1,38 +1,27 @@
 
 Script.Load("lua/DamageMixin.lua")
 
-local kHealth = 1000
-local kMaxSpeed = 7.3
-local kChargeStunDuration = 0.6
-local kChargeStunCheckInterval = 0.08
-local kChargeDamage = 8
+Onos.kHealth = kOnosHealth
+Onos.kMaxSpeed = kOnosMaxSpeed
+Onos.kChargeEnergyCost = kOnosChargeCost
 
 -- OnCreate
 local orig_Onos_OnCreate
 orig_Onos_OnCreate = Class_ReplaceMethod( "Onos", "OnCreate",
 function (self)
-    InitMixin(self, DamageMixin)
     orig_Onos_OnCreate(self)
+    InitMixin(self, DamageMixin)
 end
 )
 
--- GetBaseHealth
-local orig_Onos_GetBaseHealth
-orig_Onos_GetBaseHealth = Class_ReplaceMethod( "Onos", "GetBaseHealth",
-function (self)
-    return kHealth
+if Server then
+    local orig_Onos_GetTierThreeTechId
+    orig_Onos_GetTierThreeTechId = Class_ReplaceMethod( "Onos", "GetTierThreeTechId",
+    function (self)
+        return kTechId.Doomsday
+    end
+    )
 end
-)
-
--- TriggerCharge
-local orig_Onos_TriggerCharge
-orig_Onos_TriggerCharge = Class_ReplaceMethod( "Onos", "TriggerCharge",
-function (self, move)
-	if Server then
-		self:AddTimedCallback(KnockDownPlayers, kChargeStunCheckInterval)
-	end
-end
-)
 
 local function KnockDownPlayers(self)
 
@@ -59,13 +48,13 @@ local function KnockDownPlayers(self)
 			entity:DisableGroundMove(0.1)
             entity:SetVelocity(pushForce)
 
-			self:DoDamage(kChargeDamage, entity, self:GetOrigin(), pushForce)
+			self:DoDamage(kOnosChargeDamage, entity, self:GetOrigin(), pushForce)
 
 			--Print(ToString(entity) .. " pushforce: " .. ToString(pushForce))
         end
 
 		--if HasMixin(entity, "Stun") then
-		--	entity:SetStun(kChargeStunDuration)
+		--	entity:SetStun(kOnosChargeStunDuration)
 		--end
 
     end
@@ -74,15 +63,31 @@ local function KnockDownPlayers(self)
 
 end
 
+
+-- TriggerCharge
+local orig_Onos_TriggerCharge
+orig_Onos_TriggerCharge = Class_ReplaceMethod( "Onos", "TriggerCharge",
+function (self, move)
+    orig_Onos_TriggerCharge(self, move)
+	if Server then
+		self:AddTimedCallback(KnockDownPlayers, kOnosChargeStunCheckInterval)
+	end
+end
+)
+
 -- GetMaxSpeed
 local orig_Onos_GetMaxSpeed
 orig_Onos_GetMaxSpeed = Class_ReplaceMethod( "Onos", "GetMaxSpeed",
 function (self, possible)
+
+    local prev = orig_Onos_GetMaxSpeed(self, possible)
+
     if possible then
-        return kMaxSpeed
+        return prev
     end
 
-    return (kMaxSpeed + self:GetChargeFraction() * (kChargeSpeed - kMaxSpeed)) * self:GetSlowSpeedModifier()
+    return prev * self:GetSlowSpeedModifier()
+
 end
 )
 
@@ -99,12 +104,3 @@ function (self)
     return cooldown
 end
 )
-
-if Server then
-local orig_Onos_GetTierThreeTechId
-orig_Onos_GetTierThreeTechId = Class_ReplaceMethod( "Onos", "GetTierThreeTechId",
-    function (self)
-        return kTechId.Doomsday
-    end
-)
-end
