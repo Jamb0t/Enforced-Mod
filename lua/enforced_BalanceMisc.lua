@@ -1,0 +1,13 @@
+kTunnelEntranceMaturationTime = 120
+kParasiteDuration = 24
+kHallucinationCloudCooldown = 6
+kLerkFlySoundMinSpeed = 6
+kLerkAirBrakeSpeedDecrease = 8
+kArmorySupply = 10
+kARCSupply = 20
+kRoboticsFactorySupply = 10
+kCragSupply = 10
+kShadeSupply = 15
+kFadeBlinkAddedAccel = 2
+kFadeAirFriction = 0.14
+kFadeCrouchModelOffset = 0.70
