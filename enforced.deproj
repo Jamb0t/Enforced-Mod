@@ -49,6 +49,9 @@
     <filename>lua\Mixin\enforced_ElectrifyMixin.lua</filename>
   </file>
   <file>
+    <filename>lua\enforced_EquipmentOutline.lua</filename>
+  </file>
+  <file>
     <filename>lua\enforced_EvolutionChamber.lua</filename>
   </file>
   <file>
@@ -140,6 +143,9 @@
   </file>
   <file>
     <filename>lua\enforced_TechData.lua</filename>
+  </file>
+  <file>
+    <filename>lua\Client\enforced_TechTreeButtons_Client.lua</filename>
   </file>
   <file>
     <filename>lua\enforced_TechTreeConstants.lua</filename>

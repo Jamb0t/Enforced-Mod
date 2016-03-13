@@ -11,8 +11,13 @@ elseif Client then
     ModLoader.SetupFileHook( "lua/Scoreboard.lua", "lua/Client/enforced_Scoreboard_Client.lua", "post" )
     ModLoader.SetupFileHook( "lua/MarineBuy_Client.lua", "lua/Client/enforced_MarineBuy_Client.lua", "post" )
     ModLoader.SetupFileHook( "lua/AlienTechMap.lua", "lua/Client/enforced_AlienTechMap_Client.lua", "post" )
+    ModLoader.SetupFileHook( "lua/TechTreeButtons.lua", "lua/Client/enforced_TechTreeButtons_Client.lua", "post" )
+
+    ModLoader.SetupFileHook( "lua/GUIMarineBuyMenu.lua", "lua/Client/GUI/enforced_GUIMarineBuyMenu.lua", "post" )
 
 end
+
+ModLoader.SetupFileHook( "lua/EquipmentOutline.lua", "lua/enforced_EquipmentOutline.lua", "post" )
 
 ModLoader.SetupFileHook( "lua/TechTreeConstants.lua", "lua/enforced_TechTreeConstants.lua", "post" )
 ModLoader.SetupFileHook( "lua/Globals.lua", "lua/enforced_Globals.lua", "post" )
@@ -43,4 +48,7 @@ ModLoader.SetupFileHook( "lua/PowerPoint.lua", "lua/enforced_PowerPoint.lua", "p
 ModLoader.SetupFileHook( "lua/Weapons/Marine/Rifle.lua", "lua/Weapons/enforced_Marine_HeavyMachineGun.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Marine/GasGrenadeThrower.lua", "lua/Weapons/enforced_Marine_NapalmGrenadeThrower.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Marine/GasGrenade.lua", "lua/Weapons/enforced_Marine_NapalmGrenade.lua", "post" )
+
+ModLoader.SetupFileHook( "lua/Weapons/Alien/BiteLeap.lua", "lua/Weapons/enforced_Alien_BiteLeap.lua", "post" )
+ModLoader.SetupFileHook( "lua/Weapons/CommAbilities/Alien/MucousMembrane.lua", "lua/CommAbilities/enforced_Alien_MucousMembrane.lua", "post" )
 ModLoader.SetupFileHook( "lua/Onos.lua", "lua/Weapons/enforced_Alien_Doomsday.lua", "post" )

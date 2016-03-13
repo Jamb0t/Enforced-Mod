@@ -25,9 +25,9 @@ if Server then
     -- JumpRandom
     local orig_Babbler_JumpRandom
     orig_Babbler_JumpRandom = Class_ReplaceMethod( "Babbler", "JumpRandom", 
-        function(self)
-            self:Jump(Vector( (math.random() * 3) - 1.5, 2 + math.random() * 2, (math.random() * 3) - 1.5 ))
-        end
+    function (self)
+        self:Jump(Vector( (math.random() * 3) - 1.5, 2 + math.random() * 2, (math.random() * 3) - 1.5 ))
+    end
     )
     
     -- UpdateAttack
@@ -60,23 +60,23 @@ if Server then
     -- Move
     local orig_Babbler_Move
     orig_Babbler_Move = Class_ReplaceMethod( "Babbler", "Move", 
-       function(targetPos, deltaTime)
+    function (self, targetPos, deltaTime)
 
-            self:SetGroundMoveType(true)
+        self:SetGroundMoveType(true)
 
-            local prevY = self:GetOrigin().y
-            local done = self:MoveToTarget(PhysicsMask.AIMovement, targetPos, kNewBabblerRunSpeed, deltaTime)
+        local prevY = self:GetOrigin().y
+        local done = self:MoveToTarget(PhysicsMask.AIMovement, targetPos, kNewBabblerRunSpeed, deltaTime)
 
-            local newOrigin = self:GetOrigin()
-            local desiredY = newOrigin.y + Babbler.kRadius
-            newOrigin.y = Slerp(prevY, desiredY, deltaTime * 5)
+        local newOrigin = self:GetOrigin()
+        local desiredY = newOrigin.y + Babbler.kRadius
+        newOrigin.y = Slerp(prevY, desiredY, deltaTime * 5)
 
-            self:SetOrigin(newOrigin)
-            self.targetSelector:AttackerMoved()
+        self:SetOrigin(newOrigin)
+        self.targetSelector:AttackerMoved()
 
-            return done
+        return done
 
-        end
+    end
     )
     
     -- UpdateMove ...
@@ -87,121 +87,121 @@ if Server then
 
     local orig_Babbler_UpdateMove
     orig_Babbler_UpdateMove = Class_ReplaceMethod( "Babbler", "UpdateMove", 
-        function(self, deltaTime)
+    function (self, deltaTime)
 
-            PROFILE("Babbler:UpdateMove")
+        PROFILE("Babbler:UpdateMove")
 
-            UpdateTargetPosition(self)
+        UpdateTargetPosition(self)
 
-            if self.clinged then
+        if self.clinged then
 
-                UpdateClingAttached(self)
+            UpdateClingAttached(self)
 
-            elseif self.moveType == kBabblerMoveType.Move or self.moveType == kBabblerMoveType.Cling then
+        elseif self.moveType == kBabblerMoveType.Move or self.moveType == kBabblerMoveType.Cling then
 
-                if self.moveType == kBabblerMoveType.Cling and self.targetPosition and (self:GetOrigin() - self.targetPosition):GetLength() < 7 then
+            if self.moveType == kBabblerMoveType.Cling and self.targetPosition and (self:GetOrigin() - self.targetPosition):GetLength() < 7 then
 
-                    UpdateCling(self, deltaTime)
-                    success = true
+                UpdateCling(self, deltaTime)
+                success = true
 
-                elseif self:GetIsOnGround() then
+            elseif self:GetIsOnGround() then
 
-                    if self.timeLastJump + 0.5 < Shared.GetTime() then
+                if self.timeLastJump + 0.5 < Shared.GetTime() then
 
-                        local targetPosition = self.targetPosition or ( self:GetTarget() and self:GetTarget():GetOrigin())
-                        if targetPosition then
+                    local targetPosition = self.targetPosition or ( self:GetTarget() and self:GetTarget():GetOrigin())
+                    if targetPosition then
 
-                            local distance = math.max(0, ((self:GetOrigin() - targetPosition):GetLength() - kMinJumpDistance))
-                            local Ydiff = (targetPosition - self:GetOrigin()).y
-                            local shouldJump = 0.5
-                            local jumpProbablity = 0
+                        local distance = math.max(0, ((self:GetOrigin() - targetPosition):GetLength() - kMinJumpDistance))
+                        local Ydiff = (targetPosition - self:GetOrigin()).y
+                        local shouldJump = 0.5
+                        local jumpProbablity = 0
 
-                            if Ydiff > 1 then
-                                jumpProbablity = 1
-                            elseif distance < kMaxJumpDistance then
-                                jumpProbablity = 1 / (1 + distance)
-                            end
-
-                            local done = false
-                            if self.jumpAttempts < 3 and jumpProbablity >= shouldJump and NoObstacleInWay(self, targetPosition) then
-                                done = self:Jump(GetMoveVelocity(self, targetPosition))
-                                self.jumpAttempts = self.jumpAttempts + 1
-                            else
-                                done = self:Move(targetPosition, deltaTime)
-                            end
-
-                            if done or (self:GetOrigin() - targetPosition):GetLengthXZ() <= 1.5 then
-                                if self.physicsBody then
-                                    self.physicsBody:SetCoords(self:GetCoords())
-                                end
-                                self:SetMoveType(kBabblerMoveType.None)
-                            end
-
-                            success = true
-
+                        if Ydiff > 1 then
+                            jumpProbablity = 1
+                        elseif distance < kMaxJumpDistance then
+                            jumpProbablity = 1 / (1 + distance)
                         end
 
-                    end
+                        local done = false
+                        if self.jumpAttempts < 3 and jumpProbablity >= shouldJump and NoObstacleInWay(self, targetPosition) then
+                            done = self:Jump(NewGetMoveVelocity(self, targetPosition))
+                            self.jumpAttempts = self.jumpAttempts + 1
+                        else
+                            done = self:Move(targetPosition, deltaTime)
+                        end
 
-                    if not success then
-                        self:SetMoveType(kBabblerMoveType.None)
+                        if done or (self:GetOrigin() - targetPosition):GetLengthXZ() <= 1.5 then
+                            if self.physicsBody then
+                                self.physicsBody:SetCoords(self:GetCoords())
+                            end
+                            self:SetMoveType(kBabblerMoveType.None)
+                        end
+
+                        success = true
+
                     end
 
                 end
 
+                if not success then
+                    self:SetMoveType(kBabblerMoveType.None)
+                end
+
             end
 
-            self.jumping = not self:GetIsOnGround()
         end
+
+        self.jumping = not self:GetIsOnGround()
+    end
     )
     
     -- UpdateJumpPhysics
     local orig_Babbler_UpdateJumpPhysics
     orig_Babbler_UpdateJumpPhysics = Class_ReplaceMethod( "Babbler", "UpdateJumpPhysics", 
-        function(self, deltaTime)
+    function (self, deltaTime)
 
-            local velocity = self:GetVelocity()
-            local origin = self:GetOrigin()
+        local velocity = self:GetVelocity()
+        local origin = self:GetOrigin()
 
-            // simulation is updated only during jumping
-            if self.physicsBody and not self.doesGroundMove then
+        // simulation is updated only during jumping
+        if self.physicsBody and not self.doesGroundMove then
 
-                // If the Babbler has moved outside of the world, destroy it
-                local coords = self.physicsBody:GetCoords()
-                local origin = coords.origin
+            // If the Babbler has moved outside of the world, destroy it
+            local coords = self.physicsBody:GetCoords()
+            local origin = coords.origin
 
-                local maxDistance = 1000
+            local maxDistance = 1000
 
-                if origin:GetLengthSquared() > maxDistance * maxDistance then
-                    Print( "%s moved outside of the playable area, destroying", self:GetClassName() )
-                    DestroyEntity(self)
-                else
-                    // Update the position/orientation of the entity based on the current
-                    // position/orientation of the physics object.
-                    self:SetCoords( coords )
-                end
+            if origin:GetLengthSquared() > maxDistance * maxDistance then
+                Print( "%s moved outside of the playable area, destroying", self:GetClassName() )
+                DestroyEntity(self)
+            else
+                // Update the position/orientation of the entity based on the current
+                // position/orientation of the physics object.
+                self:SetCoords( coords )
+            end
 
-                if self.lastVelocity ~= nil then
+            if self.lastVelocity ~= nil then
 
-                    local delta = velocity - self.lastVelocity
-                    if delta:GetLengthSquaredXZ() > 0.0001 then
+                local delta = velocity - self.lastVelocity
+                if delta:GetLengthSquaredXZ() > 0.0001 then
 
-                        local endPoint = self.lastOrigin + self.lastVelocity * (deltaTime + kNewAttackRange)
+                    local endPoint = self.lastOrigin + self.lastVelocity * (deltaTime + kNewAttackRange)
 
-                        local trace = Shared.TraceCapsule(self.lastOrigin, endPoint, kNewAttackRange * 0.5, 0, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterOneAndIsa(self, "Babbler"))
-                        self:ProcessHit(trace.entity, trace.surface)
+                    local trace = Shared.TraceCapsule(self.lastOrigin, endPoint, kNewAttackRange * 0.5, 0, CollisionRep.Damage, PhysicsMask.Bullets, EntityFilterOneAndIsa(self, "Babbler"))
+                    self:ProcessHit(trace.entity, trace.surface)
 
-                    end
-
-                end
-
-                if self.targetSelector then
-                    self.targetSelector:AttackerMoved()
                 end
 
             end
 
+            if self.targetSelector then
+                self.targetSelector:AttackerMoved()
+            end
+
         end
+
+    end
     )    
 
     -- MoveRandom
@@ -227,9 +227,9 @@ if Server then
             else
 
                 local interestingTargets = { }
-                table.copy(GetEntitiesWithMixinForTeamWithinRange("Live", self:GetTeamNumber(), origin, searchRange), interestingTargets, true)
+                table.copy(GetEntitiesWithMixinForTeamWithinRange("Live", self:GetTeamNumber(), origin, kNewTargetSearchRange), interestingTargets, true)
                 // cysts are very attractive, they remind us of the ball we like to catch!
-                table.copy(GetEntitiesForTeamWithinRange("Cyst", self:GetTeamNumber(), origin, searchRange), interestingTargets, true)
+                table.copy(GetEntitiesForTeamWithinRange("Cyst", self:GetTeamNumber(), origin, kNewTargetSearchRange), interestingTargets, true)
 
                 local numTargets = #interestingTargets
                 if numTargets > 1 then

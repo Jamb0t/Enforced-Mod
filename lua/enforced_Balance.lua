@@ -25,6 +25,7 @@ kXenocideDamage = 160
 kJetpackTechResearchTime = 80
 kExosuitTechResearchTime = 80
 kDrifterAbilityCooldown = 4
+
 kElectricalDamage = 5
 kElectricalMaxTargets = 3
 kElectricalRange = 2.5
@@ -34,3 +35,6 @@ kElectrifyDamageTime = 3
 kElectrifyCooldownTime = 10
 kElectrifyEnergyRegain = 25
 kElectrifyEnergyCost = 0
+
+kSkulkBiteRange = 1.41
+kSkulkEnzymedRange = 1.51

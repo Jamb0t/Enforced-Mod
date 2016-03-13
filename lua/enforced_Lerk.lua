@@ -3,7 +3,6 @@ Script.Load("lua/Mixin/PushableMixin.lua")
 
 local networkVars = {}
 AddMixinNetworkVars(PushableMixin, networkVars)
---Class_Reload("Lerk", networkVars)
 
 local orig_Lerk_OnInitialized
 orig_Lerk_OnInitialized = Class_ReplaceMethod( "Lerk", "OnInitialized", 
@@ -38,3 +37,5 @@ orig_Lerk_ModifyVelocity = Class_ReplaceMethod( "Lerk", "ModifyVelocity",
 		UpdateAirBrake(self, input, velocity, deltaTime)
 	end
 )
+
+Shared.LinkClassToMap("Lerk", Lerk.kMapName, networkVars)

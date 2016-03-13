@@ -6,30 +6,27 @@ local networkVars =
     timeThrusterUsed = "time",
     thrusterActive = "boolean"
 }
---Class_Reload("MAC", networkVars)
 
 local original_MAC_OnInitialized
 original_MAC_OnInitialized = Class_ReplaceMethod( "MAC", "OnInitialized",
-	function (self)	
-		original_MAC_OnInitialized(self)
+function (self)	
+    original_MAC_OnInitialized(self)
 
-		if Server then
-			self.timeThrusterUsed = math.max(0, Shared.GetTime() - kMACThrusterDuration)
-		end
-	end
+    self.timeThrusterUsed = math.max(0, Shared.GetTime() - kMACThrusterDuration)
+end
 )
 
 local original_MAC_GetMoveSpeed
 original_MAC_GetMoveSpeed = Class_ReplaceMethod( "MAC", "GetMoveSpeed",
-	function (self)
-		if not self.rolloutSourceFactory and self.thrusterActive then
-			local maxSpeedTable = { maxSpeed = kThrusterMoveSpeed }
-			self:ModifyMaxSpeed(maxSpeedTable)
-			return maxSpeedTable.maxSpeed 
-		end
+function (self)
+    if not self.rolloutSourceFactory and self.thrusterActive then
+        local maxSpeedTable = { maxSpeed = kThrusterMoveSpeed }
+        self:ModifyMaxSpeed(maxSpeedTable)
+        return maxSpeedTable.maxSpeed 
+    end
 
-		return original_MAC_GetMoveSpeed(self)
-	end
+    return original_MAC_GetMoveSpeed(self)
+end
 )
 
 local function EndThrusters(self)  
@@ -39,57 +36,59 @@ end
 
 local original_MAC_PerformActivation
 original_MAC_PerformActivation = Class_ReplaceMethod( "MAC", "PerformActivation",
-	function (self, techId, position, normal, commander)
-		if techId == kTechId.MACEMP and self.timeThrusterUsed + kThrusterCooldown < Shared.GetTime() then
+function (self, techId, position, normal, commander)
+    if techId == kTechId.MACEMP and self.timeThrusterUsed + kThrusterCooldown < Shared.GetTime() then
 
-			self.timeThrusterUsed = Shared.GetTime()
-			self.thrusterActive = true
-			self:AddTimedCallback(EndThrusters, kMACThrusterDuration)
-			return true, false
+        self.timeThrusterUsed = Shared.GetTime()
+        self.thrusterActive = true
+        self:AddTimedCallback(EndThrusters, kMACThrusterDuration)
+        return true, false
 
-		end
+    end
 
-		return ScriptActor.PerformActivation(self, techId, position, normal, commander)
-	end
+    return ScriptActor.PerformActivation(self, techId, position, normal, commander)
+end
 )
 
 Class_AddMethod( "MAC", "OverrideGetStatusInfo",
-	function (self)
-		local thrusterEnergy = 0
+function (self)
+    local thrusterEnergy = 0
 
-		if self.thrusterActive then
-			thrusterEnergy = 1 - Clamp((Shared.GetTime() - self.timeThrusterUsed) / kMACThrusterDuration, 0, 1)
-		else
-			thrusterEnergy = Clamp((Shared.GetTime() - self.timeThrusterUsed - kMACThrusterDuration) / (kThrusterCooldown - kMACThrusterDuration), 0, 1)
-		end
+    if self.thrusterActive then
+        thrusterEnergy = 1 - Clamp((Shared.GetTime() - self.timeThrusterUsed) / kMACThrusterDuration, 0, 1)
+    else
+        thrusterEnergy = Clamp((Shared.GetTime() - self.timeThrusterUsed - kMACThrusterDuration) / (kThrusterCooldown - kMACThrusterDuration), 0, 1)
+    end
 
-		return { Locale.ResolveString("THRUSTER_COOLDOWN"), 
-				 thrusterEnergy,
-				 kTechId.MACEMP
-		}
-	end
+    return { Locale.ResolveString("THRUSTER_COOLDOWN"), 
+             thrusterEnergy,
+             kTechId.MACEMP
+    }
+end
 )
 
 local original_MAC_GetTechAllowed
 original_MAC_GetTechAllowed = Class_ReplaceMethod( "MAC", "GetTechAllowed",
-	function (self, techId, techNode, player)
-		local allowed, canAfford = ScriptActor.GetTechAllowed(self, techId, techNode, player)
+function (self, techId, techNode, player)
+    local allowed, canAfford = ScriptActor.GetTechAllowed(self, techId, techNode, player)
 
-		if techId == kTechId.MACEMP then
+    if techId == kTechId.MACEMP then
 
-			canAfford = true
-			allowed = self.timeThrusterUsed + kThrusterCooldown < Shared.GetTime()
+        canAfford = true
+        allowed = self.timeThrusterUsed + kThrusterCooldown < Shared.GetTime()
 
-		end
+    end
 
-		return allowed, canAfford
-	end
+    return allowed, canAfford
+end
 )
 
 local original_MAC_GetTechButtons
 original_MAC_GetTechButtons = Class_ReplaceMethod( "MAC", "GetTechButtons",
-	function (self, techId)
-		return { kTechId.MACEMP, kTechId.Stop, kTechId.Welding, kTechId.None,
-				 kTechId.None, kTechId.None, kTechId.None, kTechId.None }
-	end
+function (self, techId)
+    return { kTechId.MACEMP, kTechId.Stop, kTechId.Welding, kTechId.None,
+             kTechId.None, kTechId.None, kTechId.None, kTechId.None }
+end
 )
+
+Shared.LinkClassToMap("MAC", MAC.kMapName, networkVars)

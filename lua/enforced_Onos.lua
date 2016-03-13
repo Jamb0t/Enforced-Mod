@@ -10,18 +10,18 @@ local kChargeDamage = 8
 -- OnCreate
 local orig_Onos_OnCreate
 orig_Onos_OnCreate = Class_ReplaceMethod( "Onos", "OnCreate",
-	function (self)
-		InitMixin(self, DamageMixin)
-		orig_Onos_OnCreate(self)
-	end
+function (self)
+    InitMixin(self, DamageMixin)
+    orig_Onos_OnCreate(self)
+end
 )
 
 -- GetBaseHealth
 local orig_Onos_GetBaseHealth
 orig_Onos_GetBaseHealth = Class_ReplaceMethod( "Onos", "GetBaseHealth",
-	function (self)
-		return kHealth
-	end
+function (self)
+    return kHealth
+end
 )
 
 -- TriggerCharge
@@ -77,34 +77,34 @@ end
 -- GetMaxSpeed
 local orig_Onos_GetMaxSpeed
 orig_Onos_GetMaxSpeed = Class_ReplaceMethod( "Onos", "GetMaxSpeed",
-	function (self, possible)
-		if possible then
-			return kMaxSpeed
-		end
+function (self, possible)
+    if possible then
+        return kMaxSpeed
+    end
 
-		return (kMaxSpeed + self:GetChargeFraction() * (kChargeSpeed - kMaxSpeed)) * self:GetSlowSpeedModifier()
-	end
+    return (kMaxSpeed + self:GetChargeFraction() * (kChargeSpeed - kMaxSpeed)) * self:GetSlowSpeedModifier()
+end
 )
 
 Class_AddMethod( "Onos", "GetMovementSpecialCooldown",
-	function (self)
-		local cooldown = 0
-		local timeLeft = (Shared.GetTime() - self.timeLastChargeEnd)
+function (self)
+    local cooldown = 0
+    local timeLeft = (Shared.GetTime() - self.timeLastChargeEnd)
 
-		local chargeDelay = self.kChargeDelay
-		if timeLeft < chargeDelay then
-			return Clamp(timeLeft / chargeDelay, 0, 1)
-		end
+    local chargeDelay = self.kChargeDelay
+    if timeLeft < chargeDelay then
+        return Clamp(timeLeft / chargeDelay, 0, 1)
+    end
 
-		return cooldown
-	end
+    return cooldown
+end
 )
 
 if Server then
-    local orig_Onos_GetTierThreeTechId
-    orig_Onos_GetTierThreeTechId = Class_ReplaceMethod( "Onos", "GetTierThreeTechId",
-        function (self)
-            return kTechId.Doomsday
-        end
-    )
+local orig_Onos_GetTierThreeTechId
+orig_Onos_GetTierThreeTechId = Class_ReplaceMethod( "Onos", "GetTierThreeTechId",
+    function (self)
+        return kTechId.Doomsday
+    end
+)
 end

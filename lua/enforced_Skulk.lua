@@ -3,7 +3,6 @@ Script.Load("lua/Mixin/PushableMixin.lua")
 
 local networkVars = {}
 AddMixinNetworkVars(PushableMixin, networkVars)
---Class_Reload("Skulk", networkVars)
 
 local orig_Skulk_OnInitialized  
 orig_Skulk_OnInitialized = Class_ReplaceMethod( "Skulk", "OnInitialized", 
@@ -12,3 +11,5 @@ orig_Skulk_OnInitialized = Class_ReplaceMethod( "Skulk", "OnInitialized",
 		orig_Skulk_OnInitialized(self)
 	end
 )
+
+Shared.LinkClassToMap("Skulk", Skulk.kMapName, networkVars)
