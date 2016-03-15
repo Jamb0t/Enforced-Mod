@@ -127,16 +127,7 @@
     <filename>lua\enforced_PowerPoint.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Predict.lua</filename>
-  </file>
-  <file>
     <filename>lua\Client\enforced_Scoreboard_Client.lua</filename>
-  </file>
-  <file>
-    <filename>lua\enforced_Server.lua</filename>
-  </file>
-  <file>
-    <filename>lua\enforced_Shared.lua</filename>
   </file>
   <file>
     <filename>lua\enforced_Skulk.lua</filename>

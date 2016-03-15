@@ -1,4 +1,3 @@
-Script.Load("lua/enforced_Shared.lua")
 
 local function OnLoadComplete()
     if Client then
@@ -7,4 +6,3 @@ local function OnLoadComplete()
 end
 
 Event.Hook("LoadComplete", OnLoadComplete)
-

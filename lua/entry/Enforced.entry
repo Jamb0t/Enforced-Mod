@@ -1,7 +1,4 @@
 modEntry = {
 Client = "lua/enforced_Client.lua",
-Server = "lua/enforced_Server.lua",
-Shared = "lua/enforced_Shared.lua",
-Predict = "lua/enforced_Predict.lua",
 FileHooks = "lua/enforced_FileHooks.lua",
 }

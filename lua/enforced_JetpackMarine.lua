@@ -1,6 +1,6 @@
 
 local kFlySpeed = 9
-local kFlyAcceleration = 21 //28
+local kFlyAcceleration = 22 //28
 
 local orig_JetpackMarine_ModifyVelocity 
 orig_JetpackMarine_ModifyVelocity = Class_ReplaceMethod( "JetpackMarine", "ModifyVelocity",

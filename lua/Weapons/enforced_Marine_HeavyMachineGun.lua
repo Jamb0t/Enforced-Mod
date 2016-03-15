@@ -2,7 +2,6 @@
 // lua\Weapons\HeavyMachineGun.lua
 // - Dragon
 
-Script.Load("lua/AmmoPack.lua")
 Script.Load("lua/Weapons/Marine/ClipWeapon.lua")
 Script.Load("lua/PickupableWeaponMixin.lua")
 Script.Load("lua/LiveMixin.lua")
@@ -18,16 +17,13 @@ local kViewModelName = PrecacheAsset("models/marine/heavymachinegun/heavymachine
 local kAnimationGraph = PrecacheAsset("models/marine/heavymachinegun/heavymachinegun_view.animation_graph")
 
 local kRange = 100
-local kZoomedFov = 64
 local kSingleShotSound = PrecacheAsset("sound/compmod.fev/compmod/marine/hmg/hmg_fire")
 local kEndSound = PrecacheAsset("sound/NS2.fev/marine/heavy/spin_down")
 local kMuzzleEffect = PrecacheAsset("cinematics/marine/heavymachinegun/muzzle_flash.cinematic")
 local kMuzzleAttachPoint = "fxnode_riflemuzzle"
 
-local networkVars = 
+local networkVars =
 {
-	zooming = "boolean",
-    timeZoomStateChanged = "private compensated time"
 }
 
 AddMixinNetworkVars(LiveMixin, networkVars)
@@ -35,18 +31,15 @@ AddMixinNetworkVars(LiveMixin, networkVars)
 function HeavyMachineGun:OnCreate()
 
     ClipWeapon.OnCreate(self)
-    
+
 	InitMixin(self, PickupableWeaponMixin)
 	InitMixin(self, EntityChangeMixin)
 	InitMixin(self, LiveMixin)
-    
+
     if Client then
         InitMixin(self, ClientWeaponEffectsMixin)
     end
-	
-	self.zooming = false
-	self.timeZoomStateChanged = 0	
-	
+
 end
 
 function HeavyMachineGun:OnInitialized()
@@ -55,14 +48,14 @@ function HeavyMachineGun:OnInitialized()
     self.lastfiredtime = 0
     self.reloadtime = 0
     if Client then
-    
+
         self:SetUpdates(true)
         self:SetFirstPersonAttackingEffect(kMuzzleEffect)
         self:SetThirdPersonAttackingEffect(kMuzzleEffect)
         self:SetMuzzleAttachPoint(kMuzzleAttachPoint)
-        
+
     end
-    
+
 end
 
 local function CancelReload(self)
@@ -100,21 +93,11 @@ function HeavyMachineGun:OnPrimaryAttack(player)
         self:OnPrimaryAttackEnd(player)
         self.blockingPrimary = false
     end
-    
+
 end
 
 function HeavyMachineGun:OnDraw(player, previousWeaponMapName)
 	ClipWeapon.OnDraw(self, player, previousWeaponMapName)
-    self.zooming = false
-end
-	
-function HeavyMachineGun:OnHolster(player)
- 
-    ClipWeapon.OnHolster(self, player)
-    self.zooming = false
-	if player then    
-        player:SetFov(kDefaultFov)    
-    end
 end
 
 function HeavyMachineGun:OnHolsterClient()
@@ -147,17 +130,16 @@ end
 
 function HeavyMachineGun:OnReload(player)
     if self:CanReload() then
-	    self.zooming = false
         self.reloadtime = Shared.GetTime()
     end
     ClipWeapon.OnReload(self, player)
 end
 
 function HeavyMachineGun:OnUpdateAnimationInput(modelMixin)
-    
+
     PROFILE("HeavyMachineGun:OnUpdateAnimationInput")
     ClipWeapon.OnUpdateAnimationInput(self, modelMixin)
-    
+
     if Server and self.reloading and self.reloadtime + kHeavyMachineGunReloadTime < Shared.GetTime() then
         self.reloading = false
         self.ammo = self.ammo + self.clip
@@ -165,7 +147,6 @@ function HeavyMachineGun:OnUpdateAnimationInput(modelMixin)
         // Transfer bullets from our ammo pool to the weapon's clip
         self.clip = math.min(self.ammo, self:GetClipSize())
         self.ammo = self.ammo - self.clip
-		local player = self:GetParent()
     end
 
 end
@@ -194,7 +175,15 @@ function HeavyMachineGun:GetClipSize()
 end
 
 function HeavyMachineGun:GetSpread()
-    return Math.Radians(4.7)
+    return Math.Radians(6)
+end
+
+local function HeavyMachineGunRandom()
+    return math.max(0.2 + NetworkRandom())
+end
+
+function HeavyMachineGun:CalculateSpreadDirection(shootCoords, player)
+    return CalculateSpread(shootCoords, self:GetSpread() * self:GetInaccuracyScalar(player), HeavyMachineGunRandom)
 end
 
 function HeavyMachineGun:GetBulletDamage(target, endPoint)
@@ -210,7 +199,7 @@ function HeavyMachineGun:GetWeight()
 end
 
 function HeavyMachineGun:GetHasSecondary(player)
-    return true
+    return false
 end
 
 function HeavyMachineGun:GetSecondaryCanInterruptReload()
@@ -239,7 +228,7 @@ function HeavyMachineGun:SetGunLoopParam(viewModel, paramName, rateOfChange)
     // 0.5 instead of 1 as full arm_loop is intense.
     local new = Clamp(current + rateOfChange, 0, 0.5)
     viewModel:SetPoseParam(paramName, new)
-    
+
 end
 
 function HeavyMachineGun:GetDamageType()
@@ -247,17 +236,6 @@ function HeavyMachineGun:GetDamageType()
 end
 
 function HeavyMachineGun:OnSecondaryAttack(player)
-	if not self.zooming and not self:GetIsReloading() then
-		self.zooming = true
-		self.timeZoomStateChanged = Shared.GetTime()
-	end
-end
-
-function HeavyMachineGun:OnSecondaryAttackEnd(player)
-	if self.zooming and not self:GetIsReloading() then
-		self.zooming = false
-		self.timeZoomStateChanged = Shared.GetTime()
-	end
 end
 
 function HeavyMachineGun:UpdateViewModelPoseParameters(viewModel)
@@ -266,7 +244,7 @@ function HeavyMachineGun:UpdateViewModelPoseParameters(viewModel)
     local sign = (attacking and 1) or 0
 
     self:SetGunLoopParam(viewModel, "arm_loop", sign)
-    
+
 end
 
 function HeavyMachineGun:GetAmmoPackMapName()
@@ -274,16 +252,16 @@ function HeavyMachineGun:GetAmmoPackMapName()
 end
 
 if Client then
-    
+
     function HeavyMachineGun:OnClientPrimaryAttacking()
 	    Shared.StopSound(self, kSingleShotSound)
         Shared.PlaySound(self, kSingleShotSound)
     end
-	
+
     function HeavyMachineGun:GetTriggerPrimaryEffects()
         return not self:GetIsReloading()
-    end	
-    
+    end
+
     function HeavyMachineGun:OnClientPrimaryAttackEnd()
 	    Shared.PlaySound(self, kEndSound)
     end
@@ -291,7 +269,7 @@ if Client then
     function HeavyMachineGun:GetPrimaryEffectRate()
         return 0.08
     end
-    
+
     function HeavyMachineGun:GetPreventCameraAnimation()
         return true
     end
@@ -300,16 +278,16 @@ if Client then
 
         local player = self:GetParent()
         if player then
-        
+
             local origin = player:GetEyePos()
             local viewCoords= player:GetViewCoords()
-        
+
             return origin + viewCoords.zAxis * 0.4 + viewCoords.xAxis * -0.10 + viewCoords.yAxis * -0.22
         end
-        
+
         return self:GetOrigin()
-        
-    end  
+
+    end
 
 end
 
@@ -318,23 +296,11 @@ function HeavyMachineGun:ModifyDamageTaken(damageTable, attacker, doer, damageTy
     /*if damageType ~= kDamageType.Corrode then
         damageTable.damage = 0
     end*/
-    
+
 end
 
 function HeavyMachineGun:GetCanTakeDamageOverride()
     return self:GetParent() == nil
-end
-
-function HeavyMachineGun:ProcessMoveOnWeapon(player, input)
-    if Client then
-        local timeScalar = math.sin( Clamp( (Shared.GetTime() - self.timeZoomStateChanged) / 0.2, 0, 1) * math.pi / 2)
-
-        if self.zooming then
-            player:SetFov(kDefaultFov + timeScalar * (kZoomedFov - kDefaultFov))
-        else
-            player:SetFov(kZoomedFov + timeScalar * (kDefaultFov - kZoomedFov))        
-        end
-    end
 end
 
 if Server then
@@ -342,11 +308,11 @@ if Server then
     function HeavyMachineGun:OnKill()
         DestroyEntity(self)
     end
-    
+
     function HeavyMachineGun:GetSendDeathMessageOverride()
         return false
-    end 
-    
+    end
+
 end
 
 Shared.LinkClassToMap("HeavyMachineGun", HeavyMachineGun.kMapName, networkVars)
@@ -359,7 +325,7 @@ HeavyMachineGunAmmo.kModelName = PrecacheAsset("models/marine/ammopacks/hmg.mode
 
 function HeavyMachineGunAmmo:OnInitialized()
 
-    WeaponAmmoPack.OnInitialized(self)    
+    WeaponAmmoPack.OnInitialized(self)
     self:SetModel(HeavyMachineGunAmmo.kModelName)
 
 end

@@ -25,6 +25,7 @@ function BuildTechData()
 								[kTechDataResearchTimeKey] = kElectricalUpgradeResearchTime,
 								[kTechDataDisplayName] = "Electrify Extractor",
 								[kTechDataTooltipInfo] = "Upgrades this extractor with an electric defense.",
+								[kTechDataRequiresPower] = true,
 								[kTechDataHotkey] = Move.U })
 
     table.insert(techData, {    [kTechDataId] = kTechId.NapalmGrenade,
@@ -38,8 +39,6 @@ function BuildTechData()
 								[kTechDataDamageType] = kDamageType.Flame })
 								
 	table.insert(techData, { 	[kTechDataId] = kTechId.MACEMP,
-	                            [kTechDataCostKey] = kElectricalUpgradeResearchCost,
-								[kTechDataResearchTimeKey] = kElectricalUpgradeResearchTime,
 								[kTechDataDisplayName] = "Thruster",
 								[kTechDataTooltipInfo] = "MAC_SPEED_TOOLTIP"})
     return techData

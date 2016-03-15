@@ -1,24 +1,16 @@
 // Natural Selection 2 'Classic' Mod
 // Source located at - https://github.com/xToken/NS2c
-// lua\ElectrifyMixin.lua    
+// lua\ElectrifyMixin.lua
 // - Dragon
 
 ElectrifyMixin = CreateMixin( ElectrifyMixin )
 ElectrifyMixin.type = "Electrify"
 
-Shared.PrecacheSurfaceShader("cinematics/vfx_materials/electrified.surface_shader")
-Shared.PrecacheSurfaceShader("cinematics/vfx_materials/electrified_view.surface_shader")
-Shared.PrecacheSurfaceShader("cinematics/vfx_materials/electrified_1.surface_shader")
-Shared.PrecacheSurfaceShader("cinematics/vfx_materials/electrified_view_1.surface_shader")
-
 local kElectrifiedSound = PrecacheAsset("sound/NS2.fev/marine/commander/nano_damage")
 
 ElectrifyMixin.expectedMixins =
 {
-    Live = "ElectrifyMixin makes only sense if this entity can take damage (has LiveMixin).",
-    Research = "Required for electrify progress / cancellation.",
-    Energy = "Required for visual notification for comm."
-}    
+}
 
 ElectrifyMixin.networkVars =
 {
@@ -28,9 +20,8 @@ ElectrifyMixin.networkVars =
 
 function ElectrifyMixin:__initmixin()
     self.isElectrified = false
-    self.lastDamagetime = 0    
+    self.lastDamagetime = 0
     self.lastElectrifiedTime = 0
-    self.lastEnergyRegen = 0
     if Client then
         self.lasteffectupdate = 0
     end
@@ -39,19 +30,18 @@ end
 local function ClearElectrify(self)
 
     self.isElectrified = false
-    self.lastDamagetime = 0    
+    self.lastDamagetime = 0
     self.lastElectrifiedTime = 0
-    self.lastEnergyRegen = 0
     if Client then
         self:_RemoveEffect()
     end
-    
+
 end
 
-function ElectrifyMixin:OnDestroy() 
+function ElectrifyMixin:OnDestroy()
     if self:GetIsElectrified() then
         ClearElectrify(self)
-    end   
+    end
 end
 
 function ElectrifyMixin:GetIsElectrified()
@@ -70,23 +60,25 @@ function ElectrifyMixin:OnResearchComplete(researchId)
 		    self:AddTimedCallback(ElectrifyMixin.Update, kElectrifyDamageTime)
 		end
 	end
-	
+
 end
 
 local function UpdateClientElectrifyEffects(self)
 
     assert(Client)
-    
+
     if self:GetIsElectrified() and self:GetIsAlive() then
-            if self.effecton then
+        if self:GetIsPowered() then
+            if not self.effecton then
                 self:_RemoveEffect()
             end
             self:_CreateEffectOff()
-            self.effecton = false
-    else
-        self:_RemoveEffect() 
+            self.effectoff = false
+        elseif not self:GetIsPowered() then
+                self:_RemoveEffect()
+        end
     end
-    
+
 end
 
 if Client then
@@ -94,20 +86,20 @@ if Client then
     function ElectrifyMixin:OnUpdateRender()
 
         PROFILE("ElectrifyMixin:OnUpdateRender")
-        
+
         UpdateClientElectrifyEffects(self)
         if self.lasteffectupdate + 10 < Shared.GetTime() then
             self.lasteffectupdate = Shared.GetTime()
-            self:_RemoveEffect() 
+            self:_RemoveEffect()
         end
-        
+
     end
 
 end
 
 function ElectrifyMixin:Update()
 
-    if self:GetIsAlive() and self:GetIsElectrified() then
+    if self:GetIsAlive() and self:GetIsElectrified() and self:GetIsPowered() then
         local enemies = GetEntitiesWithMixinForTeamWithinRange("Live", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), kElectricalRange + 2)
         local damageRadius = kElectricalRange
         local damagedentities = 0
@@ -117,7 +109,7 @@ function ElectrifyMixin:Update()
                 if not entity:isa("Commander") and HasMixin(entity, "Live") and entity:GetIsAlive() then
                     local trace = Shared.TraceRay(self:GetOrigin(), attackPoint, CollisionRep.Damage, PhysicsMask.Bullets, filterNonDoors)
 					if entity.SetElectrified then
-                    entity:SetElectrified(1)
+                    entity:SetElectrified(.9)
                     end
                     self:SetEnergy(math.max(self:GetEnergy(), 0))
                     self:DoDamage(kElectricalDamage , entity, trace.endPoint, (attackPoint - trace.endPoint):GetUnit(), "none" )
@@ -125,24 +117,24 @@ function ElectrifyMixin:Update()
                 end
             end
         end
-        if damagedentities > 0 then
+        if damagedentities > 0 and self:GetIsPowered() then
             self.lastElectrifiedTime = Shared.GetTime()
             StartSoundEffectAtOrigin(kElectrifiedSound, self:GetOrigin())
             self.lastDamagetime = Shared.GetTime()
         end
     end
-       
+
     return self:GetIsAlive()
-    
+
 end
 
 if Client then
 
     -- Adds the material effect to the entity and all child entities (hat have a Model mixin)
     local function AddEffect(entity, material, viewMaterial, entities)
-    
+
         local numChildren = entity:GetNumChildren()
-        
+
         if HasMixin(entity, "Model") then
             local model = entity._renderModel
             if model ~= nil then
@@ -154,16 +146,16 @@ if Client then
                 table.insert(entities, entity:GetId())
             end
         end
-        
+
         for i = 1, entity:GetNumChildren() do
             local child = entity:GetChildAtIndex(i - 1)
             AddEffect(child, material, viewMaterial, entities)
         end
-    
+
     end
-    
+
     local function RemoveEffect(entities, material, viewMaterial)
-    
+
         for i =1, #entities do
             local entity = Shared.GetEntity( entities[i] )
             if entity ~= nil and HasMixin(entity, "Model") then
@@ -174,48 +166,48 @@ if Client then
                     else
                         model:RemoveMaterial(material)
                     end
-                end                    
+                end
             end
         end
-        
+
     end
 
     function ElectrifyMixin:_CreateEffectOn()
-   
+
         if not self.electrifiedMaterial then
-        
+
             local material = Client.CreateRenderMaterial()
             material:SetMaterial("cinematics/vfx_materials/electrified.material")
 
             local viewMaterial = Client.CreateRenderMaterial()
             viewMaterial:SetMaterial("cinematics/vfx_materials/electrified_view.material")
-            
+
             self.electrifiedEntities = {}
             self.electrifiedMaterial = material
             self.electrifiedViewMaterial = viewMaterial
             AddEffect(self, material, viewMaterial, self.electrifiedEntities)
-            
-        end    
-        
+
+        end
+
     end
-    
+
     function ElectrifyMixin:_CreateEffectOff()
-   
+
         if not self.electrifiedMaterial then
-        
+
             local material = Client.CreateRenderMaterial()
             material:SetMaterial("cinematics/vfx_materials/electrified_1.material")
 
             local viewMaterial = Client.CreateRenderMaterial()
             viewMaterial:SetMaterial("cinematics/vfx_materials/electrified_view_1.material")
-            
+
             self.electrifiedEntities = {}
             self.electrifiedMaterial = material
             self.electrifiedViewMaterial = viewMaterial
             AddEffect(self, material, viewMaterial, self.electrifiedEntities)
-            
-        end    
-        
+
+        end
+
     end
 
     function ElectrifyMixin:_RemoveEffect()
@@ -227,8 +219,8 @@ if Client then
             self.electrifiedMaterial = nil
             self.electrifiedViewMaterial = nil
             self.electrifiedEntities = nil
-        end            
+        end
 
     end
-    
+
 end

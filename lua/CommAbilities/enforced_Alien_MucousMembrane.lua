@@ -1,6 +1,8 @@
 MucousMembrane.kLifeSpan = 10
 MucousMembrane.kThinkTime = 0.1
-MucousMembrane.kArmorHealPercentagePerSecond = 24
+MucousMembrane.kArmorHealPercentagePerSecond = 22
+
+local gHealedByMucousMembrane = {}
 
 if Server then
 
@@ -10,7 +12,7 @@ if Server then
                 return true
             end
         end
-        
+
         return false
     end
 
@@ -20,13 +22,13 @@ if Server then
                 table.remove(gHealedByMucousMembrane, index)
             end
         end
-        
+
         table.insert(gHealedByMucousMembrane, {entityId, Shared.GetTime()})
     end
 
 
-	local orig_MucousMembrane_Perform 
-	orig_MucousMembrane_Perform = Class_ReplaceMethod( "MucousMembrane", "Perform", 
+	local orig_MucousMembrane_Perform
+	orig_MucousMembrane_Perform = Class_ReplaceMethod( "MucousMembrane", "Perform",
     function (self)
         for _, unit in ipairs(GetEntitiesWithMixinForTeamWithinRange("Live", self:GetTeamNumber(), self:GetOrigin(), MucousMembrane.kRadius)) do
 
@@ -38,7 +40,7 @@ if Server then
                 SetEntityRecentlyHealed(unit:GetId())
 
             end
-            
+
         end
     end)
 

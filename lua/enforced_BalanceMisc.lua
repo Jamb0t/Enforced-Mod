@@ -11,3 +11,5 @@ kShadeSupply = 15
 kFadeBlinkAddedAccel = 2
 kFadeAirFriction = 0.14
 kFadeCrouchModelOffset = 0.70
+kBlinkEnergyCost = 30
+kStructureWeldRate = 93
