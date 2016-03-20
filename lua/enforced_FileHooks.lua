@@ -37,7 +37,6 @@ ModLoader.SetupFileHook( "lua/JetpackMarine.lua", "lua/enforced_JetpackMarine.lu
 ModLoader.SetupFileHook( "lua/MAC.lua", "lua/enforced_MAC.lua", "post" )
 ModLoader.SetupFileHook( "lua/Marine.lua", "lua/enforced_Marine.lua", "post" )
 ModLoader.SetupFileHook( "lua/MarineCommander.lua", "lua/enforced_MarineCommander.lua", "post" )
-ModLoader.SetupFileHook( "lua/Fade.lua", "lua/enforced_Fade.lua", "post" )
 ModLoader.SetupFileHook( "lua/Lerk.lua", "lua/enforced_Lerk.lua", "post" )
 ModLoader.SetupFileHook( "lua/Skulk.lua", "lua/enforced_Skulk.lua", "post" )
 ModLoader.SetupFileHook( "lua/Onos.lua", "lua/enforced_Onos.lua", "post" )

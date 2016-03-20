@@ -7,9 +7,11 @@ kMatureTunnelEntranceHealth = 1450
 kFadeHealthPerBioMass = 3
 
 kScanDuration = 5
-kScanRadius = 15
+kScanRadius = 16
 
 kExosuitArmorPerUpgradeLevel = 55
-kExosuitArmor = 320
+kThrusterUpwardsAcceleration = 20
+kThrusterHorizontalAcceleration = 50
+kHorizontalThrusterAddSpeed = 2.2
 kThrusterDuration = 1.2
 kOnosHealth = 1000
