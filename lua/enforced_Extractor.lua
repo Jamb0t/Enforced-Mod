@@ -46,7 +46,7 @@ Class_AddMethod( "Extractor", "GetUnitNameOverride",
 function (self)
     local description = GetDisplayName(self)
 
-    if self:GetIsElectrified() then
+    if self:HasElectrifyUpgrade() then
         description = "Electrified " .. description 
     end
     

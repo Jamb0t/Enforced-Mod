@@ -14,74 +14,122 @@ ElectrifyMixin.expectedMixins =
 
 ElectrifyMixin.networkVars =
 {
-    isElectrified = "boolean",
-	lastDamagetime = "time"
+    hasElectrifyUpgrade = "boolean", -- controls when the electrify upgrade is active
+    timeElectrifyUpgrade = "time", -- last time the electrify upgrade was completed
+	timeNextElectrifyDamaged = "time", -- next time the electrify upgrade can do damage
 }
 
+local function SetElectrify(self)
+    self.hasElectrifyUpgrade = true
+    self.timeElectrifyUpgrade = Shared.GetTime() + kElectrifyCooldownTime
+    self.timeNextElectrifyDamaged = 0
+end
+
+local function ClearElectrify(self)
+    self.hasElectrifyUpgrade = false
+    self.timeElectrifyUpgrade = 0
+    self.timeNextElectrifyDamaged = 0
+end
+
 function ElectrifyMixin:__initmixin()
-    self.isElectrified = false
-    self.lastDamagetime = 0
-    self.lastElectrifiedTime = 0
+    ClearElectrify(self)
     if Client then
         self.lasteffectupdate = 0
     end
 end
 
-local function ClearElectrify(self)
-
-    self.isElectrified = false
-    self.lastDamagetime = 0
-    self.lastElectrifiedTime = 0
-    if Client then
-        self:_RemoveEffect()
-    end
-
-end
-
 function ElectrifyMixin:OnDestroy()
     if self:GetIsElectrified() then
-        ClearElectrify(self)
+        if not Client then
+            ClearElectrify(self)
+        elseif Client then
+            self:_RemoveEffect()
+        end
     end
+end
+
+function ElectrifyMixin:HasElectrifyUpgrade()
+    return self.hasElectrifyUpgrade
 end
 
 function ElectrifyMixin:GetIsElectrified()
-	return self.isElectrified
+	return self.hasElectrifyUpgrade and self.timeElectrifyUpgrade > Shared.GetTime()
 end
 
-function ElectrifyMixin:GetCanRegainEnergy()
-	return self.lastDamagetime + kElectrifyCooldownTime < Shared.GetTime()
+function ElectrifyMixin:GetCanElectrify()
+	return self.hasElectrifyUpgrade and self.timeNextElectrifyDamaged < Shared.GetTime()
 end
 
 function ElectrifyMixin:OnResearchComplete(researchId)
 
     if researchId == kTechId.Electrify then
-		self.isElectrified = true
+
+        SetElectrify(self)
+
 		if Server then
-		    self:AddTimedCallback(ElectrifyMixin.Update, kElectrifyDamageTime)
+		    self:AddTimedCallback(ElectrifyMixin.Update, kElectrifyPollRate)
 		end
 	end
 
 end
 
-local function UpdateClientElectrifyEffects(self)
+function ElectrifyMixin:Update()
 
-    assert(Client)
-
-    if self:GetIsElectrified() and self:GetIsAlive() then
-        if self:GetIsPowered() then
-            if not self.effecton then
-                self:_RemoveEffect()
-            end
-            self:_CreateEffectOff()
-            self.effectoff = false
-        elseif not self:GetIsPowered() then
-                self:_RemoveEffect()
-        end
+    -- Reset the upgrade if time has elapsed
+    if self.hasElectrifyUpgrade and not self:GetIsElectrified() then
+        ClearElectrify(self)
     end
+
+    --
+	if not self:GetIsAlive() or not self:GetIsPowered() or
+	   not self:GetIsElectrified() or not self:GetCanElectrify() then
+		return self:GetIsAlive()
+	end
+
+	local enemies = GetEntitiesWithMixinForTeamWithinRange("Live", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), kElectricalRange + 2)
+	local damageRadius = kElectricalRange
+	local damagedentities = 0
+	for index, entity in ipairs(enemies) do
+		local attackPoint = entity:GetOrigin()
+		if (attackPoint - self:GetOrigin()):GetLength() < damageRadius and damagedentities < kElectricalMaxTargets then
+			if not entity:isa("Commander") and HasMixin(entity, "Live") and entity:GetIsAlive() then
+				local trace = Shared.TraceRay(self:GetOrigin(), attackPoint, CollisionRep.Damage, PhysicsMask.Bullets, filterNonDoors)
+				if entity.SetElectrified then
+					entity:SetElectrified(.8)
+				end
+				self:SetEnergy(math.max(self:GetEnergy(), 0))
+				self:DoDamage(kElectricalDamage, entity, trace.endPoint, (attackPoint - trace.endPoint):GetUnit(), "none" )
+				damagedentities = damagedentities + 1
+			end
+		end
+	end
+
+	if damagedentities > 0 then
+		self.timeNextElectrifyDamaged = Shared.GetTime() + kElectrifyDamageTime
+		StartSoundEffectAtOrigin(kElectrifiedSound, self:GetOrigin())
+	end
+
+    return self:GetIsAlive()
 
 end
 
 if Client then
+
+	local function UpdateClientElectrifyEffects(self)
+
+		if self:GetIsElectrified() and self:GetIsAlive() then
+			if self:GetIsPowered() then
+				if not self.effecton then
+					self:_RemoveEffect()
+				end
+				self:_CreateEffectOff()
+				self.effectoff = false
+			elseif not self:GetIsPowered() then
+				self:_RemoveEffect()
+			end
+		end
+
+	end
 
     function ElectrifyMixin:OnUpdateRender()
 
@@ -94,41 +142,6 @@ if Client then
         end
 
     end
-
-end
-
-function ElectrifyMixin:Update()
-
-    if self:GetIsAlive() and self:GetIsElectrified() and self:GetIsPowered() then
-        local enemies = GetEntitiesWithMixinForTeamWithinRange("Live", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), kElectricalRange + 2)
-        local damageRadius = kElectricalRange
-        local damagedentities = 0
-        for index, entity in ipairs(enemies) do
-            local attackPoint = entity:GetOrigin()
-            if (attackPoint - self:GetOrigin()):GetLength() < damageRadius and damagedentities < kElectricalMaxTargets then
-                if not entity:isa("Commander") and HasMixin(entity, "Live") and entity:GetIsAlive() then
-                    local trace = Shared.TraceRay(self:GetOrigin(), attackPoint, CollisionRep.Damage, PhysicsMask.Bullets, filterNonDoors)
-					if entity.SetElectrified then
-                    entity:SetElectrified(.8)
-                    end
-                    self:SetEnergy(math.max(self:GetEnergy(), 0))
-                    self:DoDamage(kElectricalDamage , entity, trace.endPoint, (attackPoint - trace.endPoint):GetUnit(), "none" )
-                    damagedentities = damagedentities + 1
-                end
-            end
-        end
-        if damagedentities > 0 and self:GetIsPowered() then
-            self.lastElectrifiedTime = Shared.GetTime()
-            StartSoundEffectAtOrigin(kElectrifiedSound, self:GetOrigin())
-            self.lastDamagetime = Shared.GetTime()
-        end
-    end
-
-    return self:GetIsAlive()
-
-end
-
-if Client then
 
     -- Adds the material effect to the entity and all child entities (hat have a Model mixin)
     local function AddEffect(entity, material, viewMaterial, entities)

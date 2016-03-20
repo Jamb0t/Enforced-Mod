@@ -61,9 +61,6 @@
     <filename>lua\enforced_Extractor.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Fade.lua</filename>
-  </file>
-  <file>
     <filename>lua\enforced_FileHooks.lua</filename>
   </file>
   <file>

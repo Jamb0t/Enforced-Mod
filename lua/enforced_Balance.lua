@@ -34,8 +34,11 @@ kElectricalUpgradeResearchTime = 35
 kElectrifyDamageTime = 3
 kElectrifyCooldownTime = 10
 kElectrifyEnergyRegain = 25
+kElectrifyPollRate = 1
+
 kSkulkBiteRange = 1.41
 kSkulkEnzymedRange = 1.51
+
 kOnosChargeCost = 30
 kOnosChargeDamage = 8
 kOnosChargeStunCheckInterval = 0.08
