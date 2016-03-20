@@ -1,0 +1,4 @@
+modEntry = {
+Client = "lua/enforced_Client.lua",
+FileHooks = "lua/enforced_FileHooks.lua",
+}
