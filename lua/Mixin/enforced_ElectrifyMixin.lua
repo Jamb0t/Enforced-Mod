@@ -109,7 +109,7 @@ function ElectrifyMixin:Update()
                 if not entity:isa("Commander") and HasMixin(entity, "Live") and entity:GetIsAlive() then
                     local trace = Shared.TraceRay(self:GetOrigin(), attackPoint, CollisionRep.Damage, PhysicsMask.Bullets, filterNonDoors)
 					if entity.SetElectrified then
-                    entity:SetElectrified(.9)
+                    entity:SetElectrified(.8)
                     end
                     self:SetEnergy(math.max(self:GetEnergy(), 0))
                     self:DoDamage(kElectricalDamage , entity, trace.endPoint, (attackPoint - trace.endPoint):GetUnit(), "none" )

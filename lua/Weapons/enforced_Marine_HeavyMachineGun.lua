@@ -163,7 +163,7 @@ function HeavyMachineGun:OnTag(tagName)
 end
 
 function HeavyMachineGun:GetDeathIconIndex()
-    return kDeathMessageIcon.Crush
+    return kDeathMessageIcon.HeavyMachineGun
 end
 
 function HeavyMachineGun:GetHUDSlot()

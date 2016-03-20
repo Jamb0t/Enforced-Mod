@@ -1,9 +1,5 @@
 Script.Load("lua/NS2Utility.lua")
 
-kElixerVersion = 1.8
-Script.Load("lua/Elixer_Utility.lua")
-Elixer.UseVersion( kElixerVersion )
-
 -- New techIds go here
 local newTechIds = {
     'Electrify',
@@ -54,7 +50,7 @@ if firstTech == nil then
     -- Add napalm and hmg icons
     GetTexCoordsForTechId(kTechId.Rifle)
     if gTechIdPosition and not gTechIdPosition[kTechId.HeavyMachineGun] then
-        gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.Rifle
+        gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.HeavyMachineGun
         gTechIdPosition[kTechId.NapalmGrenade] = kDeathMessageIcon.GasGrenade
     end
 end
