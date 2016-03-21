@@ -1,45 +1,86 @@
 
+local newBuildTechAdded = false
+
 local origBuildTechData = BuildTechData
 function BuildTechData()
     local techData = origBuildTechData()
 
-	table.insert(techData, { 	[kTechDataId] = kTechId.Doomsday,
-								[kTechDataCategory] = kTechId.Onos,
-								[kTechDataMapName] = Doomsday.kMapName,
-								[kTechDataDisplayName] = "DoomsDay",
-								[kTechDataTooltipInfo] = "Self-destruct Devastation"})
+	if not newBuildTechAdded then
 
-	table.insert(techData, { 	[kTechDataId] = kTechId.HeavyMachineGun,
-	                            [kTechDataMapName] = HeavyMachineGun.kMapName,
-								[kTechDataModel] = HeavyMachineGun.kModelName,
-								[kTechDataMaxHealth] = kMarineWeaponHealth,
-								[kTechDataPointValue] = 7,
-								[kTechDataDisplayName] = "HMG",
-                                [kTechDataTooltipInfo] = "HeavyMachineGun",
-								[kTechDataCostKey] = kHMGCost,
-								[kStructureAttachId] = { kTechId.AdvancedArmory },
-								[kStructureAttachRange] = kArmoryWeaponAttachRange })
+        local newBuildTech =
+        {
+            -- Doomsday
+            {
+                [kTechDataId] = kTechId.Doomsday,
+                [kTechDataCategory] = kTechId.Onos,
+                [kTechDataMapName] = Doomsday.kMapName,
+                [kTechDataDisplayName] = "DoomsDay",
+                [kTechDataTooltipInfo] = "Self-destruct Devastation"
+            },
 
-	table.insert(techData, { 	[kTechDataId] = kTechId.Electrify,
-	                            [kTechDataCostKey] = kElectricalUpgradeResearchCost,
-								[kTechDataCooldown] = kElectrifyCooldownTime,
-								[kTechDataDisplayName] = "Electrify Extractor",
-								[kTechDataTooltipInfo] = "Upgrades this extractor with an electric defense.",
-								[kTechDataRequiresPower] = true,
-								[kTechDataHotkey] = Move.U })
+            -- HMG
+            {
+                [kTechDataId] = kTechId.HeavyMachineGun,
+                [kTechDataMapName] = HeavyMachineGun.kMapName,
+                [kTechDataModel] = HeavyMachineGun.kModelName,
+                [kTechDataMaxHealth] = kMarineWeaponHealth,
+                [kTechDataPointValue] = 7,
+                [kTechDataDisplayName] = "HMG",
+                [kTechDataTooltipInfo] = "HeavyMachineGun",
+                [kTechDataCostKey] = kHMGCost,
+                [kStructureAttachId] = { kTechId.AdvancedArmory },
+                [kStructureAttachRange] = kArmoryWeaponAttachRange
+            },
 
-    table.insert(techData, {    [kTechDataId] = kTechId.NapalmGrenade,
-	                            [kTechDataMapName] = NapalmGrenadeThrower.kMapName,
-								[kTechDataDisplayName] = "Napalm grenade",
-								[kTechDataCostKey] = kGasGrenadeCost })
+            -- Electrify
+            {
+                [kTechDataId] = kTechId.Electrify,
+                [kTechDataCostKey] = kElectrifyCost,
+                [kTechDataCooldown] = kElectrifyCooldownTime,
+                [kTechDataDisplayName] = "Electrify Extractor",
+                [kTechDataTooltipInfo] = "Does damage to aliens near the extractor.",
+                [kTechDataRequiresPower] = true,
+                [kTechDataHotkey] = Move.U
+            },
 
-    table.insert(techData, {    [kTechDataId] = kTechId.NapalmGrenadeProjectile,
-	                            [kTechDataMapName] = NapalmGrenade.kMapName,
-								[kTechDataDisplayName] = "Napalm Grenade",
-								[kTechDataDamageType] = kDamageType.Flame })
-								
-	table.insert(techData, { 	[kTechDataId] = kTechId.MACEMP,
-								[kTechDataDisplayName] = "Thruster",
-								[kTechDataTooltipInfo] = "MAC_SPEED_TOOLTIP"})
+            {
+                [kTechDataId] = kTechId.ElectrifyTech,
+                [kTechDataDisplayName] = "Electrify Extractor Tech",
+                [kTechDataTooltipInfo] = "Does damage to aliens near the extractor.",
+                [kTechDataCostKey] = kElectrifyTechResearchCost,
+                [kTechDataResearchTimeKey] = kElectrifyTechResearchTime
+            },
+
+            -- Napalm
+            {
+                [kTechDataId] = kTechId.NapalmGrenade,
+                [kTechDataMapName] = NapalmGrenadeThrower.kMapName,
+                [kTechDataDisplayName] = "Napalm grenade",
+                [kTechDataCostKey] = kGasGrenadeCost
+            },
+
+            {
+                [kTechDataId] = kTechId.NapalmGrenadeProjectile,
+                [kTechDataMapName] = NapalmGrenade.kMapName,
+                [kTechDataDisplayName] = "Napalm Grenade",
+                [kTechDataDamageType] = kDamageType.Flame
+            },
+
+            -- Thruster
+            {
+                [kTechDataId] = kTechId.MACEMP,
+                [kTechDataDisplayName] = "Thruster",
+                [kTechDataTooltipInfo] = "MAC_SPEED_TOOLTIP"
+            },
+
+        }
+	
+		for _, tech in pairs(newBuildTech) do
+			table.insert(techData, tech)
+		end
+
+		newBuildTechAdded = true
+	end
+
     return techData
 end

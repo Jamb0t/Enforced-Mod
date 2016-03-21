@@ -89,12 +89,12 @@ function ElectrifyMixin:Update()
 		return self:GetIsAlive()
 	end
 
+	local damagedEntities = {}
 	local enemies = GetEntitiesWithMixinForTeamWithinRange("Live", GetEnemyTeamNumber(self:GetTeamNumber()), self:GetOrigin(), kElectricalRange + 2)
-	local damageRadius = kElectricalRange
-	local damagedentities = 0
+
 	for index, entity in ipairs(enemies) do
 		local attackPoint = entity:GetOrigin()
-		if (attackPoint - self:GetOrigin()):GetLength() < damageRadius and damagedentities < kElectricalMaxTargets then
+		if (attackPoint - self:GetOrigin()):GetLength() < kElectricalRange and #damagedentities < kElectricalMaxTargets then
 			if not entity:isa("Commander") and HasMixin(entity, "Live") and entity:GetIsAlive() then
 				local trace = Shared.TraceRay(self:GetOrigin(), attackPoint, CollisionRep.Damage, PhysicsMask.Bullets, filterNonDoors)
 				if entity.SetElectrified then
@@ -102,12 +102,13 @@ function ElectrifyMixin:Update()
 				end
 				self:SetEnergy(math.max(self:GetEnergy(), 0))
 				self:DoDamage(kElectricalDamage, entity, trace.endPoint, (attackPoint - trace.endPoint):GetUnit(), "none" )
-				damagedentities = damagedentities + 1
+				
+				table.insert(damagedEntities, entity)
 			end
 		end
 	end
 
-	if damagedentities > 0 then
+	if #damagedEntities > 0 then
 		self.timeNextElectrifyDamaged = Shared.GetTime() + kElectrifyDamageTime
 		StartSoundEffectAtOrigin(kElectrifiedSound, self:GetOrigin())
 	end

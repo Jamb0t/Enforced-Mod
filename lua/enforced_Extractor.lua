@@ -20,12 +20,14 @@ end
 local original_Extractor_GetTechButtons
 original_Extractor_GetTechButtons = Class_ReplaceMethod( "Extractor", "GetTechButtons",
 function (self, techId)
-if self:GetIsElectrified() then
-    return { kTechId.None, kTechId.None, kTechId.None, kTechId.None,
-             kTechId.None, kTechId.None, kTechId.None, kTechId.None }
-end
-    return { kTechId.CollectResources, kTechId.Electrify, kTechId.None, kTechId.None,
-             kTechId.None, kTechId.None, kTechId.None, kTechId.None }
+    local techs = { kTechId.CollectResources, kTechId.None, kTechId.None, kTechId.None,
+                    kTechId.ElectrifyTech, kTechId.None, kTechId.None, kTechId.None }
+
+    if not self:HasElectrifyUpgrade() then
+        techs[2] = kTechId.Electrify
+    end
+
+    return techs
 end
 )
 

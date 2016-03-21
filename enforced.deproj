@@ -130,6 +130,9 @@
     <filename>lua\enforced_Skulk.lua</filename>
   </file>
   <file>
+    <filename>lua\enforced_TeamInfo.lua</filename>
+  </file>
+  <file>
     <filename>lua\enforced_TechData.lua</filename>
   </file>
   <file>

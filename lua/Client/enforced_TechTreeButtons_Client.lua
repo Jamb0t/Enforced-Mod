@@ -3,5 +3,6 @@ local techIdToMaterialOffset = GetUpValue( GetMaterialXYOffset, "kTechIdToMateri
 if techIdToMaterialOffset then
 	techIdToMaterialOffset[kTechId.HeavyMachineGun] = 73
 	techIdToMaterialOffset[kTechId.Electrify] = 119
+	techIdToMaterialOffset[kTechId.ElectrifyTech] = 119
 	techIdToMaterialOffset[kTechId.Doomsday] = 70
 end
