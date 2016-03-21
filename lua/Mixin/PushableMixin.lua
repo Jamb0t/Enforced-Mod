@@ -11,7 +11,7 @@ PushableMixin.type = "Pushable"
 
 local kDefaultForce = 1
 local kDefaultDuration = 0.1
-local kMaxForce = 3 //so the force cannot go crazy strong. engine limit is 50.
+local kMaxForce = 4 //so the force cannot go crazy strong. engine limit is 50.
 
 PushableMixin.optionalCallbacks =
 {

@@ -60,17 +60,20 @@ function ElectrifyMixin:GetCanElectrify()
 	return self.hasElectrifyUpgrade and self.timeNextElectrifyDamaged < Shared.GetTime()
 end
 
-function ElectrifyMixin:OnResearchComplete(researchId)
+function ElectrifyMixin:GetActivationTechAllowed(techId)
+    return true
+end
 
-    if researchId == kTechId.Electrify then
-
+function ElectrifyMixin:PerformActivation(techId, position, normal, commander)
+    
+        if techId == kTechId.Electrify then
         SetElectrify(self)
-
+		
 		if Server then
 		    self:AddTimedCallback(ElectrifyMixin.Update, kElectrifyPollRate)
-		end
-	end
-
+		end	
+    end		
+    
 end
 
 function ElectrifyMixin:Update()

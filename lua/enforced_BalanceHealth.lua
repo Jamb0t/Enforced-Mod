@@ -4,7 +4,6 @@ kLerkHealthPerBioMass = 3
 kPhaseGateHealth = 2400
 kInfantryPortalArmor = 400
 kMatureTunnelEntranceHealth = 1450
-kFadeHealthPerBioMass = 3
 
 kScanDuration = 5
 kScanRadius = 16

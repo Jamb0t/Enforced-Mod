@@ -26,15 +26,14 @@ kJetpackTechResearchTime = 80
 kExosuitTechResearchTime = 80
 kDrifterAbilityCooldown = 4
 
-kElectricalDamage = 13
+kElectricalDamage = 11
 kElectricalMaxTargets = 3
-kElectricalRange = 3
+kElectricalRange = 3.6
 kElectricalUpgradeResearchCost = 15
-kElectricalUpgradeResearchTime = 35
-kElectrifyDamageTime = 3
-kElectrifyCooldownTime = 10
+kElectrifyDamageTime = 1
+kElectrifyCooldownTime = 15
 kElectrifyEnergyRegain = 25
-kElectrifyPollRate = 1
+kElectrifyPollRate = 0
 
 kSkulkBiteRange = 1.41
 kSkulkEnzymedRange = 1.51

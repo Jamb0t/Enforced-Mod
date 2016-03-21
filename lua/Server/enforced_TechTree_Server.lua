@@ -13,10 +13,10 @@ orig_TechTree_AddResearchNode = Class_ReplaceMethod( "TechTree", "AddResearchNod
         elseif techId == kTechId.NanoShieldTech then
         -- Skip NanoShieldTech
             self:AddActivation(kTechId.MACEMP)
+			self:AddActivation(kTechId.Electrify, kTechId.RoboticsFactory, kTechId.None)
         elseif techId == kTechId.DualMinigunExosuit then
         -- order doesn't matter, add all the marine research here
             self:AddTargetedBuyNode(kTechId.NapalmGrenade, kTechId.GrenadeTech)
-            self:AddUpgradeNode(kTechId.Electrify, kTechId.RoboticsFactory, kTechId.None)
             self:AddBuyNode(kTechId.DualMinigunExosuit, kTechId.DualMinigunTech, kTechId.TwoCommandStations)
         else
             orig_TechTree_AddResearchNode(self, techId, prereq1, prereq2, addOnTechId)

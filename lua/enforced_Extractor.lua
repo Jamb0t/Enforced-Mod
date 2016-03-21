@@ -17,16 +17,15 @@ function(self)
 end
 )
 
-local orig_Extractor_GetTechButtons
-orig_Extractor_GetTechButtons = Class_ReplaceMethod( "Extractor", "GetTechButtons", 
-function(self, techId)
-    local result = ResourceTower.GetTechButtons(self)
-
-    if not self:GetIsElectrified() then
-        result[2] = kTechId.Electrify
-    end
-
-    return result
+local original_Extractor_GetTechButtons
+original_Extractor_GetTechButtons = Class_ReplaceMethod( "Extractor", "GetTechButtons",
+function (self, techId)
+if self:GetIsElectrified() then
+    return { kTechId.None, kTechId.None, kTechId.None, kTechId.None,
+             kTechId.None, kTechId.None, kTechId.None, kTechId.None }
+end
+    return { kTechId.CollectResources, kTechId.Electrify, kTechId.None, kTechId.None,
+             kTechId.None, kTechId.None, kTechId.None, kTechId.None }
 end
 )
 

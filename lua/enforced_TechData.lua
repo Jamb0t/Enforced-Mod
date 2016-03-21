@@ -22,7 +22,7 @@ function BuildTechData()
 
 	table.insert(techData, { 	[kTechDataId] = kTechId.Electrify,
 	                            [kTechDataCostKey] = kElectricalUpgradeResearchCost,
-								[kTechDataResearchTimeKey] = kElectricalUpgradeResearchTime,
+								[kTechDataCooldown] = kElectrifyCooldownTime,
 								[kTechDataDisplayName] = "Electrify Extractor",
 								[kTechDataTooltipInfo] = "Upgrades this extractor with an electric defense.",
 								[kTechDataRequiresPower] = true,
