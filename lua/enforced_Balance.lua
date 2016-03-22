@@ -30,7 +30,8 @@ kElectrifyTechResearchCost = 15
 kElectrifyTechResearchTime = 20
 
 kElectrifyCost = 5
-kElectrifyCooldownTime = 15
+kElectrifyTime = 15
+kElectrifyCooldownTime = 30
 
 kElectricalDamage = 11
 kElectricalMaxTargets = 3

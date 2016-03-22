@@ -1,5 +1,4 @@
 
-Script.Load("lua/EnergyMixin.lua")
 Script.Load("lua/DamageMixin.lua")
 Script.Load("lua/Mixin/enforced_ElectrifyMixin.lua")
 
@@ -7,55 +6,91 @@ local networkVars = {}
 AddMixinNetworkVars(ElectrifyMixin, networkVars)
 
 local orig_Extractor_OnCreate
-orig_Extractor_OnCreate = Class_ReplaceMethod( "Extractor", "OnCreate", 
+orig_Extractor_OnCreate = Class_ReplaceMethod( "Extractor", "OnCreate",
 function(self)
     orig_Extractor_OnCreate(self)
-    
-    InitMixin(self, EnergyMixin)
+
     InitMixin(self, DamageMixin)
-    InitMixin(self, ElectrifyMixin)	
+    InitMixin(self, ElectrifyMixin)
 end
 )
 
 local original_Extractor_GetTechButtons
 original_Extractor_GetTechButtons = Class_ReplaceMethod( "Extractor", "GetTechButtons",
 function (self, techId)
-    local techs = { kTechId.CollectResources, kTechId.None, kTechId.None, kTechId.None,
-                    kTechId.ElectrifyTech, kTechId.None, kTechId.None, kTechId.None }
+    local techs = original_Extractor_GetTechButtons()
+    techs[5] = kTechId.ElectrifyTech
 
-    if not self:HasElectrifyUpgrade() then
+    if self:IsElectrifyAllowed() then
         techs[2] = kTechId.Electrify
+    else
+        techs[2] = kTechId.None
     end
 
     return techs
 end
 )
 
-Class_AddMethod( "Extractor", "OverrideGetEnergyUpdateRate",
-function (self)
-    return kElectrifyEnergyRegain
+function Extractor:PerformActivation(techId, position, normal, commander)
+
+    if techId == kTechId.Electrify then
+        self:SetElectrify()
+    end
+
+    return ScriptActor.PerformActivation(self, techId, position, normal, commander)
+end
+
+local original_Extractor_GetTechAllowed
+original_Extractor_GetTechAllowed = Class_ReplaceMethod( "Extractor", "GetTechAllowed",
+function (self, techId, techNode, player)
+
+    local allowed, canAfford = original_Extractor_GetTechAllowed(self, techId, techNode, player)
+    
+    if allowed and self:IsElectrifyAllowed() then
+        allowed = true
+    end
+    
+    return allowed, canAfford
 end
 )
 
-Class_AddMethod( "Extractor", "GetCanUpdateEnergy",
-function (self)
-    return self:GetIsElectrified()
+local original_Extractor_GetActivationTechAllowed
+original_Extractor_GetActivationTechAllowed = Class_ReplaceMethod( "Extractor", "GetActivationTechAllowed",
+function (self, techId)
+
+    if techId == kTechId.Electrify then
+        return self:IsElectrifyAllowed()
+    end
+    
+    return true
 end
 )
 
 Class_AddMethod( "Extractor", "GetUnitNameOverride",
 function (self)
+
     local description = GetDisplayName(self)
 
-    if self:HasElectrifyUpgrade() then
-        description = "Electrified " .. description 
-    end
-    
-    if HasMixin(self, "Construct") and not self:GetIsBuilt() then
+    if not self:GetIsBuilt() then
         description = "Unbuilt " .. description
+    elseif self:IsElectrifyActive() then
+        description = "Electrified " .. description
+    end
+
+    return description
+end
+)
+
+Class_AddMethod( "Extractor", "OverrideGetStatusInfo",
+function (self)
+
+    local status = self:GetElectrifyProgressBar()
+    if #status > 0 then
+        return status
     end
     
-    return description
+    local text = GetDisplayName(self)
+    return { text }
 end
 )
 

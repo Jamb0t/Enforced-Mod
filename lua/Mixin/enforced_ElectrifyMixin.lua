@@ -10,77 +10,98 @@ local kElectrifiedSound = PrecacheAsset("sound/NS2.fev/marine/commander/nano_dam
 
 ElectrifyMixin.expectedMixins =
 {
+    Research = "Required for ElectrifyTech."
 }
 
 ElectrifyMixin.networkVars =
 {
-    hasElectrifyUpgrade = "boolean", -- controls when the electrify upgrade is active
-    timeElectrifyUpgrade = "time", -- last time the electrify upgrade was completed
+    isElectrifyActive = "boolean", -- controls when the electrify upgrade is active
+    timeElectrifyActive = "time", -- last time the electrify upgrade was completed
+    timeElectrifyAllowed = "time",
 	timeNextElectrifyDamaged = "time", -- next time the electrify upgrade can do damage
 }
 
-local function SetElectrify(self)
-    self.hasElectrifyUpgrade = true
-    self.timeElectrifyUpgrade = Shared.GetTime() + kElectrifyCooldownTime
-    self.timeNextElectrifyDamaged = 0
-end
-
-local function ClearElectrify(self)
-    self.hasElectrifyUpgrade = false
-    self.timeElectrifyUpgrade = 0
-    self.timeNextElectrifyDamaged = 0
-end
-
 function ElectrifyMixin:__initmixin()
-    ClearElectrify(self)
+    self:ClearElectrify()
     if Client then
         self.lasteffectupdate = 0
+    elseif Server then
+        self:AddTimedCallback(ElectrifyMixin.Update, kElectrifyPollRate)
     end
 end
 
 function ElectrifyMixin:OnDestroy()
     if self:GetIsElectrified() then
         if not Client then
-            ClearElectrify(self)
+            self:ClearElectrify()
         elseif Client then
             self:_RemoveEffect()
         end
     end
 end
 
-function ElectrifyMixin:HasElectrifyUpgrade()
-    return self.hasElectrifyUpgrade
+function ElectrifyMixin:SetElectrify()
+    self.isElectrifyActive = true
+    self.timeElectrifyActive = Shared.GetTime() + kElectrifyTime
+    self.timeElectrifyAllowed = Shared.GetTime() + kElectrifyCooldownTime
+    self.timeNextElectrifyDamaged = 0
+end
+
+function ElectrifyMixin:ClearElectrify()
+    self.isElectrifyActive = false
+    self.timeElectrifyActive = 0
+    self.timeElectrifyAllowed = self.timeElectrifyAllowed or 0
+    self.timeNextElectrifyDamaged = 0
+end
+
+function ElectrifyMixin:GetElectrifyProgressBar()
+    local t = {}
+    local cooldown = self:GetCooldownProgress()
+
+    if cooldown > 0.01 and cooldown < 0.99 then
+        if self.isElectrifyActive then
+            table.insert(t, "Electrify Active")
+            table.insert(t, cooldown)
+            table.insert(t, kTechId.Electrify)
+        else
+            table.insert(t, "Electrify Cooldown")
+            table.insert(t, cooldown)
+            table.insert(t, kTechId.Electrify)
+        end
+    end
+
+    return t
+end
+
+function ElectrifyMixin:GetCooldownProgress()
+    if self.isElectrifyActive then
+        return 1 - Clamp((self.timeElectrifyActive - Shared.GetTime()) / kElectrifyTime, 0, 1)
+    end
+ 
+    return 1 - Clamp((self.timeElectrifyAllowed - Shared.GetTime()) / kElectrifyCooldownTime, 0, 1)
+end
+
+function ElectrifyMixin:IsElectrifyAllowed()
+    return not self.isElectrifyActive and self.timeElectrifyAllowed < Shared.GetTime()
+end
+
+function ElectrifyMixin:IsElectrifyActive()
+    return self.isElectrifyActive
 end
 
 function ElectrifyMixin:GetIsElectrified()
-	return self.hasElectrifyUpgrade and self.timeElectrifyUpgrade > Shared.GetTime()
+	return self.isElectrifyActive and self.timeElectrifyActive > Shared.GetTime()
 end
 
 function ElectrifyMixin:GetCanElectrify()
-	return self.hasElectrifyUpgrade and self.timeNextElectrifyDamaged < Shared.GetTime()
-end
-
-function ElectrifyMixin:GetActivationTechAllowed(techId)
-    return true
-end
-
-function ElectrifyMixin:PerformActivation(techId, position, normal, commander)
-    
-        if techId == kTechId.Electrify then
-        SetElectrify(self)
-		
-		if Server then
-		    self:AddTimedCallback(ElectrifyMixin.Update, kElectrifyPollRate)
-		end	
-    end		
-    
+	return self.isElectrifyActive and self.timeNextElectrifyDamaged < Shared.GetTime()
 end
 
 function ElectrifyMixin:Update()
 
     -- Reset the upgrade if time has elapsed
-    if self.hasElectrifyUpgrade and not self:GetIsElectrified() then
-        ClearElectrify(self)
+    if self.isElectrifyActive and not self:GetIsElectrified() then
+        self:ClearElectrify()
     end
 
     --
@@ -102,7 +123,7 @@ function ElectrifyMixin:Update()
 				end
 				self:SetEnergy(math.max(self:GetEnergy(), 0))
 				self:DoDamage(kElectricalDamage, entity, trace.endPoint, (attackPoint - trace.endPoint):GetUnit(), "none" )
-				
+
 				table.insert(damagedEntities, entity)
 			end
 		end
