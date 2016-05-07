@@ -21,11 +21,11 @@ orig_TechTree_AddResearchNode = Class_ReplaceMethod( "TechTree", "AddResearchNod
 			self:AddActivation(kTechId.Electrify, kTechId.ElectrifyTech)
         -- Add Thruster
             self:AddActivation(kTechId.MACEMP)
-        elseif techId == kTechId.DualMinigunExosuit then
+            self:AddActivation(kTechId.Electrify, kTechId.RoboticsFactory, kTechId.None)
+        elseif techId == kTechId.ExosuitTech then
         -- Napalm
+            orig_TechTree_AddResearchNode(self, techId, prereq1, prereq2, addOnTechId)
             self:AddTargetedBuyNode(kTechId.NapalmGrenade, kTechId.GrenadeTech)
-        -- Dual Exosuits
-            self:AddBuyNode(kTechId.DualMinigunExosuit, kTechId.DualMinigunTech, kTechId.TwoCommandStations)
         -- Original
         else
             orig_TechTree_AddResearchNode(self, techId, prereq1, prereq2, addOnTechId)
