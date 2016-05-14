@@ -3,7 +3,7 @@ local TriggerBlinkInEffects = nil
 local TriggerBlinkOutEffects = nil
 
 local kEtherealForce = 13.5
-local kBlinkAddForce = 1
+local kBlinkAddForce = 2
 local kEtherealVerticalForce = 2
 
 local orig_Blink_SetEthereal
@@ -27,13 +27,13 @@ function (self, player, state)
             TriggerBlinkOutEffects(self, player)
 
             local celerityLevel = GetHasCelerityUpgrade(player) and GetSpurLevel(player:GetTeamNumber()) or 0
-            local oldSpeed = player:GetVelocity():GetLength()
+            local oldSpeed = player:GetVelocity():GetLengthXZ()
             local oldVelocity = player:GetVelocity()
             oldVelocity.y = 0
             local newSpeed = math.max(oldSpeed, kEtherealForce + celerityLevel * 0.5)
 
             -- need to handle celerity different for the fade. blink is a big part of the basic movement, celerity wont be significant enough if not considered here
-            local celerityMultiplier = 1 + celerityLevel * 0.3
+            local celerityMultiplier = 1 + celerityLevel * 0.1
 
             local newVelocity = player:GetViewCoords().zAxis * (kEtherealForce + celerityLevel * 0.5) + oldVelocity
             if newVelocity:GetLength() > newSpeed then
