@@ -1,5 +1,4 @@
 
-
 local function UpdateTechDescription( descTable )
     -- restore 295 build settings
     descTable[kTechId.Exosuit] = "WEAPON_DESC_EXO"
@@ -47,3 +46,22 @@ function MarineBuy_GetHas( techId )
     return oldMarineBuy_GetHas( techId )
 end
 
+
+local displayTech = nil
+
+local oldMarineBuy_GetEquipped = MarineBuy_GetEquipped
+function MarineBuy_GetEquipped()
+
+    local result = oldMarineBuy_GetEquipped()
+
+    if not displayTech then
+        displayTech = GetUpValue( oldMarineBuy_GetEquipped, "gDisplayTechs", { LocateRecurse = true } )
+    end
+
+    if displayTech and not displayTech[kTechId.HeavyMachineGun] then
+        displayTech[kTechId.HeavyMachineGun] = true
+        result = oldMarineBuy_GetEquipped()
+    end
+    
+    return result
+end
