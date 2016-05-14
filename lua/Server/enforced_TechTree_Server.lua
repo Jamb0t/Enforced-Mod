@@ -17,7 +17,7 @@ orig_TechTree_AddResearchNode = Class_ReplaceMethod( "TechTree", "AddResearchNod
         elseif techId == kTechId.NanoShieldTech then
         -- Skip NanoShieldTech
         -- Add ElectrifyTech and Electrify
-			orig_TechTree_AddResearchNode(self, kTechId.ElectrifyTech, prereq1,  prereq2, addOnTechId)
+			--orig_TechTree_AddResearchNode(self, kTechId.ElectrifyTech, prereq1,  prereq2, addOnTechId)
 			--self:AddActivation(kTechId.Electrify, kTechId.ElectrifyTech)
         -- Add Thruster
             self:AddActivation(kTechId.MACEMP)

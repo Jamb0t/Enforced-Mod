@@ -43,6 +43,7 @@ function BuildTechData()
                 [kTechDataHotkey] = Move.U
             },
 
+--[[
             {
                 [kTechDataId] = kTechId.ElectrifyTech,
                 [kTechDataDisplayName] = "Electrify Extractor Tech",
@@ -50,7 +51,7 @@ function BuildTechData()
                 [kTechDataCostKey] = kElectrifyTechResearchCost,
                 [kTechDataResearchTimeKey] = kElectrifyTechResearchTime
             },
-
+]]--
             -- Napalm
             {
                 [kTechDataId] = kTechId.NapalmGrenade,
@@ -73,7 +74,7 @@ function BuildTechData()
                 [kTechDataTooltipInfo] = "MAC_SPEED_TOOLTIP"
             },
         }
-	
+
 		for _, tech in pairs(newBuildTech) do
 			table.insert(techData, tech)
 		end

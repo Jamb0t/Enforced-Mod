@@ -2,8 +2,8 @@ Script.Load("lua/NS2Utility.lua")
 
 -- New techIds go here
 local newTechIds = {
-    'Electrify',
-    'ElectrifyTech',
+--    'Electrify',
+--    'ElectrifyTech',
     'HeavyMachineGun',
     'NapalmGrenade',
     'NapalmGrenadeProjectile',
