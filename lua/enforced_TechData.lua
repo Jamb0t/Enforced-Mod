@@ -27,7 +27,7 @@ function BuildTechData()
                 [kTechDataPointValue] = 7,
                 [kTechDataDisplayName] = "HMG",
                 [kTechDataTooltipInfo] = "HeavyMachineGun",
-                [kTechDataCostKey] = kHMGCost,
+                [kTechDataCostKey] = kHeavyMachineGunCost,
                 [kStructureAttachId] = { kTechId.AdvancedArmory },
                 [kStructureAttachRange] = kArmoryWeaponAttachRange
             },
@@ -72,7 +72,6 @@ function BuildTechData()
                 [kTechDataDisplayName] = "Thruster",
                 [kTechDataTooltipInfo] = "MAC_SPEED_TOOLTIP"
             },
-
         }
 	
 		for _, tech in pairs(newBuildTech) do

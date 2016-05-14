@@ -16,6 +16,9 @@
     <filename>lua\Weapons\enforced_Alien_BiteLeap.lua</filename>
   </file>
   <file>
+    <filename>lua\Weapons\enforced_Alien_Blink.lua</filename>
+  </file>
+  <file>
     <filename>lua\Weapons\enforced_Alien_Doomsday.lua</filename>
   </file>
   <file>
@@ -38,6 +41,9 @@
   </file>
   <file>
     <filename>lua\enforced_Client.lua</filename>
+  </file>
+  <file>
+    <filename>lua\enforced_DamageTypes.lua</filename>
   </file>
   <file>
     <filename>lua\enforced_Drifter.lua</filename>
@@ -112,9 +118,6 @@
     <filename>lua\Weapons\enforced_Marine_NapalmGrenadeThrower.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\enforced_NetworkMessages_Client.lua</filename>
-  </file>
-  <file>
     <filename>lua\enforced_Onos.lua</filename>
   </file>
   <file>
@@ -122,6 +125,9 @@
   </file>
   <file>
     <filename>lua\enforced_PowerPoint.lua</filename>
+  </file>
+  <file>
+    <filename>lua\enforced_PrototypeLab.lua</filename>
   </file>
   <file>
     <filename>lua\Client\enforced_Scoreboard_Client.lua</filename>

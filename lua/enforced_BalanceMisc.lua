@@ -9,3 +9,11 @@ kRoboticsFactorySupply = 10
 kCragSupply = 10
 kShadeSupply = 15
 kStructureWeldRate = 93
+
+-- 297 restore
+kMinigunWeight = 0.11
+kRailgunWeight = 0.08
+
+-- 298 restore
+kNumWebsPerGorge = 10
+kUmbraBlockRate = 3

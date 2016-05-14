@@ -1,5 +1,16 @@
 
-local napalmDesc = "A nade of choice for the one who loves the smell of Napalm in the morning."
+
+local function UpdateTechDescription( descTable )
+    -- restore 295 build settings
+    descTable[kTechId.Exosuit] = "WEAPON_DESC_EXO"
+    descTable[kTechId.DualMinigunExosuit] = "WEAPON_DESC_DUALMINIGUN_EXO"
+    descTable[kTechId.UpgradeToDualMinigun] = "WEAPON_DESC_DUALMINIGUN_EXO"
+    descTable[kTechId.ClawRailgunExosuit] = "WEAPON_DESC_CLAWRAILGUN_EXO"
+    descTable[kTechId.DualRailgunExosuit] = "WEAPON_DESC_DUALRAILGUN_EXO"
+    descTable[kTechId.UpgradeToDualRailgun] = "WEAPON_DESC_DUALRAILGUN_EXO"
+    -- Add napalm
+    descTable[kTechId.NapalmGrenade] = "A nade of choice for the one who loves the smell of Napalm in the morning."   
+end
 
 local weaponDescription = nil
 
@@ -13,12 +24,10 @@ function MarineBuy_GetWeaponDescription( techId )
 
     -- Add to table if it doesn't already exist
     if weaponDescription and not weaponDescription[kTechId.NapalmGrenade] then
-        weaponDescription[kTechId.NapalmGrenade] = napalmDesc
+        UpdateTechDescription( weaponDescription )
 
         -- Also update the string if needed
-        if techId == kTechId.NapalmGrenade then
-            result = napalmDesc
-        end
+        result = oldMarineBuy_GetWeaponDescription(techId)
     end
 
     return result

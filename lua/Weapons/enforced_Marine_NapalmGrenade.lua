@@ -25,7 +25,7 @@ local networkVars =
 }
 
 local kLifeTime = 10
-local kGasReleaseDelay = 0.50
+local kGasReleaseDelay = 0.64
 
 AddMixinNetworkVars(BaseModelMixin, networkVars)
 AddMixinNetworkVars(ModelMixin, networkVars)

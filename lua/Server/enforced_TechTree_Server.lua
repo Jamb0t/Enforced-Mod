@@ -18,20 +18,26 @@ orig_TechTree_AddResearchNode = Class_ReplaceMethod( "TechTree", "AddResearchNod
         -- Skip NanoShieldTech
         -- Add ElectrifyTech and Electrify
 			orig_TechTree_AddResearchNode(self, kTechId.ElectrifyTech, prereq1,  prereq2, addOnTechId)
-			self:AddActivation(kTechId.Electrify, kTechId.ElectrifyTech)
+			--self:AddActivation(kTechId.Electrify, kTechId.ElectrifyTech)
         -- Add Thruster
             self:AddActivation(kTechId.MACEMP)
-            self:AddActivation(kTechId.Electrify, kTechId.RoboticsFactory, kTechId.None)
+            --self:AddActivation(kTechId.Electrify, kTechId.RoboticsFactory, kTechId.None)
         elseif techId == kTechId.ExosuitTech then
         -- Napalm
             orig_TechTree_AddResearchNode(self, techId, prereq1, prereq2, addOnTechId)
-            self:AddTargetedBuyNode(kTechId.NapalmGrenade, kTechId.GrenadeTech)
+            self:AddTargetedActivation(kTechId.DropExosuit, kTechId.ExosuitTech,     kTechId.None)
+            self:AddBuyNode(kTechId.Exosuit,                kTechId.ExosuitTech,     kTechId.None)
+            self:AddBuyNode(kTechId.ClawRailgunExosuit,     kTechId.ExosuitTech,     kTechId.None)
+            self:AddBuyNode(kTechId.UpgradeToDualMinigun,   kTechId.DualMinigunTech, kTechId.None)
+            self:AddBuyNode(kTechId.UpgradeToDualRailgun,   kTechId.DualMinigunTech, kTechId.None)
+            self:AddTargetedBuyNode(kTechId.NapalmGrenade,  kTechId.GrenadeTech)
         -- Original
         else
             orig_TechTree_AddResearchNode(self, techId, prereq1, prereq2, addOnTechId)
         end
     end
 )
+ 
 
 local orig_TechTree_AddTargetedActivation
 orig_TechTree_AddTargetedActivation = Class_ReplaceMethod( "TechTree", "AddTargetedActivation",

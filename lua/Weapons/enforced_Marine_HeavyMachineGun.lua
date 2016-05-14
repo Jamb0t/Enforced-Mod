@@ -179,7 +179,7 @@ function HeavyMachineGun:GetSpread()
 end
 
 local function HeavyMachineGunRandom()
-    return math.max(0.2 + NetworkRandom())
+    return math.max(0.1 + NetworkRandom())
 end
 
 function HeavyMachineGun:CalculateSpreadDirection(shootCoords, player)

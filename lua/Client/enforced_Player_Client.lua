@@ -21,3 +21,11 @@ function PlayerUI_GetCrosshairY()
 	end
 	return oldPlayerUI_GetCrosshairY()
 end
+
+-- Disable healthbars
+local orig_Player_GetShowHealthFor 
+orig_Player_GetShowHealthFor = Class_ReplaceMethod( "Player", "GetShowHealthFor",
+function (self, player)
+	return false
+end
+)
