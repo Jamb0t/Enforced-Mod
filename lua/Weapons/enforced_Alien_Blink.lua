@@ -2,7 +2,9 @@
 local TriggerBlinkInEffects = nil
 local TriggerBlinkOutEffects = nil
 
+local kEtherealForce = 13.5
 local kBlinkAddForce = 1
+local kEtherealVerticalForce = 2
 
 local orig_Blink_SetEthereal
 orig_Blink_SetEthereal = Class_ReplaceMethod( "Blink", "SetEthereal",
