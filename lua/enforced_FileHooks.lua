@@ -42,6 +42,7 @@ ModLoader.SetupFileHook( "lua/Drifter.lua", "lua/enforced_Drifter.lua", "post" )
 ModLoader.SetupFileHook( "lua/PowerPoint.lua", "lua/enforced_PowerPoint.lua", "post" )
 ModLoader.SetupFileHook( "lua/PrototypeLab.lua", "lua/enforced_PrototypeLab.lua", "post" )
 
+ModLoader.SetupFileHook( "lua/Weapons/Marine/GrenadeThrower.lua", "lua/Weapons/enforced_Marine_GrenadeThrower.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Marine/Rifle.lua", "lua/Weapons/enforced_Marine_HeavyMachineGun.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Marine/GasGrenadeThrower.lua", "lua/Weapons/enforced_Marine_NapalmGrenadeThrower.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Marine/GasGrenade.lua", "lua/Weapons/enforced_Marine_NapalmGrenade.lua", "post" )
