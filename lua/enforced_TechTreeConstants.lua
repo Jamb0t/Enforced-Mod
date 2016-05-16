@@ -2,8 +2,6 @@ Script.Load("lua/NS2Utility.lua")
 
 -- New techIds go here
 local newTechIds = {
---    'Electrify',
---    'ElectrifyTech',
     'HeavyMachineGun',
     'NapalmGrenade',
     'NapalmGrenadeProjectile',
@@ -19,7 +17,7 @@ local newTechIds = {
  --     total bits = log base 2 ( 500 ) = 8.966 => 9 bits
  --     new max = 2^9 = 512
  --
- 
+
 local oldkTechIdMax = kTechIdMax
 kTechIdMax = math.pow(2, math.ceil( math.log( #kTechId ) / math.log( 2 ) ) ) - 1
 
@@ -28,7 +26,7 @@ local function AppendListToEnum( target, newTech, limit )
     local max = tonumber(target.Max)
     local count = #newTech
     local last = max + count
-    
+
     assert(last < limit)
 
     rawset( target, 'Max', last )
@@ -47,7 +45,7 @@ if firstTech == nil then
     if kTechId then
         AppendListToEnum( kTechId, newTechIds, kTechIdMax )
     end
-    
+
     -- Add napalm and hmg icons
     GetTexCoordsForTechId(kTechId.Rifle)
     if gTechIdPosition and not gTechIdPosition[kTechId.HeavyMachineGun] then

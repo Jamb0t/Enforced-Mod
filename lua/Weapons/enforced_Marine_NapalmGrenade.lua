@@ -253,4 +253,3 @@ function NapalmCloud:GetDamageType()
 end
 
 Shared.LinkClassToMap("NapalmCloud", NapalmCloud.kMapName, networkVars)
-

@@ -1,12 +1,3 @@
-// ======= Copyright (c) 2003-2011, Unknown Worlds Entertainment, Inc. All rights reserved. =======
-//
-// lua\Weapons\Marine\GasGrenadeThrower.lua
-//
-//    Created by:   Andreas Urwalek (andi@unknownworlds.com)
-//
-//    Throws gas grenades.
-//
-// ========= For more information, visit us at http://www.unknownworlds.com =====================
 
 Script.Load("lua/NS2Utility.lua")
 Script.Load("lua/Weapons/Marine/GrenadeThrower.lua")

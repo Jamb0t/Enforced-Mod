@@ -32,26 +32,6 @@ function BuildTechData()
                 [kStructureAttachRange] = kArmoryWeaponAttachRange
             },
 
-            -- Electrify
-            {
-                [kTechDataId] = kTechId.Electrify,
-                [kTechDataCostKey] = kElectrifyCost,
-                [kTechDataCooldown] = kElectrifyCooldownTime,
-                [kTechDataDisplayName] = "Electrify Extractor",
-                [kTechDataTooltipInfo] = "Does damage to aliens near the extractor.",
-                [kTechDataRequiresPower] = true,
-                [kTechDataHotkey] = Move.U
-            },
-
---[[
-            {
-                [kTechDataId] = kTechId.ElectrifyTech,
-                [kTechDataDisplayName] = "Electrify Extractor Tech",
-                [kTechDataTooltipInfo] = "Does damage to aliens near the extractor.",
-                [kTechDataCostKey] = kElectrifyTechResearchCost,
-                [kTechDataResearchTimeKey] = kElectrifyTechResearchTime
-            },
-]]--
             -- Napalm
             {
                 [kTechDataId] = kTechId.NapalmGrenade,

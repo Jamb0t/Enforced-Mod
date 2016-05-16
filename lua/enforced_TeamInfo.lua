@@ -1,4 +1,3 @@
-
 local orig_TeamInfo_OnCreate
 orig_TeamInfo_OnCreate = Class_ReplaceMethod( "TeamInfo", "OnCreate",
 function(self)
