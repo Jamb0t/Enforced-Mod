@@ -1,4 +1,3 @@
-
 -- Research/Upgrade
 local orig_TechTree_AddResearchNode
 orig_TechTree_AddResearchNode = Class_ReplaceMethod( "TechTree", "AddResearchNode",
@@ -37,7 +36,6 @@ orig_TechTree_AddResearchNode = Class_ReplaceMethod( "TechTree", "AddResearchNod
         end
     end
 )
- 
 
 local orig_TechTree_AddTargetedActivation
 orig_TechTree_AddTargetedActivation = Class_ReplaceMethod( "TechTree", "AddTargetedActivation",

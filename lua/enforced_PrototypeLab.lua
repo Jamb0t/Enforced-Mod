@@ -1,4 +1,3 @@
-
 local orig_PrototypeLab_GetTechButtons
 orig_PrototypeLab_GetTechButtons = Class_ReplaceMethod( "PrototypeLab", "GetTechButtons",
 function(self, techId)
