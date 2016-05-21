@@ -18,20 +18,6 @@ function BuildTechData()
                 [kTechDataTooltipInfo] = "Self-destruct Devastation"
             },
 
-            -- HMG
-            {
-                [kTechDataId] = kTechId.HeavyMachineGun,
-                [kTechDataMapName] = HeavyMachineGun.kMapName,
-                [kTechDataModel] = HeavyMachineGun.kModelName,
-                [kTechDataMaxHealth] = kMarineWeaponHealth,
-                [kTechDataPointValue] = 7,
-                [kTechDataDisplayName] = "HMG",
-                [kTechDataTooltipInfo] = "HeavyMachineGun",
-                [kTechDataCostKey] = kHeavyMachineGunCost,
-                [kStructureAttachId] = { kTechId.AdvancedArmory },
-                [kStructureAttachRange] = kArmoryWeaponAttachRange
-            },
-
             -- Napalm
             {
                 [kTechDataId] = kTechId.NapalmGrenade,

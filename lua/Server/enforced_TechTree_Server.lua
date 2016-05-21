@@ -45,9 +45,6 @@ orig_TechTree_AddTargetedActivation = Class_ReplaceMethod( "TechTree", "AddTarge
         --    orig_TechTree_AddTargetedActivation(self, kTechId.Electrify, kTechId.ElectrifyTech)
         -- Update NanoShield prereq
             prereq1 = kTechId.TwoCommandStations
-        elseif techId == kTechId.DropShotgun then
-        -- Add HMG
-            orig_TechTree_AddTargetedActivation(self, kTechId.HeavyMachineGun, kTechId.AdvancedArmory, kTechId.None)
         end
         -- Original
         orig_TechTree_AddTargetedActivation(self, techId, prereq1, prereq2)

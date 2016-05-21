@@ -14,27 +14,6 @@ kBurnRadius = 3
 
 kOnMarineDamageMultiplyer = 2
 
-kHeavyMachineGunDamage = 5
-kHeavyMachineGunDamageType = kDamageType.Puncture
-kHeavyMachineGunClipSize = 110
-kHeavyMachineGunWeight = 0.24
-kHeavyMachineGunReloadTime = 6.4
-kHeavyMachineGunClipWeight = 0.0035
-kHeavyMachineGunCost = 25
-
-kElectrifyTechResearchCost = 15
-kElectrifyTechResearchTime = 20
-kElectrifyCost = 5
-kElectrifyTime = 15
-kElectrifyCooldownTime = 30
-
-kElectricalDamage = 11
-kElectricalMaxTargets = 3
-kElectricalRange = 3.6
-kElectrifyDamageTime = 1
-kElectrifyEnergyRegain = 25
-kElectrifyPollRate = 0.05
-
 kSkulkBiteRange = 1.41
 kSkulkEnzymedRange = 1.51
 

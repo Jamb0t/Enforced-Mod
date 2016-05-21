@@ -9,19 +9,6 @@ local kNewGrenades = {
 
 ReplaceLocals(PlayerUI_GetHasItem, { kGrenades = kNewGrenades } )
 
---
-local oldPlayerUI_GetCrosshairY = PlayerUI_GetCrosshairY
-function PlayerUI_GetCrosshairY()
-	local player = Client.GetLocalPlayer()
-	if player and not player:GetIsThirdPerson() then
-		local weapon = player:GetActiveWeapon()
-		if weapon ~= nil and weapon:GetMapName() == HeavyMachineGun.kMapName then
-			return 0 * 64
-		end
-	end
-	return oldPlayerUI_GetCrosshairY()
-end
-
 -- Old healthbars
 local orig_Player_GetShowHealthFor
 orig_Player_GetShowHealthFor = Class_ReplaceMethod( "Player", "GetShowHealthFor",

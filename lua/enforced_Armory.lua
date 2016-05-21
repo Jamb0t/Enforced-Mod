@@ -9,14 +9,15 @@ function(self)
     local itemList = original_Armory_GetItemList(self)
     if self:GetTechId() == kTechId.AdvancedArmory then
         itemList = {
+            kTechId.Welder,
             kTechId.LayMines,
             kTechId.Shotgun,
-            kTechId.Welder,
+            kTechId.GrenadeLauncher,
+            kTechId.Flamethrower,
+            kTechId.HeavyMachineGun,
             kTechId.ClusterGrenade,
             kTechId.NapalmGrenade,
             kTechId.PulseGrenade,
-            kTechId.GrenadeLauncher,
-            kTechId.Flamethrower,
         }
     end
     return itemList

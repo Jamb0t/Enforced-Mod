@@ -11,8 +11,7 @@ function GUIMarineBuyMenu_UpdateIcons()
         -- Do this to initialize the structure so we can get the index
         bigIconMethod(kTechId.Axe)
         local bigIconIndex = GetUpValue( bigIconMethod, "gBigIconIndex" )
-        if bigIconIndex and not bigIconIndex[kTechId.HeavyMachineGun] then
-            table.insert( bigIconIndex, kTechId.HeavyMachineGun, 51 )
+        if bigIconIndex then
             table.insert( bigIconIndex, kTechId.NapalmGrenade, 13 )
         end
     end
@@ -22,8 +21,7 @@ function GUIMarineBuyMenu_UpdateIcons()
         -- Do this to initialize the structure so we can get the index
         smallIconMethod(kTechId.Axe)
         local smallIconIndex = GetUpValue( smallIconMethod, "gSmallIconIndex" )
-        if smallIconIndex and not smallIconIndex[kTechId.HeavyMachineGun] then
-            table.insert( smallIconIndex, kTechId.HeavyMachineGun, 51 )
+        if smallIconIndex then
             table.insert( smallIconIndex, kTechId.NapalmGrenade, 43 )
         end
     end

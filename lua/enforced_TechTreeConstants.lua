@@ -2,7 +2,6 @@ Script.Load("lua/NS2Utility.lua")
 
 -- New techIds go here
 local newTechIds = {
-    'HeavyMachineGun',
     'NapalmGrenade',
     'NapalmGrenadeProjectile',
     'Doomsday',
@@ -48,7 +47,7 @@ if firstTech == nil then
 
     -- Add napalm and hmg icons
     GetTexCoordsForTechId(kTechId.Rifle)
-    if gTechIdPosition and not gTechIdPosition[kTechId.HeavyMachineGun] then
+    if gTechIdPosition then
         gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.HeavyMachineGun
         gTechIdPosition[kTechId.NapalmGrenade] = kDeathMessageIcon.GasGrenade
     end

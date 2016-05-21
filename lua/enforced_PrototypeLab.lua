@@ -20,7 +20,6 @@ function(self, forPlayer)
         end
     end
 
-    return { kTechId.Jetpack, kTechId.Exosuit, kTechId.ClawRailgunExosuit,
-             kTechId.DualMinigunExosuit, kTechId.DualRailgunExosuit, }
+    return { kTechId.Jetpack, kTechId.Exosuit, kTechId.ClawRailgunExosuit }
 end
 )
