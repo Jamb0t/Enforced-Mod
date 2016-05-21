@@ -1,6 +1,8 @@
 kEMPCost = 2
 kAxeDamage = 28
 
+kRuptureParasiteTime = 15
+
 kOnoscideDamage = 550
 kOnoscideDamageType = kDamageType.Heavy
 kOnoscideRange = 12
