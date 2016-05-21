@@ -1,0 +1,9 @@
+<game>
+    <name>ns2 LFEM</name>
+    <description>LFkersEnforcedMod</description>
+    <client>lua/Client.lua</client> 
+    <server>lua/Server.lua</server> 
+    <predict>lua/Predict.lua</predict> 
+    <loading>lua/Loading.lua</loading> 
+    <soundinfo>sound/ns2.soundinfo</soundinfo>
+</game>

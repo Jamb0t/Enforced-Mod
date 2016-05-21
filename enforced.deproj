@@ -1,150 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
   <file>
-    <filename>lua\Elixer_Utility.lua</filename>
+    <filename>output\lua\Elixer_Utility.lua</filename>
   </file>
   <file>
-    <filename>lua\entry\Enforced.entry</filename>
+    <filename>output\lua\entry\Enforced.entry</filename>
   </file>
   <file>
-    <filename>lua\Mixin\PushableMixin.lua</filename>
+    <filename>output\lua\Mixin\PushableMixin.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\enforced_AlienTechMap_Client.lua</filename>
+    <filename>output\lua\Client\enforced_AlienTechMap_Client.lua</filename>
   </file>
   <file>
-    <filename>lua\Weapons\enforced_Alien_BiteLeap.lua</filename>
+    <filename>output\lua\Weapons\enforced_Alien_BiteLeap.lua</filename>
   </file>
   <file>
-    <filename>lua\Weapons\enforced_Alien_Blink.lua</filename>
+    <filename>output\lua\Weapons\enforced_Alien_Blink.lua</filename>
   </file>
   <file>
-    <filename>lua\Weapons\enforced_Alien_Doomsday.lua</filename>
+    <filename>output\lua\Weapons\enforced_Alien_Doomsday.lua</filename>
   </file>
   <file>
-    <filename>lua\CommAbilities\enforced_Alien_MucousMembrane.lua</filename>
+    <filename>output\lua\CommAbilities\enforced_Alien_MucousMembrane.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Armory.lua</filename>
+    <filename>output\lua\enforced_Armory.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Babbler.lua</filename>
+    <filename>output\lua\enforced_Babbler.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Balance.lua</filename>
+    <filename>output\lua\enforced_Balance.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_BalanceHealth.lua</filename>
+    <filename>output\lua\enforced_BalanceHealth.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_BalanceMisc.lua</filename>
+    <filename>output\lua\enforced_BalanceMisc.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Client.lua</filename>
+    <filename>output\lua\enforced_Client.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_DamageTypes.lua</filename>
+    <filename>output\lua\enforced_DamageTypes.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Drifter.lua</filename>
+    <filename>output\lua\enforced_Drifter.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_EffectManager.lua</filename>
+    <filename>output\lua\enforced_EffectManager.lua</filename>
   </file>
   <file>
-    <filename>lua\Mixin\enforced_ElectrifyMixin.lua</filename>
+    <filename>output\lua\Mixin\enforced_ElectrifyMixin.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_EquipmentOutline.lua</filename>
+    <filename>output\lua\enforced_EquipmentOutline.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_EvolutionChamber.lua</filename>
+    <filename>output\lua\enforced_EvolutionChamber.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Extractor.lua</filename>
+    <filename>output\lua\enforced_Extractor.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_FileHooks.lua</filename>
+    <filename>output\lua\enforced_FileHooks.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\GUI\enforced_GUI.lua</filename>
+    <filename>output\lua\Client\GUI\enforced_GUI.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\GUI\enforced_GUIActionIcon.lua</filename>
+    <filename>output\lua\Client\GUI\enforced_GUIActionIcon.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\GUI\enforced_GUIMarineBuyMenu.lua</filename>
+    <filename>output\lua\Client\GUI\enforced_GUIMarineBuyMenu.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\GUI\enforced_GUIMinimap.lua</filename>
+    <filename>output\lua\Client\GUI\enforced_GUIMinimap.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\GUI\enforced_GUIPickups.lua</filename>
+    <filename>output\lua\Client\GUI\enforced_GUIPickups.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Globals.lua</filename>
+    <filename>output\lua\enforced_Globals.lua</filename>
   </file>
   <file>
-    <filename>lua\Server\enforced_HitSounds_Server.lua</filename>
+    <filename>output\lua\Server\enforced_HitSounds_Server.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_JetPackMarine.lua</filename>
+    <filename>output\lua\enforced_JetPackMarine.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Lerk.lua</filename>
+    <filename>output\lua\enforced_Lerk.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_MAC.lua</filename>
+    <filename>output\lua\enforced_MAC.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Marine.lua</filename>
+    <filename>output\lua\enforced_Marine.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\enforced_MarineBuy_Client.lua</filename>
+    <filename>output\lua\Client\enforced_MarineBuy_Client.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_MarineCommander.lua</filename>
+    <filename>output\lua\enforced_MarineCommander.lua</filename>
   </file>
   <file>
-    <filename>lua\Weapons\enforced_Marine_HeavyMachineGun.lua</filename>
+    <filename>output\lua\Weapons\enforced_Marine_HeavyMachineGun.lua</filename>
   </file>
   <file>
-    <filename>lua\Weapons\enforced_Marine_NapalmGrenade.lua</filename>
+    <filename>output\lua\Weapons\enforced_Marine_NapalmGrenade.lua</filename>
   </file>
   <file>
-    <filename>lua\Weapons\enforced_Marine_NapalmGrenadeThrower.lua</filename>
+    <filename>output\lua\Weapons\enforced_Marine_NapalmGrenadeThrower.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Onos.lua</filename>
+    <filename>output\lua\enforced_Onos.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\enforced_Player_Client.lua</filename>
+    <filename>output\lua\Client\enforced_Player_Client.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_PowerPoint.lua</filename>
+    <filename>output\lua\enforced_PowerPoint.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_PrototypeLab.lua</filename>
+    <filename>output\lua\enforced_PrototypeLab.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\enforced_Scoreboard_Client.lua</filename>
+    <filename>output\lua\Client\enforced_Scoreboard_Client.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_Skulk.lua</filename>
+    <filename>output\lua\enforced_Skulk.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_TeamInfo.lua</filename>
+    <filename>output\lua\enforced_TeamInfo.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_TechData.lua</filename>
+    <filename>output\lua\enforced_TechData.lua</filename>
   </file>
   <file>
-    <filename>lua\Client\enforced_TechTreeButtons_Client.lua</filename>
+    <filename>output\lua\Client\enforced_TechTreeButtons_Client.lua</filename>
   </file>
   <file>
-    <filename>lua\enforced_TechTreeConstants.lua</filename>
+    <filename>output\lua\enforced_TechTreeConstants.lua</filename>
   </file>
   <file>
-    <filename>lua\Server\enforced_TechTree_Server.lua</filename>
+    <filename>output\lua\Server\enforced_TechTree_Server.lua</filename>
   </file>
 </project>
