@@ -1,0 +1,2 @@
+
+Cyst.kMaturityLossTime = 10

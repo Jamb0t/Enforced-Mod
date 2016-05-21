@@ -28,6 +28,7 @@ ModLoader.SetupFileHook( "lua/DamageTypes.lua", "lua/enforced_DamageTypes.lua", 
 
 ModLoader.SetupFileHook( "lua/EvolutionChamber.lua", "lua/enforced_EvolutionChamber.lua", "post" )
 ModLoader.SetupFileHook( "lua/Armory.lua", "lua/enforced_Armory.lua", "post" )
+ModLoader.SetupFileHook( "lua/Cyst.lua", "lua/enforced_Cyst.lua", "post" )
 
 ModLoader.SetupFileHook( "lua/MAC.lua", "lua/enforced_MAC.lua", "post" )
 ModLoader.SetupFileHook( "lua/Marine.lua", "lua/enforced_Marine.lua", "post" )
