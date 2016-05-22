@@ -1,4 +1,3 @@
-
 Script.Load("lua/DamageMixin.lua")
 
 Onos.kHealth = kOnosHealth
@@ -15,12 +14,11 @@ end
 )
 
 if Server then
-    local orig_Onos_GetTierThreeTechId
-    orig_Onos_GetTierThreeTechId = Class_ReplaceMethod( "Onos", "GetTierThreeTechId",
-    function (self)
-        return kTechId.Doomsday
-    end
-    )
+	local orig_Onos_GetTierThreeTechId
+	orig_Onos_GetTierThreeTechId = Class_ReplaceMethod( "Onos", "GetTierThreeTechId",
+	function (self)
+		return kTechId.Doomsday
+	end)
 end
 
 local function KnockDownPlayers(self)
@@ -60,7 +58,6 @@ local function KnockDownPlayers(self)
     end
 
 	return true
-
 end
 
 
@@ -72,8 +69,7 @@ function (self, move)
 	if Server then
 		self:AddTimedCallback(KnockDownPlayers, kOnosChargeStunCheckInterval)
 	end
-end
-)
+end)
 
 -- GetMaxSpeed
 local orig_Onos_GetMaxSpeed
@@ -87,9 +83,7 @@ function (self, possible)
     end
 
     return prev * self:GetSlowSpeedModifier()
-
-end
-)
+end)
 
 Class_AddMethod( "Onos", "GetMovementSpecialCooldown",
 function (self)
@@ -102,5 +96,19 @@ function (self)
     end
 
     return cooldown
-end
-)
+end)
+
+Class_AddMethod( "Onos", "GetIsEnergizeAllowed",
+function (self)
+    return not self:GetIsBoneShieldActive()
+end)
+
+local orig_Onos_GetRecuperationRate
+orig_Onos_GetRecuperationRate = Class_ReplaceMethod( "Onos", "GetRecuperationRate",
+function (self)
+    if self:GetIsBoneShieldActive() then
+        return 0
+    end
+
+    return Alien.GetRecuperationRate(self)    
+end)
