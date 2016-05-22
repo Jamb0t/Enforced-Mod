@@ -1,4 +1,3 @@
-
 local newBuildTechAdded = false
 
 local origBuildTechData = BuildTechData
@@ -39,6 +38,16 @@ function BuildTechData()
                 [kTechDataDisplayName] = "Thruster",
                 [kTechDataTooltipInfo] = "MAC_SPEED_TOOLTIP"
             },
+            
+            --Phantom
+			{
+				[kTechDataId] = kTechId.Phantom,
+				[kTechDataCategory] = kTechId.ShadeHive,
+				[kTechDataDisplayName] = "PHANTOM",
+				[kTechDataSponitorCode] = "M",
+				[kTechDataTooltipInfo] = "PHANTOM_TOOLTIP",
+				[kTechDataCostKey] = kCamouflageCost
+			},
         }
 
 		for _, tech in pairs(newBuildTech) do

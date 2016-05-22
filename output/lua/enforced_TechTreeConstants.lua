@@ -5,6 +5,9 @@ local newTechIds = {
     'NapalmGrenade',
     'NapalmGrenadeProjectile',
     'Doomsday',
+    'UpgradePhantomVeil',
+    'PhantomVeil',
+    'Phantom',
 }
 
  -- Figure out how many more tech we can add by:
@@ -45,10 +48,9 @@ if firstTech == nil then
         AppendListToEnum( kTechId, newTechIds, kTechIdMax )
     end
 
-    -- Add napalm and hmg icons
+    -- Add icons
     GetTexCoordsForTechId(kTechId.Rifle)
     if gTechIdPosition then
-        gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.HeavyMachineGun
         gTechIdPosition[kTechId.NapalmGrenade] = kDeathMessageIcon.GasGrenade
     end
 end
