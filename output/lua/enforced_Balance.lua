@@ -85,3 +85,10 @@ kUmbraRailgunModifier = 0.68
 
 kGoreDamage = 100
 kGoreEnergyCost = 12
+
+-- Restore 299
+kMineCost = 15
+
+kBoneShieldDamageReduction = 0.25
+kBoneShieldEnergyPerSecond = 13
+kStartBoneShieldCost = 10

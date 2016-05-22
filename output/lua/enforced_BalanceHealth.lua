@@ -18,3 +18,9 @@ kExosuitArmorPerUpgradeLevel = 55
 kMineHealth = 80
 kPhaseGateHealth = 2000
 kPhaseGateArmor  = 550
+
+-- Restore 299
+kLerkHealthPerBioMass = 2
+kOnosHealtPerBioMass = 25
+kMineHealth = 80
+kCystHealth = 70

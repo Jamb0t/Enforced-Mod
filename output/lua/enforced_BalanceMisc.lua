@@ -17,3 +17,8 @@ kRailgunWeight = 0.08
 -- 298 restore
 kNumWebsPerGorge = 10
 kUmbraBlockRate = 3
+
+-- 299 restore
+kCystMaturationTime = 120
+kNumMines = 3
+kBuilderPowerRepairRate = 110
