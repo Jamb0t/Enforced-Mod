@@ -4,10 +4,13 @@
     <filename>output\lua\Elixer_Utility.lua</filename>
   </file>
   <file>
-    <filename>output\lua\entry\Enforced.entry</filename>
+    <filename>output\lua\Mixin\PushableMixin.lua</filename>
   </file>
   <file>
-    <filename>output\lua\Mixin\PushableMixin.lua</filename>
+    <filename>output\lua\enforced_Alien.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\enforced_AlienTeam.lua</filename>
   </file>
   <file>
     <filename>output\lua\Client\enforced_AlienTechMap_Client.lua</filename>
@@ -23,6 +26,15 @@
   </file>
   <file>
     <filename>output\lua\CommAbilities\enforced_Alien_MucousMembrane.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\CommAbilities\enforced_Alien_Rupture.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\Server\enforced_Alien_Server.lua</filename>
+  </file>
+  <file>
+    <filename>output\lua\enforced_Alien_Upgrade.lua</filename>
   </file>
   <file>
     <filename>output\lua\enforced_Armory.lua</filename>
@@ -43,6 +55,9 @@
     <filename>output\lua\enforced_Client.lua</filename>
   </file>
   <file>
+    <filename>output\lua\enforced_Cyst.lua</filename>
+  </file>
+  <file>
     <filename>output\lua\enforced_DamageTypes.lua</filename>
   </file>
   <file>
@@ -52,16 +67,7 @@
     <filename>output\lua\enforced_EffectManager.lua</filename>
   </file>
   <file>
-    <filename>output\lua\Mixin\enforced_ElectrifyMixin.lua</filename>
-  </file>
-  <file>
-    <filename>output\lua\enforced_EquipmentOutline.lua</filename>
-  </file>
-  <file>
     <filename>output\lua\enforced_EvolutionChamber.lua</filename>
-  </file>
-  <file>
-    <filename>output\lua\enforced_Extractor.lua</filename>
   </file>
   <file>
     <filename>output\lua\enforced_FileHooks.lua</filename>
@@ -70,25 +76,13 @@
     <filename>output\lua\Client\GUI\enforced_GUI.lua</filename>
   </file>
   <file>
-    <filename>output\lua\Client\GUI\enforced_GUIActionIcon.lua</filename>
-  </file>
-  <file>
     <filename>output\lua\Client\GUI\enforced_GUIMarineBuyMenu.lua</filename>
   </file>
   <file>
     <filename>output\lua\Client\GUI\enforced_GUIMinimap.lua</filename>
   </file>
   <file>
-    <filename>output\lua\Client\GUI\enforced_GUIPickups.lua</filename>
-  </file>
-  <file>
-    <filename>output\lua\enforced_Globals.lua</filename>
-  </file>
-  <file>
-    <filename>output\lua\Server\enforced_HitSounds_Server.lua</filename>
-  </file>
-  <file>
-    <filename>output\lua\enforced_JetPackMarine.lua</filename>
+    <filename>output\lua\Client\GUI\enforced_GUIUpgradeChamberDisplay.lua</filename>
   </file>
   <file>
     <filename>output\lua\enforced_Lerk.lua</filename>
@@ -103,7 +97,7 @@
     <filename>output\lua\Client\enforced_MarineBuy_Client.lua</filename>
   </file>
   <file>
-    <filename>output\lua\enforced_MarineCommander.lua</filename>
+    <filename>output\lua\Weapons\enforced_Marine_GrenadeThrower.lua</filename>
   </file>
   <file>
     <filename>output\lua\Weapons\enforced_Marine_HeavyMachineGun.lua</filename>
@@ -125,9 +119,6 @@
   </file>
   <file>
     <filename>output\lua\enforced_PrototypeLab.lua</filename>
-  </file>
-  <file>
-    <filename>output\lua\Client\enforced_Scoreboard_Client.lua</filename>
   </file>
   <file>
     <filename>output\lua\enforced_Skulk.lua</filename>

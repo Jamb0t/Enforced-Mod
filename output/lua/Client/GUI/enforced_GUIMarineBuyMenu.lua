@@ -1,4 +1,3 @@
-
 kElixerVersion = 1.8
 Script.Load("lua/Elixer_Utility.lua")
 Elixer.UseVersion( kElixerVersion )
@@ -32,5 +31,4 @@ orig_GUIMarineBuyMenu_Initialize = Class_ReplaceMethod( "GUIMarineBuyMenu", "Ini
 function (self)
     GUIMarineBuyMenu_UpdateIcons()
     orig_GUIMarineBuyMenu_Initialize(self)
-end
-)
+end)

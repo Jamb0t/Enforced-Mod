@@ -1,4 +1,3 @@
-
 Script.Load("lua/Mixin/PushableMixin.lua")
 
 local networkVars = {}
@@ -6,11 +5,10 @@ AddMixinNetworkVars(PushableMixin, networkVars)
 
 local orig_Lerk_OnInitialized
 orig_Lerk_OnInitialized = Class_ReplaceMethod( "Lerk", "OnInitialized", 
-	function (self)
-		InitMixin(self, PushableMixin)
-		orig_Lerk_OnInitialized(self)
-	end
-)
+function (self)
+	InitMixin(self, PushableMixin)
+	orig_Lerk_OnInitialized(self)
+end)
 
 local function UpdateAirBrake(self, input, velocity, deltaTime)
     -- more control when moving forward
@@ -32,10 +30,9 @@ end
 
 local orig_Lerk_ModifyVelocity
 orig_Lerk_ModifyVelocity = Class_ReplaceMethod( "Lerk", "ModifyVelocity",
-	function(self, input, velocity, deltaTime)
-		orig_Lerk_ModifyVelocity(self, input, velocity, deltaTime)
-		UpdateAirBrake(self, input, velocity, deltaTime)
-	end
-)
+function(self, input, velocity, deltaTime)
+	orig_Lerk_ModifyVelocity(self, input, velocity, deltaTime)
+	UpdateAirBrake(self, input, velocity, deltaTime)
+end)
 
 Shared.LinkClassToMap("Lerk", Lerk.kMapName, networkVars)

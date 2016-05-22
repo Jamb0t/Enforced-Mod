@@ -1,10 +1,13 @@
+kElixerVersion = 1.8
+Script.Load("lua/Elixer_Utility.lua")
+Elixer.UseVersion( kElixerVersion )
+
 kJumpHeightFactor = 0.74
 local kStrafeJumpForce = 1
 
 local orig_Marine_ModifyJump
 orig_Marine_ModifyJump = Class_ReplaceMethod( "Marine", "ModifyJump",
 function (self, input, velocity, jumpVelocity)
-
     jumpVelocity.y = jumpVelocity.y * kJumpHeightFactor
 
     local isStrafeJump = input.move.z == 0 and input.move.x ~= 0
@@ -20,9 +23,7 @@ function (self, input, velocity, jumpVelocity)
     else
         self.strafeJumped = false
     end
-
-end
-)
+end)
 
 local orig_Marine_GetPlayerStatusDesc
 orig_Marine_GetPlayerStatusDesc = Class_ReplaceMethod("Marine", "GetPlayerStatusDesc",
@@ -31,9 +32,9 @@ function(self)
     if self:GetIsAlive() and weapon and weapon:isa("HeavyMachineGun") then
         return kPlayerStatus.HeavyMachineGun
     end
+
     return orig_Marine_GetPlayerStatusDesc(self)
-end
-)
+end)
 
 local orig_Marine_ModifyGravityForce
 orig_Marine_ModifyGravityForce = Class_ReplaceMethod("Marine", "ModifyGravityForce",
@@ -41,8 +42,7 @@ function (self, gravityTable)
     if self:GetIsOnGround() or self:GetRecentlyJumped() then
         gravityTable.gravity = 0
     end
-end
-)
+end)
 
 Class_AddMethod( "Marine", "OnPhaseGateEntry",
 function (self, destinationOrigin)
@@ -65,6 +65,6 @@ function (self, destinationOrigin)
             entity:Push( pushForce, 0.1, true )
         end
     end
+
     return true
-end
-)
+end)

@@ -1,3 +1,6 @@
+kElixerVersion = 1.8
+Script.Load("lua/Elixer_Utility.lua")
+Elixer.UseVersion( kElixerVersion )
 
 local kThrusterMoveSpeed = 12
 
@@ -26,8 +29,7 @@ function (self)
     end
 
     return original_MAC_GetMoveSpeed(self)
-end
-)
+end)
 
 local function EndThrusters(self)  
     self.thrusterActive = false
@@ -47,8 +49,7 @@ function (self, techId, position, normal, commander)
     end
 
     return ScriptActor.PerformActivation(self, techId, position, normal, commander)
-end
-)
+end)
 
 Class_AddMethod( "MAC", "OverrideGetStatusInfo",
 function (self)
@@ -64,8 +65,7 @@ function (self)
              thrusterEnergy,
              kTechId.MACEMP
     }
-end
-)
+end)
 
 local original_MAC_GetTechAllowed
 original_MAC_GetTechAllowed = Class_ReplaceMethod( "MAC", "GetTechAllowed",
@@ -80,15 +80,13 @@ function (self, techId, techNode, player)
     end
 
     return allowed, canAfford
-end
-)
+end)
 
 local original_MAC_GetTechButtons
 original_MAC_GetTechButtons = Class_ReplaceMethod( "MAC", "GetTechButtons",
 function (self, techId)
     return { kTechId.MACEMP, kTechId.Stop, kTechId.Welding, kTechId.None,
              kTechId.None, kTechId.None, kTechId.None, kTechId.None }
-end
-)
+end)
 
 Shared.LinkClassToMap("MAC", MAC.kMapName, networkVars)
