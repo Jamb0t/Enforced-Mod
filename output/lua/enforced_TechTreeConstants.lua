@@ -48,7 +48,7 @@ if firstTech == nil then
         AppendListToEnum( kTechId, newTechIds, kTechIdMax )
     end
 
-    -- Add icons
+    -- Add death message icons
     GetTexCoordsForTechId(kTechId.Rifle)
     if gTechIdPosition then
         gTechIdPosition[kTechId.NapalmGrenade] = kDeathMessageIcon.GasGrenade

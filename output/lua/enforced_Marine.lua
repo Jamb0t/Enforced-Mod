@@ -1,7 +1,3 @@
-kElixerVersion = 1.8
-Script.Load("lua/Elixer_Utility.lua")
-Elixer.UseVersion( kElixerVersion )
-
 kJumpHeightFactor = 0.74
 local kStrafeJumpForce = 1
 

@@ -1,6 +1,3 @@
-kElixerVersion = 1.8
-Script.Load("lua/Elixer_Utility.lua")
-Elixer.UseVersion( kElixerVersion )
 
 local kThrusterMoveSpeed = 12
 
@@ -12,7 +9,7 @@ local networkVars =
 
 local original_MAC_OnInitialized
 original_MAC_OnInitialized = Class_ReplaceMethod( "MAC", "OnInitialized",
-function (self)	
+function (self)
     original_MAC_OnInitialized(self)
 
     self.timeThrusterUsed = math.max(0, Shared.GetTime() - kMACThrusterDuration)
@@ -25,13 +22,13 @@ function (self)
     if not self.rolloutSourceFactory and self.thrusterActive then
         local maxSpeedTable = { maxSpeed = kThrusterMoveSpeed }
         self:ModifyMaxSpeed(maxSpeedTable)
-        return maxSpeedTable.maxSpeed 
+        return maxSpeedTable.maxSpeed
     end
 
     return original_MAC_GetMoveSpeed(self)
 end)
 
-local function EndThrusters(self)  
+local function EndThrusters(self)
     self.thrusterActive = false
     return false
 end
@@ -61,7 +58,7 @@ function (self)
         thrusterEnergy = Clamp((Shared.GetTime() - self.timeThrusterUsed - kMACThrusterDuration) / (kThrusterCooldown - kMACThrusterDuration), 0, 1)
     end
 
-    return { Locale.ResolveString("THRUSTER_COOLDOWN"), 
+    return { Locale.ResolveString("THRUSTER_COOLDOWN"),
              thrusterEnergy,
              kTechId.MACEMP
     }

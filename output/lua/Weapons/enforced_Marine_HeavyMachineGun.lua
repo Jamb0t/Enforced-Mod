@@ -13,6 +13,7 @@ local kViewModels = GenerateMarineViewModelPaths("lmg")
 local kAnimationGraph = PrecacheAsset("models/marine/rifle/rifle_view.animation_graph")
 
 --Todo Add own sounds
+--local kOneShotSoundName = PrecacheAsset("sound/NS2.fev/marine/heavy/spin_up")
 local kAttackSoundName = PrecacheAsset("sound/compmod.fev/compmod/marine/hmg/hmg_fire")
 local kEndSound = PrecacheAsset("sound/NS2.fev/marine/rifle/end")
 
@@ -33,9 +34,9 @@ local kMuzzleAttachPoint = "fxnode_riflemuzzle"
 local function DestroyMuzzleEffect(self)
 
     if self.muzzleCinematic then
-        Client.DestroyCinematic(self.muzzleCinematic)            
+        Client.DestroyCinematic(self.muzzleCinematic)
     end
-    
+
     self.muzzleCinematic = nil
     self.activeCinematicName = nil
 
@@ -44,9 +45,9 @@ end
 local function DestroyShellEffect(self)
 
     if self.shellsCinematic then
-        Client.DestroyCinematic(self.shellsCinematic)            
+        Client.DestroyCinematic(self.shellsCinematic)
     end
-    
+
     self.shellsCinematic = nil
 
 end
@@ -61,7 +62,7 @@ local function CreateMuzzleEffect(self)
         self.activeCinematicName = cinematicName
         self.muzzleCinematic = CreateMuzzleCinematic(self, cinematicName, cinematicName, kMuzzleAttachPoint, nil, Cinematic.Repeat_Endless)
         self.firstPersonLoaded = player:GetIsLocalPlayer() and player:GetIsFirstPerson()
-    
+
     end
 
 end
@@ -77,28 +78,28 @@ local function CreateShellCinematic(self)
     end
 
     if self.loadedFirstPersonShellEffect then
-        self.shellsCinematic = Client.CreateCinematic(RenderScene.Zone_ViewModel)        
+        self.shellsCinematic = Client.CreateCinematic(RenderScene.Zone_ViewModel)
         self.shellsCinematic:SetCinematic(kLoopingShellCinematicFirstPerson)
     else
         self.shellsCinematic = Client.CreateCinematic(RenderScene.Zone_Default)
         self.shellsCinematic:SetCinematic(kLoopingShellCinematic)
-    end    
-    
+    end
+
     self.shellsCinematic:SetRepeatStyle(Cinematic.Repeat_Endless)
-    
-    if self.loadedFirstPersonShellEffect then    
+
+    if self.loadedFirstPersonShellEffect then
         self.shellsCinematic:SetParent(parent:GetViewModelEntity())
     else
         self.shellsCinematic:SetParent(self)
     end
-    
+
     self.shellsCinematic:SetCoords(Coords.GetIdentity())
-    
-    if self.loadedFirstPersonShellEffect then  
+
+    if self.loadedFirstPersonShellEffect then
         self.shellsCinematic:SetAttachPoint(parent:GetViewModelEntity():GetAttachPointIndex(kShellEjectAttachPoint))
-    else    
+    else
         self.shellsCinematic:SetAttachPoint(self:GetAttachPointIndex(kShellEjectAttachPoint))
-    end    
+    end
 
     self.shellsCinematic:SetIsActive(false)
 
@@ -108,33 +109,33 @@ end
 function HeavyMachineGun:OnCreate()
 
     ClipWeapon.OnCreate(self)
-    
+
     InitMixin(self, PickupableWeaponMixin)
     InitMixin(self, EntityChangeMixin)
     InitMixin(self, LiveMixin)
-    
+
     if Client then
         InitMixin(self, ClientWeaponEffectsMixin)
     end
-    
+
 end
 
 function HeavyMachineGun:OnDestroy()
 
     ClipWeapon.OnDestroy(self)
-    
+
     DestroyMuzzleEffect(self)
     DestroyShellEffect(self)
-    
+
 end
 
 function HeavyMachineGun:OnPrimaryAttack(player)
 
     if not self:GetIsReloading() then
-        
+
         ClipWeapon.OnPrimaryAttack(self, player)
-        
-    end    
+
+    end
 
 end
 
@@ -147,7 +148,7 @@ function HeavyMachineGun:OnHolster(player)
     DestroyMuzzleEffect(self)
     DestroyShellEffect(self)
     ClipWeapon.OnHolster(self, player)
-    
+
 end
 
 function HeavyMachineGun:OnHolsterClient()
@@ -155,7 +156,7 @@ function HeavyMachineGun:OnHolsterClient()
     DestroyMuzzleEffect(self)
     DestroyShellEffect(self)
     ClipWeapon.OnHolsterClient(self)
-    
+
 end
 
 function HeavyMachineGun:GetAnimationGraphName()
@@ -172,7 +173,7 @@ function HeavyMachineGun:GetDeathIconIndex()
         return kDeathMessageIcon.RifleButt
     end
     return kDeathMessageIcon.HeavyMachineGun
-    
+
 end
 
 function HeavyMachineGun:GetHUDSlot()
@@ -211,21 +212,25 @@ function HeavyMachineGun:GetSecondaryCanInterruptReload()
     return true
 end
 
+function HeavyMachineGun:GetCatalystSpeedBase()
+	return self.deployed and kHeavyMachineGunAnimationSpeed or 1
+end
+
 function HeavyMachineGun:OnTag(tagName)
 
     PROFILE("HeavyMachineGun:OnTag")
 
     ClipWeapon.OnTag(self, tagName)
-    
+
     if tagName == "hit" then
-    
+
         self.shooting = false
-    
+
         local player = self:GetParent()
         if player then
             self:PerformMeleeAttack(player)
         end
-        
+
     end
 
 end
@@ -236,33 +241,29 @@ function HeavyMachineGun:SetGunLoopParam(viewModel, paramName, rateOfChange)
     -- 0.5 instead of 1 as full arm_loop is intense.
     local new = Clamp(current + rateOfChange, 0, 0.5)
     viewModel:SetPoseParam(paramName, new)
-    
+
 end
 
 function HeavyMachineGun:UpdateViewModelPoseParameters(viewModel)
 
     viewModel:SetPoseParam("hide_gl", 1)
     viewModel:SetPoseParam("gl_empty", 1)
-    
+
     local attacking = self:GetPrimaryAttacking()
     local sign = (attacking and 1) or 0
-    
+
     self:SetGunLoopParam(viewModel, "arm_loop", sign)
-    
+
 end
 
 function HeavyMachineGun:OnUpdateAnimationInput(modelMixin)
 
     PROFILE("HeavyMachineGun:OnUpdateAnimationInput")
-    
+
     ClipWeapon.OnUpdateAnimationInput(self, modelMixin)
-    
+
     modelMixin:SetAnimationInput("gl", false)
 
-end
-
-function HeavyMachineGun:GetCatalystSpeedBase()
-    return self:GetIsReloading() and 0.7 or 1
 end
 
 function HeavyMachineGun:GetAmmoPackMapName()
@@ -276,7 +277,7 @@ end
 if Client then
 
     function HeavyMachineGun:OnClientPrimaryAttacking()
-    
+
         local player = self:GetParent()
 
 		if player and player:GetIsLocalPlayer() then
@@ -284,59 +285,59 @@ if Client then
 		else
 			Shared.StopSound(self, kAttackSoundName)
 		end
-        
-        
-        if not self.muzzleCinematic then            
-            CreateMuzzleEffect(self)                
+
+
+        if not self.muzzleCinematic then
+            CreateMuzzleEffect(self)
         elseif player then
-        
+
             local cinematicName = kMuzzleCinematic
             local useFirstPerson = player:GetIsLocalPlayer() and player:GetIsFirstPerson()
-            
+
             if cinematicName ~= self.activeCinematicName or self.firstPersonLoaded ~= useFirstPerson then
-            
+
                 DestroyMuzzleEffect(self)
                 CreateMuzzleEffect(self)
-                
+
             end
-            
+
         end
-            
+
         -- CreateMuzzleCinematic() can return nil in case there is no parent or the parent is invisible (for alien commander for example)
         if self.muzzleCinematic then
             self.muzzleCinematic:SetIsVisible(true)
         end
-        
+
         if player then
-        
+
             local useFirstPerson = player == Client.GetLocalPlayer()
-            
+
             if useFirstPerson ~= self.loadedFirstPersonShellEffect then
                 DestroyShellEffect(self)
             end
-        
+
             if not self.shellsCinematic then
                 CreateShellCinematic(self)
             end
-        
+
             self.shellsCinematic:SetIsActive(true)
 
         end
-        
+
     end
-    
-    -- needed for first person muzzle effect since it is attached to the view model entity: view model entity gets cleaned up when the player changes (for example becoming a commander and logging out again) 
+
+    -- needed for first person muzzle effect since it is attached to the view model entity: view model entity gets cleaned up when the player changes (for example becoming a commander and logging out again)
     -- this results in viewmodel getting destroyed / recreated -> cinematic object gets destroyed which would result in an invalid handle.
     function HeavyMachineGun:OnParentChanged(oldParent, newParent)
-        
+
         ClipWeapon.OnParentChanged(self, oldParent, newParent)
         DestroyMuzzleEffect(self)
         DestroyShellEffect(self)
-        
+
     end
-    
+
     function HeavyMachineGun:OnClientPrimaryAttackEnd()
-    
+
         -- Just assume the looping sound is playing.
 		Shared.StopSound(self, kAttackSoundName)
 		local player = self:GetParent()
@@ -344,45 +345,45 @@ if Client then
 			Shared.StopSound(self, kAttackSoundName)
 		end
         Shared.PlaySound(self, kEndSound)
-        
+
         if self.muzzleCinematic and self.muzzleCinematic ~= Entity.invalidId then
             self.muzzleCinematic:SetIsVisible(false)
         end
-        
+
         if self.shellsCinematic and self.shellsCinematic ~= Entity.invalidId then
             self.shellsCinematic:SetIsActive(false)
         end
-        
+
     end
-    
+
     function HeavyMachineGun:GetPrimaryEffectRate()
         return 0.08
     end
-    
+
     function HeavyMachineGun:GetTriggerPrimaryEffects()
         return not self:GetIsReloading() and self.shooting
     end
-    
+
     function HeavyMachineGun:GetBarrelPoint()
-    
+
         local player = self:GetParent()
         if player then
-        
+
             local origin = player:GetEyePos()
             local viewCoords= player:GetViewCoords()
-            
+
             return origin + viewCoords.zAxis * 0.65 + viewCoords.xAxis * -0.15 + viewCoords.yAxis * -0.2
-            
+
         end
-        
+
         return self:GetOrigin()
-        
+
     end
-	
+
     function HeavyMachineGun:GetUIDisplaySettings()
         return { xSize = 256, ySize = 417, script = "lua/GUIHeavyMachineGunDisplay.lua", textureNameOverride = "lmg" }
     end
-    
+
 end
 
 function HeavyMachineGun:ModifyDamageTaken(damageTable, attacker, doer, damageType)
@@ -390,7 +391,7 @@ function HeavyMachineGun:ModifyDamageTaken(damageTable, attacker, doer, damageTy
     if damageType ~= kDamageType.Corrode then
         damageTable.damage = 0
     end
-    
+
 end
 
 function HeavyMachineGun:GetCanTakeDamageOverride()
@@ -402,11 +403,11 @@ if Server then
     function HeavyMachineGun:OnKill()
         DestroyEntity(self)
     end
-    
+
     function HeavyMachineGun:GetSendDeathMessageOverride()
         return false
-    end 
-    
+    end
+
 end
 
 Shared.LinkClassToMap("HeavyMachineGun", HeavyMachineGun.kMapName, networkVars)
