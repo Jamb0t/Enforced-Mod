@@ -1,4 +1,19 @@
 
+if Server then
+
+function Cyst:TriggerDamage()
+
+    if self:GetCystParent() == nil then
+    
+        -- Increase damage over time the longer it hasn't been connected if alien "islands" are
+        -- being kept alive undesirably long by Crags, Gorges and such
+        local damage = kCystUnconnectedDamage * Cyst.kThinkTime
+        self:DeductHealth(damage)
+        
+    end
+  
+end
+
 local function Cyst_ServerUpdate(self, deltaTime)
 
     if not self:GetIsAlive() then
@@ -53,3 +68,5 @@ local function Cyst_ServerUpdate(self, deltaTime)
 end
 
 ReplaceLocals(Cyst.OnUpdate, { ServerUpdate = Cyst_ServerUpdate } )
+
+end
