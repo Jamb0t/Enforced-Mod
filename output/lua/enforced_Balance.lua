@@ -89,6 +89,9 @@ kGoreEnergyCost = 12
 -- Restore 299
 kMineCost = 15
 
+-- Note that these are the newly named values, since UWE actually made
+-- an improvement where they refactored hardcoded values
 kBoneShieldDamageReduction = 0.25
+kBoneShieldCooldown = 2
+kBoneShieldInitialEnergyCost = 10
 kBoneShieldEnergyPerSecond = 13
-kStartBoneShieldCost = 10
