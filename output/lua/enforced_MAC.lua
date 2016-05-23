@@ -1,3 +1,6 @@
+kElixerVersion = 1.8
+Script.Load("lua/Elixer_Utility.lua")
+Elixer.UseVersion( kElixerVersion )
 
 local kThrusterMoveSpeed = 12
 
