@@ -14,7 +14,6 @@ function(self)
             kTechId.Shotgun,
             kTechId.GrenadeLauncher,
             kTechId.Flamethrower,
-            kTechId.HeavyMachineGun,
             kTechId.ClusterGrenade,
             kTechId.NapalmGrenade,
             kTechId.PulseGrenade,
