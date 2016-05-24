@@ -95,3 +95,6 @@ kBoneShieldDamageReduction = 0.25
 kBoneShieldCooldown = 2
 kBoneShieldInitialEnergyCost = 10
 kBoneShieldEnergyPerSecond = 13
+
+kContaminationCooldown = 5
+kContaminationLifeSpan = 20
