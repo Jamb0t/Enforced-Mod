@@ -13,6 +13,8 @@ function (self, techId, prereq1, prereq2, addOnTechId)
 		orig_TechTree_AddResearchNode(self, kTechId.Stomp, kTechId.BioMassEight, kTechId.None, kTechId.AllAliens)
 
 	-- Marines
+	elseif techId == kTechId.PowerSurgeTech then
+		-- do nothing
 	elseif techId == kTechId.NanoShieldTech then
 	-- Skip NanoShieldTech
 	-- Add Thruster
@@ -35,12 +37,17 @@ end)
 local orig_TechTree_AddTargetedActivation
 orig_TechTree_AddTargetedActivation = Class_ReplaceMethod( "TechTree", "AddTargetedActivation",
 function (self, techId, prereq1, prereq2)
-	if techId == kTechId.NanoShield then
-	-- Update NanoShield prereq
-		prereq1 = kTechId.TwoCommandStations
+	-- Marines
+	if techId == kTechId.PowerSurge then
+		-- PowerSurge requires robotics factory
+		orig_TechTree_AddTargetedActivation(self, techId, kTechId.RoboticsFactory, prereq2)
+	elseif techId == kTechId.NanoShield then
+		-- Nanoshield requires two chairs
+		orig_TechTree_AddTargetedActivation(self, techId, kTechId.TwoCommandStations, prereq2)
+	else
+		-- Original
+		orig_TechTree_AddTargetedActivation(self, techId, prereq1, prereq2)	
 	end
-	-- Original
-	orig_TechTree_AddTargetedActivation(self, techId, prereq1, prereq2)
 end)
 
 local orig_TechTree_AddBuyNode
