@@ -70,8 +70,22 @@ function (self, techId, prereq1, prereq2, addOnTechId)
 	elseif techId == kTechId.Carapace or techId == kTechId.Regeneration or 
 	       techId == kTechId.Aura or techId == kTechId.Vampirism or --techId == kTechId.Focus or
 	       techId == kTechId.Silence or techId == kTechId.Celerity or techId == kTechId.Adrenaline then
-	       -- do nothing
+	    -- do nothing
+	elseif techId == kTechId.Web then
+		-- also do nothing
 	else
 		orig_TechTree_AddBuyNode(self, techId, prereq1, prereq2, addOnTechId)
+	end
+end)
+
+local orig_TechTree_AddPassive
+orig_TechTree_AddPassive = Class_ReplaceMethod( "TechTree", "AddPassive",
+function (self, techId, prereq1, prereq2)
+	if techId == kTechId.WebTech then
+		-- do nothing
+		orig_TechTree_AddResearchNode(self, kTechId.WebTech, kTechId.BioMassThree, kTechId.None, kTechId.AllAliens)
+		orig_TechTree_AddBuyNode(self, kTechId.Web, kTechId.WebTech)
+	else
+		orig_TechTree_AddPassive(self, techId, prereq1, prereq2)
 	end
 end)
