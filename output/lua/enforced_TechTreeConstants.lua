@@ -52,5 +52,6 @@ if firstTech == nil then
     GetTexCoordsForTechId(kTechId.Rifle)
     if gTechIdPosition then
         gTechIdPosition[kTechId.NapalmGrenade] = kDeathMessageIcon.GasGrenade
+		gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.HeavyMachineGun
     end
 end

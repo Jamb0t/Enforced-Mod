@@ -25,6 +25,12 @@ kOnosChargeStunCheckInterval = 0.08
 kOnosChargeStunDuration = 0.6
 kOnosMaxSpeed = 7.3
 
+kHeavyMachineGunDamage = 5
+kHeavyMachineGunDamageType = kDamageType.Puncture
+kHeavyMachineGunClipSize = 110
+kHeavyMachineGunWeight = 0.24
+kHeavyMachineGunDropCost = 25
+
 -- Alien Enforced overrides
 kXenocideDamage = 160
 
