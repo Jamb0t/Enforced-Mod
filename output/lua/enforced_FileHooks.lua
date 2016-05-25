@@ -18,6 +18,7 @@ end
 ModLoader.SetupFileHook( "lua/TechTreeConstants.lua", "lua/enforced_TechTreeConstants.lua", "post" )
 ModLoader.SetupFileHook( "lua/TechData.lua", "lua/enforced_TechData.lua", "post" )
 ModLoader.SetupFileHook( "lua/EffectManager.lua", "lua/enforced_EffectManager.lua", "post" )
+ModLoader.SetupFileHook( "lua/Globals.lua", "lua/enforced_Globals.lua", "post" )
 
 ModLoader.SetupFileHook( "lua/Balance.lua", "lua/enforced_Balance.lua", "post" )
 ModLoader.SetupFileHook( "lua/BalanceHealth.lua", "lua/enforced_BalanceHealth.lua", "post" )
@@ -47,6 +48,7 @@ ModLoader.SetupFileHook( "lua/PrototypeLab.lua", "lua/enforced_PrototypeLab.lua"
 ModLoader.SetupFileHook( "lua/Weapons/Marine/GrenadeThrower.lua", "lua/Weapons/enforced_Marine_GrenadeThrower.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Marine/GasGrenadeThrower.lua", "lua/Weapons/enforced_Marine_NapalmGrenadeThrower.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Marine/GasGrenade.lua", "lua/Weapons/enforced_Marine_NapalmGrenade.lua", "post" )
+ModLoader.SetupFileHook( "lua/Weapons/Marine/HeavyMachineGun.lua", "lua/Weapons/enforced_Marine_HeavyMachineGun.lua", "post" )
 
 ModLoader.SetupFileHook( "lua/Weapons/Alien/BoneShield.lua", "lua/Weapons/enforced_Alien_BoneShield.lua", "post")
 ModLoader.SetupFileHook( "lua/Weapons/Alien/BiteLeap.lua", "lua/Weapons/enforced_Alien_BiteLeap.lua", "post" )
