@@ -185,7 +185,15 @@ function HeavyMachineGun:GetClipSize()
 end
 
 function HeavyMachineGun:GetSpread()
-    return kHeavyMachineGunSpread
+    return Math.Radians(6)
+end
+
+local function HeavyMachineGunRandom()
+    return math.max(0.1 + NetworkRandom())
+end
+
+function HeavyMachineGun:CalculateSpreadDirection(shootCoords, player)
+    return CalculateSpread(shootCoords, self:GetSpread() * self:GetInaccuracyScalar(player), HeavyMachineGunRandom)
 end
 
 function HeavyMachineGun:GetBulletDamage(target, endPoint)
@@ -277,15 +285,10 @@ end
 if Client then
 
     function HeavyMachineGun:OnClientPrimaryAttacking()
+		
+		Shared.PlaySound(self, kAttackSoundName)
 
-        local player = self:GetParent()
-
-		if player and player:GetIsLocalPlayer() then
-			Shared.PlaySound(self, kAttackSoundName)
-		else
-			Shared.StopSound(self, kAttackSoundName)
-		end
-
+		local player = self:GetParent()
 
         if not self.muzzleCinematic then
             CreateMuzzleEffect(self)
@@ -338,12 +341,6 @@ if Client then
 
     function HeavyMachineGun:OnClientPrimaryAttackEnd()
 
-        -- Just assume the looping sound is playing.
-		Shared.StopSound(self, kAttackSoundName)
-		local player = self:GetParent()
-		if player and player:GetIsLocalPlayer() then
-			Shared.StopSound(self, kAttackSoundName)
-		end
         Shared.PlaySound(self, kEndSound)
 
         if self.muzzleCinematic and self.muzzleCinematic ~= Entity.invalidId then
@@ -372,7 +369,7 @@ if Client then
             local origin = player:GetEyePos()
             local viewCoords= player:GetViewCoords()
 
-            return origin + viewCoords.zAxis * 0.65 + viewCoords.xAxis * -0.15 + viewCoords.yAxis * -0.2
+            return origin + viewCoords.zAxis * 0.4 + viewCoords.xAxis * -0.25 + viewCoords.yAxis * -0.22
 
         end
 
