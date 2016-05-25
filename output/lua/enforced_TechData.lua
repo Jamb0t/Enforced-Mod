@@ -34,7 +34,7 @@ function BuildTechData()
 		for _, tech in pairs(searchTech) do
 			for i, techTable in pairs(techData) do
 				if techTable[kTechDataId] == tech[kTechDataId] then
-					techTable[i] = tech[2]
+					techTable[i] = tech
 				end
 			end
 		end
