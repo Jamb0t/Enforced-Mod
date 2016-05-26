@@ -92,7 +92,6 @@ kUmbraRailgunModifier = 0.68
 kGoreDamage = 100
 kGoreEnergyCost = 12
 
-kPowerSurgeCost = 10
 kPowerSurgeDamage = 0
 
 -- Restore 299

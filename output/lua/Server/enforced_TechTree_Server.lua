@@ -44,6 +44,9 @@ function (self, techId, prereq1, prereq2)
 	elseif techId == kTechId.NanoShield then
 		-- Nanoshield requires two chairs
 		orig_TechTree_AddTargetedActivation(self, techId, kTechId.TwoCommandStations, prereq2)
+    elseif techId == kTechId.DropHeavyMachineGun then
+        -- Add HMG
+        orig_TechTree_AddTargetedActivation(self, kTechId.DropHeavyMachineGun, kTechId.AdvancedArmory, prereq2)				
 	else
 		-- Original
 		orig_TechTree_AddTargetedActivation(self, techId, prereq1, prereq2)	
