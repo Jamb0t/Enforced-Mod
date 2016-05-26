@@ -6,35 +6,17 @@ function BuildTechData()
 
 	if not newBuildTechAdded then
 
+        -- Remove old webs
         local searchTech =
         {
-			-- Restore Webs
-			{
-				[kTechDataId] = kTechId.Web,
-				[kTechDataCategory] = kTechId.Gorge,
-				[kTechDataMaxHealth] = kWebHealth,
-				[kTechDataModel] = Web.kRootModelName,
-				[kTechDataSpecifyOrientation] = true,
-				[kTechDataGhostModelClass] = "WebGhostModel",
-				[kTechDataMaxAmount] = kNumWebsPerGorge,
-				[kTechDataAllowConsumeDrop] = true,
-				[kTechDataDisplayName] = "WEB",
-				[kTechDataCostKey] = kWebBuildCost,
-				[kTechDataTooltipInfo] = "WEB_TOOLTIP"
-			},
-			{
-				[kTechDataId] = kTechId.WebTech,
-				[kTechDataDisplayName] = "WEB",
-				[kTechDataCostKey] = kWebResearchCost,
-				[kTechDataResearchTimeKey] = kWebResearchTime,
-				[kTechDataTooltipInfo] = "WEB_TOOLTIP"
-			},
+			kTechId.Web,
+			kTechId.WebTech,
         }
 
 		for _, tech in pairs(searchTech) do
 			for i, techTable in pairs(techData) do
-				if techTable[kTechDataId] == tech[kTechDataId] then
-					techTable[i] = tech
+				if techTable[kTechDataId] == tech then
+					table.remove(techData, i)
 				end
 			end
 		end
@@ -80,6 +62,28 @@ function BuildTechData()
 				[kTechDataSponitorCode] = "M",
 				[kTechDataTooltipInfo] = "PHANTOM_TOOLTIP",
 				[kTechDataCostKey] = kCamouflageCost
+			},
+
+			-- Restore Webs
+			{
+				[kTechDataId] = kTechId.Web,
+				[kTechDataCategory] = kTechId.Gorge,
+				[kTechDataMaxHealth] = kWebHealth,
+				[kTechDataModel] = Web.kRootModelName,
+				[kTechDataSpecifyOrientation] = true,
+				[kTechDataGhostModelClass] = "WebGhostModel",
+				[kTechDataMaxAmount] = kNumWebsPerGorge,
+				[kTechDataAllowConsumeDrop] = true,
+				[kTechDataDisplayName] = "WEB",
+				[kTechDataCostKey] = kWebBuildCost,
+				[kTechDataTooltipInfo] = "WEB_TOOLTIP"
+			},
+			{
+				[kTechDataId] = kTechId.WebTech,
+				[kTechDataDisplayName] = "WEB",
+				[kTechDataCostKey] = kWebResearchCost,
+				[kTechDataResearchTimeKey] = kWebResearchTime,
+				[kTechDataTooltipInfo] = "WEB_TOOLTIP"
 			},
         }
 
