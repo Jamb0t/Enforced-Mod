@@ -5,7 +5,6 @@ function BuildTechData()
     local techData = origBuildTechData()
 
 	if not newBuildTechAdded then
-
         -- Remove old webs
         local searchTech =
         {
@@ -78,6 +77,7 @@ function BuildTechData()
 				[kTechDataCostKey] = kWebBuildCost,
 				[kTechDataTooltipInfo] = "WEB_TOOLTIP"
 			},
+			
 			{
 				[kTechDataId] = kTechId.WebTech,
 				[kTechDataDisplayName] = "WEB",
