@@ -3,7 +3,7 @@ if Server then
     ModLoader.SetupFileHook( "lua/TechTree.lua", "lua/Server/enforced_TechTree_Server.lua", "post" )
     ModLoader.SetupFileHook( "lua/Alien_Server.lua", "lua/Server/enforced_Alien_Server.lua", "post" )
 	ModLoader.SetupFileHook( "lua/AlienTeam.lua", "lua/enforced_AlienTeam.lua", "post" )
-	
+
 	ModLoader.SetupFileHook( "lua/BabblerEgg.lua", "lua/Server/enforced_BabblerEgg_Server.lua", "post" )
 
 elseif Client then
@@ -28,6 +28,8 @@ ModLoader.SetupFileHook( "lua/BalanceHealth.lua", "lua/enforced_BalanceHealth.lu
 ModLoader.SetupFileHook( "lua/BalanceMisc.lua", "lua/enforced_BalanceMisc.lua", "post" )
 ModLoader.SetupFileHook( "lua/DamageTypes.lua", "lua/enforced_DamageTypes.lua", "post" )
 ModLoader.SetupFileHook( "lua/EvolutionChamber.lua", "lua/enforced_EvolutionChamber.lua", "post" )
+
+ModLoader.SetupFileHook( "lua/LiveMixin.lua", "lua/Mixin/enforced_LiveMixin.lua", "post" )
 
 -- Structures
 ModLoader.SetupFileHook( "lua/Armory.lua", "lua/enforced_Armory.lua", "post" )
