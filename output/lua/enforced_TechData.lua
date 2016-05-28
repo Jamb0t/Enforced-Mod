@@ -77,7 +77,7 @@ function BuildTechData()
 				[kTechDataCostKey] = kWebBuildCost,
 				[kTechDataTooltipInfo] = "WEB_TOOLTIP"
 			},
-			
+
 			{
 				[kTechDataId] = kTechId.WebTech,
 				[kTechDataDisplayName] = "WEB",

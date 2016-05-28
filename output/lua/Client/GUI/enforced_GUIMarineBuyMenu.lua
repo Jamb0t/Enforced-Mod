@@ -1,7 +1,3 @@
-kElixerVersion = 1.8
-Script.Load("lua/Elixer_Utility.lua")
-Elixer.UseVersion( kElixerVersion )
-
 Script.Load("lua/GUIMarineBuyMenu.lua")
 
 function GUIMarineBuyMenu_UpdateIcons()
