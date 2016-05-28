@@ -30,6 +30,8 @@ kHeavyMachineGunClipSize = 110
 kHeavyMachineGunDropCost = 25
 kHeavyMachineGunSpread = Math.Radians(6)
 
+kGlobalMarinePickupWeaponTimeLimit = 1
+
 -- Alien Enforced overrides
 kXenocideDamage = 160
 
