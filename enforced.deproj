@@ -52,9 +52,6 @@
     <filename>output\lua\enforced_BalanceMisc.lua</filename>
   </file>
   <file>
-    <filename>output\lua\enforced_Client.lua</filename>
-  </file>
-  <file>
     <filename>output\lua\enforced_Cyst.lua</filename>
   </file>
   <file>
@@ -71,9 +68,6 @@
   </file>
   <file>
     <filename>output\lua\enforced_FileHooks.lua</filename>
-  </file>
-  <file>
-    <filename>output\lua\Client\GUI\enforced_GUI.lua</filename>
   </file>
   <file>
     <filename>output\lua\Client\GUI\enforced_GUIMarineBuyMenu.lua</filename>
@@ -122,9 +116,6 @@
   </file>
   <file>
     <filename>output\lua\enforced_Skulk.lua</filename>
-  </file>
-  <file>
-    <filename>output\lua\enforced_TeamInfo.lua</filename>
   </file>
   <file>
     <filename>output\lua\enforced_TechData.lua</filename>

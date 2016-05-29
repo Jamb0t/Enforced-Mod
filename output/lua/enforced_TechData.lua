@@ -10,6 +10,7 @@ function BuildTechData()
         {
 			kTechId.Web,
 			kTechId.WebTech,
+			kTechId.DropHeavyMachineGun,
         }
 
 		for _, tech in pairs(searchTech) do
@@ -84,6 +85,20 @@ function BuildTechData()
 				[kTechDataCostKey] = kWebResearchCost,
 				[kTechDataResearchTimeKey] = kWebResearchTime,
 				[kTechDataTooltipInfo] = "WEB_TOOLTIP"
+			},
+
+			-- Fix UWE's typos..
+			{
+				[kTechDataId] = kTechId.DropHeavyMachineGun,
+				[kTechDataMapName] = HeavyMachineGun.kMapName,
+				[kTechDataDisplayName] = "HEAVY_MACHINE_GUN",
+				[kTechIDShowEnables] = false,
+				[kTechDataTooltipInfo] =  "HEAVY_MACHINE_GUN_TOOLTIP",
+				[kTechDataModel] = HeavyMachineGun.kModelName,
+				[kTechDataCostKey] = kHeavyMachineGunDropCost,
+				[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory },
+				[kStructureAttachRange] = kArmoryWeaponAttachRange,
+				[kStructureAttachRequiresPower] = true
 			},
         }
 
