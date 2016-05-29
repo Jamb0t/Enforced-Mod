@@ -3,15 +3,17 @@ original_Armory_GetItemList = Class_ReplaceMethod( "Armory", "GetItemList",
 function(self)
     local itemList = original_Armory_GetItemList(self)
     if self:GetTechId() == kTechId.AdvancedArmory then
-        itemList = {
+        itemList = 
+        {
             kTechId.Welder,
             kTechId.LayMines,
             kTechId.Shotgun,
             kTechId.GrenadeLauncher,
             kTechId.Flamethrower,
             kTechId.ClusterGrenade,
-            kTechId.NapalmGrenade,
+            kTechId.GasGrenade,
             kTechId.PulseGrenade,
+            kTechId.NapalmGrenade,
         }
     end
     return itemList
@@ -22,7 +24,6 @@ local original_Armory_GetTechButtons
 original_Armory_GetTechButtons = Class_ReplaceMethod( "Armory", "GetTechButtons",
 function (self)
 local techButtons = nil
-
     techButtons = { kTechId.ShotgunTech, kTechId.MinesTech, kTechId.GrenadeTech, kTechId.None,
                     kTechId.None, kTechId.None, kTechId.None, kTechId.None }
     -- Show button to upgraded to advanced armory
@@ -31,5 +32,4 @@ local techButtons = nil
     end
 
     return techButtons
-    
 end)

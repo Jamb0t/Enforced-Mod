@@ -19,14 +19,14 @@ function MarineBuy_GetWeaponDescription( techId )
 
     if not weaponDescription then
         weaponDescription = GetUpValue( MarineBuy_GetWeaponDescription, "gWeaponDescription", { LocateRecurse = true } )
-    end
+        
+		-- Add to table if it doesn't already exist
+		if weaponDescription and not weaponDescription[kTechId.NapalmGrenade] then
+			UpdateTechDescription( weaponDescription )
 
-    -- Add to table if it doesn't already exist
-    if weaponDescription and not weaponDescription[kTechId.NapalmGrenade] then
-        UpdateTechDescription( weaponDescription )
-
-        -- Also update the string if needed
-        result = oldMarineBuy_GetWeaponDescription(techId)
+			-- Also update the string if needed
+			result = oldMarineBuy_GetWeaponDescription(techId)
+		end
     end
 
     return result
@@ -44,24 +44,4 @@ function MarineBuy_GetHas( techId )
     end
 
     return oldMarineBuy_GetHas( techId )
-end
-
-
-local displayTech = nil
-
-local oldMarineBuy_GetEquipped = MarineBuy_GetEquipped
-function MarineBuy_GetEquipped()
-
-    local result = oldMarineBuy_GetEquipped()
-
-    if not displayTech then
-        displayTech = GetUpValue( oldMarineBuy_GetEquipped, "gDisplayTechs", { LocateRecurse = true } )
-    end
-
-    if displayTech and not displayTech[kTechId.HeavyMachineGun] then
-        displayTech[kTechId.HeavyMachineGun] = true
-        result = oldMarineBuy_GetEquipped()
-    end
-    
-    return result
 end
