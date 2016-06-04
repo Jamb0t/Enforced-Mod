@@ -59,6 +59,8 @@ ModLoader.SetupFileHook( "lua/Weapons/Marine/HeavyMachineGun.lua", "lua/Weapons/
 ModLoader.SetupFileHook( "lua/Weapons/Alien/BoneShield.lua", "lua/Weapons/enforced_Alien_BoneShield.lua", "post")
 ModLoader.SetupFileHook( "lua/Weapons/Alien/BiteLeap.lua", "lua/Weapons/enforced_Alien_BiteLeap.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Alien/Blink.lua", "lua/Weapons/enforced_Alien_Blink.lua", "post" )
+ModLoader.SetupFileHook( "lua/Weapons/Alien/SporeCloud.lua", "lua/Weapons/enforced_Alien_SporeCloud.lua", "post" )
+ModLoader.SetupFileHook( "lua/Weapons/Alien/Spores.lua", "lua/Weapons/enforced_Alien_Spores.lua", "post" )
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Contamination.lua", "lua/CommAbilities/enforced_Alien_Contamination.lua", "post" )
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/MucousMembrane.lua", "lua/CommAbilities/enforced_Alien_MucousMembrane.lua", "post" )
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Rupture.lua", "lua/CommAbilities/enforced_Alien_Rupture.lua", "post" )
