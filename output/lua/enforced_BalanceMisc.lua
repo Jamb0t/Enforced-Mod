@@ -23,3 +23,6 @@ kUmbraBlockRate = 3
 kCystMaturationTime = 120
 kNumMines = 3
 kBuilderPowerRepairRate = 110
+
+-- 301 restore
+kCystRedeployRange = 6

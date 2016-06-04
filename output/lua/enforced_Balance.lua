@@ -94,6 +94,8 @@ kGoreDamage = 100
 kGoreEnergyCost = 12
 
 kPowerSurgeDamage = 0
+kPowerSurgeDamageRadius = 0
+kPowerSurgeElectrifiedDuration = 0
 
 -- Restore 299
 kMineCost = 15
@@ -107,3 +109,14 @@ kBoneShieldEnergyPerSecond = 13
 
 kContaminationCooldown = 5
 kContaminationLifeSpan = 20
+
+--Restore 301
+kFlamethrowerCost = 10
+kFlamethrowerDamage = 16
+kBurnDamagePerStackPerSecond = 3
+kFlamethrowerMaxStacks = 20
+kFlamethrowerStackRate = 0.4
+kFlameDamageStackWeight = 0.5
+
+kSporesDustDamagePerSecond = 20
+kSporesDustEnergyCost = 8

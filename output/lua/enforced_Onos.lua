@@ -97,18 +97,3 @@ function (self)
 
     return cooldown
 end)
-
-Class_AddMethod( "Onos", "GetIsEnergizeAllowed",
-function (self)
-    return not self:GetIsBoneShieldActive()
-end)
-
-local orig_Onos_GetRecuperationRate
-orig_Onos_GetRecuperationRate = Class_ReplaceMethod( "Onos", "GetRecuperationRate",
-function (self)
-    if self:GetIsBoneShieldActive() then
-        return 0
-    end
-
-    return Alien.GetRecuperationRate(self)    
-end)

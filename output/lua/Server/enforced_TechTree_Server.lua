@@ -11,6 +11,13 @@ function (self, techId, prereq1, prereq2, addOnTechId)
 		self:AddActivation(kTechId.Doomsday, kTechId.BioMassEight, kTechId.Stomp, kTechId.AllAliens)
 	-- Change stomp
 		orig_TechTree_AddResearchNode(self, kTechId.Stomp, kTechId.BioMassEight, kTechId.None, kTechId.AllAliens)
+	-- Revert 301 changes
+	elseif techId == kTechId.Umbra then
+		orig_TechTree_AddResearchNode(self, techId, kTechId.BioMassFour, kTechId.None, kTechId.AllAliens)
+	elseif techId == kTechId.Spores then
+		orig_TechTree_AddResearchNode(self, techId, kTechId.BioMassSix, kTechId.None, kTechId.AllAliens)
+	elseif techId == kTechId.BoneShield then
+		orig_TechTree_AddResearchNode(self, techId, kTechId.BioMassFive, kTechId.None, kTechId.AllAliens)
 
 	-- Marines
 	elseif techId == kTechId.PowerSurgeTech then
