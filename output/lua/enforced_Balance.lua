@@ -21,7 +21,7 @@ kSkulkEnzymedRange = 1.51
 
 kOnosChargeCost = 30
 kOnosChargeDamage = 8
-kOnosChargeStunCheckInterval = 0.08
+kOnosChargeStunCheckInterval = 0.20
 kOnosChargeStunDuration = 0.6
 kOnosMaxSpeed = 7.3
 
