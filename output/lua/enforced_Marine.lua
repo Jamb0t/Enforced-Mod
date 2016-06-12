@@ -1,3 +1,7 @@
+-- Revert 302
+Marine.kRunMaxSpeed = 6
+Marine.kRunInfestationMaxSpeed = 5.2
+
 kJumpHeightFactor = 0.74
 local kStrafeJumpForce = 1
 
