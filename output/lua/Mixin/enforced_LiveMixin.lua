@@ -3,4 +3,3 @@
 function LiveMixin:ClampHealing(healAmount, excludeArmor)
     return healAmount
 end
-
