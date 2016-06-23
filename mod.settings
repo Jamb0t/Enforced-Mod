@@ -1,0 +1,8 @@
+name        = "LuckyFkers Enforced Beta"
+source_dir  = "source"
+output_dir  = "output"
+description = [=[Mod on LuckyFkers.com Newbound server. (http://www.luckyfkers.com/enforced-ingame/)]=]
+image       = "preview.jpg"
+tag_modtype = "Gameplay Tweak"
+tag_support = "Passes Default Consistency"
+publish_id = "28ee928e"
