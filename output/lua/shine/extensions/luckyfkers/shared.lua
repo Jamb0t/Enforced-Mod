@@ -1,10 +1,11 @@
 local Shine = Shine
 local Plugin = {}
 
+Plugin.HasConfig = false
+
 function Plugin:Initialise()
-	self:SetupAdminMenuCommands()
 	self.Enabled = true
 	return true
 end
 
-Shine:RegisterExtension( "changes", Plugin )
+Shine:RegisterExtension( "luckyfkers", Plugin )
