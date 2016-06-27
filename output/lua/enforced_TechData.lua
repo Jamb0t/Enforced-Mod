@@ -54,16 +54,6 @@ function BuildTechData()
                 [kTechDataTooltipInfo] = "MAC_SPEED_TOOLTIP"
             },
 
-            -- Phantom
-			{
-				[kTechDataId] = kTechId.Phantom,
-				[kTechDataCategory] = kTechId.ShadeHive,
-				[kTechDataDisplayName] = "PHANTOM",
-				[kTechDataSponitorCode] = "M",
-				[kTechDataTooltipInfo] = "PHANTOM_TOOLTIP",
-				[kTechDataCostKey] = kCamouflageCost
-			},
-
 			-- Restore Webs
 			{
 				[kTechDataId] = kTechId.Web,

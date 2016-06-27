@@ -1,7 +1,6 @@
 if Server then
 
     ModLoader.SetupFileHook( "lua/TechTree.lua", "lua/Server/enforced_TechTree_Server.lua", "post" )
-    ModLoader.SetupFileHook( "lua/Alien_Server.lua", "lua/Server/enforced_Alien_Server.lua", "post" )
 	ModLoader.SetupFileHook( "lua/AlienTeam.lua", "lua/enforced_AlienTeam.lua", "post" )
 
 	ModLoader.SetupFileHook( "lua/BabblerEgg.lua", "lua/Server/enforced_BabblerEgg_Server.lua", "post" )
@@ -41,8 +40,6 @@ ModLoader.SetupFileHook( "lua/Cyst.lua", "lua/enforced_Cyst.lua", "post" )
 ModLoader.SetupFileHook( "lua/MAC.lua", "lua/enforced_MAC.lua", "post" )
 ModLoader.SetupFileHook( "lua/Marine.lua", "lua/enforced_Marine.lua", "post" )
 
-ModLoader.SetupFileHook( "lua/Alien_Upgrade.lua", "lua/enforced_Alien_Upgrade.lua", "post" )
-ModLoader.SetupFileHook( "lua/Alien.lua", "lua/enforced_Alien.lua", "post" )
 ModLoader.SetupFileHook( "lua/Lerk.lua", "lua/enforced_Lerk.lua", "post" )
 ModLoader.SetupFileHook( "lua/Skulk.lua", "lua/enforced_Skulk.lua", "post" )
 ModLoader.SetupFileHook( "lua/Onos.lua", "lua/enforced_Onos.lua", "post" )
