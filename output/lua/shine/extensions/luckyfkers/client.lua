@@ -14,9 +14,14 @@ Plugin.SilentConfigSave = true
 
 function Plugin:Initialise()
 	self.Enabled = true
+	if self.Config.Feedback == nil then
+		self.Config.Feedback = true
+		Plugin:SaveConfig( true )
+	end
 	return true
 end
 
+--[[
 function Plugin:Think(DeltaTime)
 	if Client and not self.Config.Feedback then
 		local gameFeedback = ClientUI.GetScript("GUIGameFeedback")
@@ -29,6 +34,7 @@ function Plugin:Think(DeltaTime)
 		end
 	end
 end
+]]--
 
 Shine.VoteMenu:EditPage( "Main",
 function( self )
@@ -37,6 +43,7 @@ function( self )
 		Client.ShowWebpage( "http://www.luckyfkers.com/enforced-ingame/" )
     end)
 
+--[[
 	-- dirty, but should work for now
 	self:AddSideButton( "Toggle Feedback menu",
 	function()
@@ -55,4 +62,5 @@ function( self )
 			Size = 2, FadeIn = 1
 		})
     end)
+]]--
 end)

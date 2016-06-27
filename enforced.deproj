@@ -129,4 +129,7 @@
   <file>
     <filename>output\lua\Server\enforced_TechTree_Server.lua</filename>
   </file>
+  <file>
+    <filename>output\lua\Mixin\enforced_TunnelUserMixin.lua</filename>
+  </file>
 </project>

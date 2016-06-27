@@ -30,6 +30,7 @@ ModLoader.SetupFileHook( "lua/DamageTypes.lua", "lua/enforced_DamageTypes.lua", 
 ModLoader.SetupFileHook( "lua/EvolutionChamber.lua", "lua/enforced_EvolutionChamber.lua", "post" )
 
 ModLoader.SetupFileHook( "lua/LiveMixin.lua", "lua/Mixin/enforced_LiveMixin.lua", "post" )
+ModLoader.SetupFileHook( "lua/TunnelUserMixin.lua", "lua/Mixin/enforced_TunnelUserMixin.lua", "post" )
 ModLoader.SetupFileHook( "lua/MarineActionFinderMixin.lua", "lua/Mixin/enforced_MarineActionFinderMixin.lua", "post" )
 
 -- Structures
