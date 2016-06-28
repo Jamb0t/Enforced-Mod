@@ -1,4 +1,4 @@
-Script.Load("lua/Test/MoveServer/Shared.lua")
+Script.Load("lua/Test/enforced_MoveServer.lua")
 
 --It is the job of shared.lua to create the plugin table.
 local Plugin = {}
