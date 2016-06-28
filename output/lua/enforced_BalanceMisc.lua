@@ -26,3 +26,7 @@ kBuilderPowerRepairRate = 110
 
 -- 301 restore
 kCystRedeployRange = 6
+
+-- Gorge tunnel improvements
+kGorgeTunnelCooldownGorge = 1.25
+kGorgeTunnelCooldown = 2

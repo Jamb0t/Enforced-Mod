@@ -5,9 +5,6 @@ local newTechIds = {
     'NapalmGrenade',
     'NapalmGrenadeProjectile',
     'Doomsday',
-    'UpgradePhantomVeil',
-    'PhantomVeil',
-    'Phantom',
 }
 
  -- Figure out how many more tech we can add by:

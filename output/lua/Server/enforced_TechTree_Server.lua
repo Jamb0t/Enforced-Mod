@@ -63,24 +63,9 @@ end)
 local orig_TechTree_AddBuyNode
 orig_TechTree_AddBuyNode = Class_ReplaceMethod( "TechTree", "AddBuyNode",
 function (self, techId, prereq1, prereq2, addOnTechId)
-
-	if techId == kTechId.Crush then
-    -- personal upgrades (all alien types)
-		--self:AddBuyNode(kTechId.Crush, kTechId.Shell, kTechId.None, kTechId.AllAliens)
-		orig_TechTree_AddBuyNode(self, kTechId.Carapace, kTechId.Shell, kTechId.None, kTechId.AllAliens)
-		orig_TechTree_AddBuyNode(self, kTechId.Regeneration, kTechId.Shell, kTechId.None, kTechId.AllAliens)
-
+    -- Skip focus
+	if techId == kTechId.Focus then
 		--self:AddBuyNode(kTechId.Focus, kTechId.Veil, kTechId.None, kTechId.AllAliens)
-		orig_TechTree_AddBuyNode(self, kTechId.Aura, kTechId.Veil, kTechId.None, kTechId.AllAliens)
-		orig_TechTree_AddBuyNode(self, kTechId.Phantom, kTechId.Veil, kTechId.None, kTechId.AllAliens)
-
-		--self:AddBuyNode(kTechId.Silence, kTechId.Spur, kTechId.None, kTechId.AllAliens)
-		orig_TechTree_AddBuyNode(self, kTechId.Celerity, kTechId.Spur, kTechId.None, kTechId.AllAliens)
-		orig_TechTree_AddBuyNode(self, kTechId.Adrenaline, kTechId.Spur, kTechId.None, kTechId.AllAliens)
-	elseif techId == kTechId.Carapace or techId == kTechId.Regeneration or
-	       techId == kTechId.Aura or techId == kTechId.Vampirism or techId == kTechId.Focus or
-	       techId == kTechId.Silence or techId == kTechId.Celerity or techId == kTechId.Adrenaline then
-	    -- do nothing
 	elseif techId == kTechId.Web then
 		-- also do nothing
 	else

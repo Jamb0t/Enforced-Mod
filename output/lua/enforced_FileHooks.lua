@@ -1,7 +1,6 @@
 if Server then
 
     ModLoader.SetupFileHook( "lua/TechTree.lua", "lua/Server/enforced_TechTree_Server.lua", "post" )
-    ModLoader.SetupFileHook( "lua/Alien_Server.lua", "lua/Server/enforced_Alien_Server.lua", "post" )
 	ModLoader.SetupFileHook( "lua/AlienTeam.lua", "lua/enforced_AlienTeam.lua", "post" )
 
 	ModLoader.SetupFileHook( "lua/BabblerEgg.lua", "lua/Server/enforced_BabblerEgg_Server.lua", "post" )
@@ -30,6 +29,7 @@ ModLoader.SetupFileHook( "lua/DamageTypes.lua", "lua/enforced_DamageTypes.lua", 
 ModLoader.SetupFileHook( "lua/EvolutionChamber.lua", "lua/enforced_EvolutionChamber.lua", "post" )
 
 ModLoader.SetupFileHook( "lua/LiveMixin.lua", "lua/Mixin/enforced_LiveMixin.lua", "post" )
+ModLoader.SetupFileHook( "lua/TunnelUserMixin.lua", "lua/Mixin/enforced_TunnelUserMixin.lua", "post" )
 ModLoader.SetupFileHook( "lua/MarineActionFinderMixin.lua", "lua/Mixin/enforced_MarineActionFinderMixin.lua", "post" )
 
 -- Structures
@@ -40,8 +40,6 @@ ModLoader.SetupFileHook( "lua/Cyst.lua", "lua/enforced_Cyst.lua", "post" )
 ModLoader.SetupFileHook( "lua/MAC.lua", "lua/enforced_MAC.lua", "post" )
 ModLoader.SetupFileHook( "lua/Marine.lua", "lua/enforced_Marine.lua", "post" )
 
-ModLoader.SetupFileHook( "lua/Alien_Upgrade.lua", "lua/enforced_Alien_Upgrade.lua", "post" )
-ModLoader.SetupFileHook( "lua/Alien.lua", "lua/enforced_Alien.lua", "post" )
 ModLoader.SetupFileHook( "lua/Lerk.lua", "lua/enforced_Lerk.lua", "post" )
 ModLoader.SetupFileHook( "lua/Skulk.lua", "lua/enforced_Skulk.lua", "post" )
 ModLoader.SetupFileHook( "lua/Onos.lua", "lua/enforced_Onos.lua", "post" )
@@ -59,8 +57,10 @@ ModLoader.SetupFileHook( "lua/Weapons/Marine/HeavyMachineGun.lua", "lua/Weapons/
 ModLoader.SetupFileHook( "lua/Weapons/Alien/BoneShield.lua", "lua/Weapons/enforced_Alien_BoneShield.lua", "post")
 ModLoader.SetupFileHook( "lua/Weapons/Alien/BiteLeap.lua", "lua/Weapons/enforced_Alien_BiteLeap.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Alien/Blink.lua", "lua/Weapons/enforced_Alien_Blink.lua", "post" )
+ModLoader.SetupFileHook( "lua/Weapons/Alien/GorgeTunnelAbility.lua", "lua/Weapons/enforced_Alien_GorgeTunnelAbility.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Alien/SporeCloud.lua", "lua/Weapons/enforced_Alien_SporeCloud.lua", "post" )
 ModLoader.SetupFileHook( "lua/Weapons/Alien/Spores.lua", "lua/Weapons/enforced_Alien_Spores.lua", "post" )
+
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Contamination.lua", "lua/CommAbilities/enforced_Alien_Contamination.lua", "post" )
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/MucousMembrane.lua", "lua/CommAbilities/enforced_Alien_MucousMembrane.lua", "post" )
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Rupture.lua", "lua/CommAbilities/enforced_Alien_Rupture.lua", "post" )
