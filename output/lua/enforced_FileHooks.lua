@@ -65,3 +65,15 @@ ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Contamination.lua", "lua/CommA
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/MucousMembrane.lua", "lua/CommAbilities/enforced_Alien_MucousMembrane.lua", "post" )
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Rupture.lua", "lua/CommAbilities/enforced_Alien_Rupture.lua", "post" )
 ModLoader.SetupFileHook( "lua/Onos.lua", "lua/Weapons/enforced_Alien_Doomsday.lua", "post" )
+
+-- Test
+ModLoader.SetupFileHook( "lua/Test/enforced_ConstructMixin.lua", "lua/ConstructMixin.lua", "post" )
+ModLoader.SetupFileHook( "lua/Test/enforced_Crag.lua", "lua/Crag.lua", "post" )
+ModLoader.SetupFileHook( "lua/Test/enforced_Exo.lua", "lua/Exo.lua", "post" )
+ModLoader.SetupFileHook( "lua/Test/enforced_Mac.lua", "lua/MAC.lua", "post" )
+ModLoader.SetupFileHook( "lua/Test/enforced_Mine.lua", "lua/Mine.lua", "post" )
+ModLoader.SetupFileHook( "lua/Test/enforced_MoveServer.lua", "lua/Player.lua", "post" )--?
+ModLoader.SetupFileHook( "lua/Test/enforced_ParasiteMixin.lua", "lua/ParasiteMixin.lua", "post" )
+ModLoader.SetupFileHook( "lua/Test/enforced_Player.lua", "lua/Marine.lua", "post" )--?
+ModLoader.SetupFileHook( "lua/Test/enforced_Shade.lua", "lua/Shade.lua", "post" )
+ModLoader.SetupFileHook( "lua/Test/enforced_Unlock.lua", "lua/Global.lua", "post" )
