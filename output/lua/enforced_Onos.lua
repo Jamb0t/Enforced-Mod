@@ -85,15 +85,3 @@ function (self, possible)
     return prev * self:GetSlowSpeedModifier()
 end)
 
-Class_AddMethod( "Onos", "GetMovementSpecialCooldown",
-function (self)
-    local cooldown = 0
-    local timeLeft = (Shared.GetTime() - self.timeLastChargeEnd)
-
-    local chargeDelay = self.kChargeDelay
-    if timeLeft < chargeDelay then
-        return Clamp(timeLeft / chargeDelay, 0, 1)
-    end
-
-    return cooldown
-end)
