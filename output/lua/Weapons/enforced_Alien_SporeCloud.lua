@@ -43,12 +43,13 @@ function (self, deltaTime)
         else
         
             self.sporeEffect = Client.CreateCinematic(RenderScene.Zone_Default)
-            local effectName = SporeCloud.kLoopingEffect
-            if not GetAreEnemies(self, Client.GetLocalPlayer()) then
-                effectName = SporeCloud.kLoopingEffectAlien
+
+            if GetSeason() == Seasons.kFall then
+                self.sporeEffect:SetCinematic( SporeCloud.kLoopingEffectAlienHalloween )
+            else
+                self.sporeEffect:SetCinematic( SporeCloud.kLoopingEffectAlien )
             end
-            
-            self.sporeEffect:SetCinematic(effectName)
+
             self.sporeEffect:SetRepeatStyle(Cinematic.Repeat_Endless)
             self.sporeEffect:SetCoords(self:GetCoords())
         
