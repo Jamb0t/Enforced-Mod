@@ -1,6 +1,9 @@
 kJumpHeightFactor = 0.74
 local kStrafeJumpForce = 1
 
+-- Pre 302 change
+Marine.kRunMaxSpeed = 6.0
+
 local orig_Marine_ModifyJump
 orig_Marine_ModifyJump = Class_ReplaceMethod( "Marine", "ModifyJump",
 function (self, input, velocity, jumpVelocity)
@@ -19,17 +22,6 @@ function (self, input, velocity, jumpVelocity)
     else
         self.strafeJumped = false
     end
-end)
-
-local orig_Marine_GetPlayerStatusDesc
-orig_Marine_GetPlayerStatusDesc = Class_ReplaceMethod("Marine", "GetPlayerStatusDesc",
-function(self)
-    local weapon = self:GetWeaponInHUDSlot(1)
-    if self:GetIsAlive() and weapon and weapon:isa("HeavyMachineGun") then
-        return kPlayerStatus.HeavyMachineGun
-    end
-
-    return orig_Marine_GetPlayerStatusDesc(self)
 end)
 
 local orig_Marine_ModifyGravityForce
@@ -82,7 +74,9 @@ function (self, input)
         local flashlightPressed = bit.band(input.commands, Move.ToggleFlashlight) ~= 0
         if not self.flashlightLastFrame and flashlightPressed then
 
+            self:ChooseFlashlightGobo()
             self:SetFlashlightOn(not self:GetFlashlightOn())
+
             StartSoundEffectOnEntity(Marine.kFlashlightSoundName, self, 1, self)
 
         end

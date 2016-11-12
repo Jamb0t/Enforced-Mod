@@ -25,10 +25,9 @@ kOnosChargeStunCheckInterval = 0.25
 kOnosChargeStunDuration = 0.6
 kOnosMaxSpeed = 7.3
 
-kHeavyMachineGunDamage = 5
 kHeavyMachineGunClipSize = 110
 kHeavyMachineGunDropCost = 25
-kHeavyMachineGunSpread = Math.Radians(6)
+kHeavyMachineGunSpread = Math.Radians(4.5)
 
 kGlobalMarinePickupWeaponTimeLimit = 1
 
@@ -59,7 +58,6 @@ kDualRailgunExosuitCost = 60
 
 kMinigunDamage = 22
 kMinigunDamageType = kDamageType.Heavy
-kRailgunDamageType = kDamageType.Structural
 
 kRuptureCost = 2
 kRuptureCooldown = 2
@@ -120,3 +118,6 @@ kFlameDamageStackWeight = 0.5
 
 kSporesDustDamagePerSecond = 20
 kSporesDustEnergyCost = 8
+
+-- Restore pre311
+kOnosCost = 55

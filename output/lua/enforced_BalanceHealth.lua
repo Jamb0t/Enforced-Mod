@@ -24,3 +24,6 @@ kLerkHealthPerBioMass = 2
 kOnosHealtPerBioMass = 25
 kMineHealth = 80
 kCystHealth = 70
+
+-- Restore pre311
+kSkulkHealth = 70
