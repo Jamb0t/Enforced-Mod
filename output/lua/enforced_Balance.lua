@@ -56,8 +56,8 @@ kPulseGrenadeCost = 3
 kDualExosuitCost = 60
 kDualRailgunExosuitCost = 60
 
-kMinigunDamage = 22
-kMinigunDamageType = kDamageType.Heavy
+kMinigunDamage = 10
+kMinigunDamageType = kDamageType.Normal
 
 kRuptureCost = 2
 kRuptureCooldown = 2
