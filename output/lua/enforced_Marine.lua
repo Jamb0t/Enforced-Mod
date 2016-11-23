@@ -74,7 +74,6 @@ function (self, input)
         local flashlightPressed = bit.band(input.commands, Move.ToggleFlashlight) ~= 0
         if not self.flashlightLastFrame and flashlightPressed then
 
-            self:ChooseFlashlightGobo()
             self:SetFlashlightOn(not self:GetFlashlightOn())
 
             StartSoundEffectOnEntity(Marine.kFlashlightSoundName, self, 1, self)
