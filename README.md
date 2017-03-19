@@ -41,7 +41,7 @@ Current changes as of March 19th '17:
         (Thanks to CompMod!)
     - Onos
         - Starts with charge ability (No research required)
-          - Deals 8 damage when charging (Knocks marines back in its path)
+        - Deals 8 damage when charging (Knocks marines back in its path)
         - Onoscide~Doomsday ability, (Requires biomass 8 along with Stomp)
         - Onos base movement speed reduced from 7.5 to 7.3
         - Stomp cost increased to 30 (from 25)
