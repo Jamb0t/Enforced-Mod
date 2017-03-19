@@ -1,6 +1,6 @@
 **SteamWorks Mod ID**: *2278272e*
 
-Performance and balance adjustments
+Performance and balance adjustments.
 
 Current changes as of March 19th '17:
 
@@ -67,7 +67,8 @@ Current changes as of March 19th '17:
         
 - Pre-296 Build
     - Rupture cost to 2 (2 sec cooldown)
- - Pre-297 Build       
+ - Pre-297 Build  
+    - Fade blink movement
     - Phase gate health to 2000
     - Phase gate armor to 550
     - Webbed duration to 2
