@@ -18,15 +18,15 @@ Current changes as of March 19th '17:
     - Axe
         - Increased base damage to 25 (from 28)
     - MAC
-        - Thruster addded
-        - Cost 2 tres
+        - Thruster addded (Cost 2 tres)
         - Increases movement speed for 5 seconds with a 20 sec cooldown
     - IP
         - Spawn with 2 infantry portals with 8+ players on team
         - Armor reduced to 400 (from 500)
- 
+    - Mines
+        - Mine health to 60 (from 20)
     - Scan
-        - Scan Radius to 16 (from 20)
+        - Scan Radius reduced to 16 (from 20)
     - Nano Shield
         - Requires 2 command chairs 
         - Cooldown increased to 12 from 10 no research required!
@@ -63,4 +63,22 @@ Current changes as of March 19th '17:
         - Hallucination cooldown increased to 6 (from 3)
     - Supply Costs
         - Crag supply cost increased to 5 (from 10)  
-        - Shade supply cost increased to to 5 (from 15)      
+        - Shade supply cost increased to to 5 (from 15)
+        
+- Pre-296 Build
+    - Rupture cost to 2 (2 sec cooldown)
+ - Pre-297 Build       
+    - Phase gate health to 2000
+    - Phase gate armor to 550
+    - Webbed duration to 2
+    - Web slow velocity scalar to 0.15
+ - Pre-299 Build
+    - Contamination cooldown to 5
+    - Contamination lifeSpan to 20
+ - Pre-300 Build
+    - Flamethrower cost to 10
+    - Flamethrower damage to 16
+    - Burn damage per stack per second to 3
+    - Flamethrower maxstacks to 20
+    - Flamethrower stackrate to 0.4
+    - Flame damage stack weight to 0.5
