@@ -1,5 +1,3 @@
-# Enforced Mod
-
 **SteamWorks Mod ID**: *2278272e*
 
 Performance and balance adjustments
