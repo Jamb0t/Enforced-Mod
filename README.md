@@ -28,7 +28,8 @@ Current changes as of March 19th '17:
     - Scan
         - Scan Radius to 16 (from 20)
     - Nano Shield
-        - Requires 2 command chairs (Cooldown increased to 12 from 10 no research required!)
+        - Requires 2 command chairs 
+        - Cooldown increased to 12 from 10 no research required!
     - Supply Costs
         - ARC supply cost increased to 20 (from 15)  
         - Armory supply cost increased to to 10 (from 5)
@@ -36,11 +37,12 @@ Current changes as of March 19th '17:
         
 - Aliens
     - Lerk
-        - Can air brake while flying when holding the special movement key (Thanks to CompMod!)
+        - Air brake while flying when holding the special movement key 
+        (Thanks to CompMod!)
     - Onos
         - Starts with charge ability (No research required)    
         - Onoscide~Doomsday ability, (Requires biomass 8 along with Stomp)
-        = Deals 8 damage when charging (Knocks marines back in its path)
+        - Deals 8 damage when charging (Knocks marines back in its path)
         - Onos base movement speed reduced from 7.5 to 7.3
         - Stomp cost increased to 30 (from 25)
     - Skulk       
