@@ -26,7 +26,8 @@ Current changes as of March 19th '17:
     - Mines
         - Mine health to 60 (from 20)
     - Scan
-        - Scan Radius reduced to 16 (from 20)
+        - Radius reduced to 16 (from 20)
+        - Duration reduced to 5 secs (from 10)
     - Nano Shield
         - Requires 2 command chairs 
         - Cooldown increased to 12 from 10 no research required!
