@@ -5,8 +5,7 @@ Performance and balance adjustments.
 Current changes as of March 19th '17:
 
 - Marines
-    - Exo
-        - Increased armor to 45 (from 30)
+    Exo Increased armor to 45 (from 30)
      - MG
         - Increased base damage to 8 from 6
         - Decreased damage bonus against players to 150% from 200%
