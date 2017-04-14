@@ -1,0 +1,5 @@
+modEntry = {
+Client = "lua/Client/Client.lua",
+Shared = "lua/Client/Shared.lua",
+FileHooks = "lua/enforced_FileHooks.lua",
+}
