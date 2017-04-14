@@ -8,9 +8,6 @@ function BuildTechData()
         -- Remove old webs
         local searchTech =
         {
-			kTechId.Web,
-			kTechId.WebTech,
-			kTechId.DropHeavyMachineGun,
         }
 
 		for _, tech in pairs(searchTech) do
@@ -53,43 +50,6 @@ function BuildTechData()
                 [kTechDataDisplayName] = "Thruster",
                 [kTechDataTooltipInfo] = "MAC_SPEED_TOOLTIP"
             },
-
-			-- Restore Webs
-			{
-				[kTechDataId] = kTechId.Web,
-				[kTechDataCategory] = kTechId.Gorge,
-				[kTechDataMaxHealth] = kWebHealth,
-				[kTechDataModel] = Web.kRootModelName,
-				[kTechDataSpecifyOrientation] = true,
-				[kTechDataGhostModelClass] = "WebGhostModel",
-				[kTechDataMaxAmount] = kNumWebsPerGorge,
-				[kTechDataAllowConsumeDrop] = true,
-				[kTechDataDisplayName] = "WEB",
-				[kTechDataCostKey] = kWebBuildCost,
-				[kTechDataTooltipInfo] = "WEB_TOOLTIP"
-			},
-
-			{
-				[kTechDataId] = kTechId.WebTech,
-				[kTechDataDisplayName] = "WEB",
-				[kTechDataCostKey] = kWebResearchCost,
-				[kTechDataResearchTimeKey] = kWebResearchTime,
-				[kTechDataTooltipInfo] = "WEB_TOOLTIP"
-			},
-
-			-- Fix UWE's typos..
-			{
-				[kTechDataId] = kTechId.DropHeavyMachineGun,
-				[kTechDataMapName] = HeavyMachineGun.kMapName,
-				[kTechDataDisplayName] = "HEAVY_MACHINE_GUN",
-				[kTechIDShowEnables] = false,
-				[kTechDataTooltipInfo] =  "HEAVY_MACHINE_GUN_TOOLTIP",
-				[kTechDataModel] = HeavyMachineGun.kModelName,
-				[kTechDataCostKey] = kHeavyMachineGunDropCost,
-				[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory },
-				[kStructureAttachRange] = kArmoryWeaponAttachRange,
-				[kStructureAttachRequiresPower] = true
-			},
         }
 
 		for _, tech in pairs(newBuildTech) do
