@@ -11,13 +11,6 @@ function (self, techId, prereq1, prereq2, addOnTechId)
 		self:AddActivation(kTechId.Doomsday, kTechId.BioMassEight, kTechId.Stomp, kTechId.AllAliens)
 	-- Change stomp
 		orig_TechTree_AddResearchNode(self, kTechId.Stomp, kTechId.BioMassEight, kTechId.None, kTechId.AllAliens)
-	-- Revert 301 changes
-	elseif techId == kTechId.Umbra then
-		orig_TechTree_AddResearchNode(self, techId, kTechId.BioMassFour, kTechId.None, kTechId.AllAliens)
-	elseif techId == kTechId.Spores then
-		orig_TechTree_AddResearchNode(self, techId, kTechId.BioMassSix, kTechId.None, kTechId.AllAliens)
-	elseif techId == kTechId.BoneShield then
-		orig_TechTree_AddResearchNode(self, techId, kTechId.BioMassFive, kTechId.None, kTechId.AllAliens)
 
 	-- Marines
 	elseif techId == kTechId.PowerSurgeTech then
@@ -25,15 +18,10 @@ function (self, techId, prereq1, prereq2, addOnTechId)
 	elseif techId == kTechId.NanoShieldTech then
 	-- Skip NanoShieldTech
 	-- Add Thruster
-		self:AddActivation(kTechId.MACEMP)
+           self:AddActivation(kTechId.MACEMP)
 	elseif techId == kTechId.ExosuitTech then
 	-- Napalm
-		orig_TechTree_AddResearchNode(self, techId, prereq1, prereq2, addOnTechId)
-		self:AddTargetedActivation(kTechId.DropExosuit, kTechId.ExosuitTech,     kTechId.None)
-		self:AddBuyNode(kTechId.Exosuit,                kTechId.ExosuitTech,     kTechId.None)
-		self:AddBuyNode(kTechId.ClawRailgunExosuit,     kTechId.ExosuitTech,     kTechId.None)
-		self:AddBuyNode(kTechId.UpgradeToDualMinigun,   kTechId.TwoCommandStations, kTechId.None)
-		self:AddBuyNode(kTechId.UpgradeToDualRailgun,   kTechId.TwoCommandStations, kTechId.None)
+		orig_TechTree_AddResearchNode(self, techId, prereq1, prereq2)
 		self:AddTargetedBuyNode(kTechId.NapalmGrenade,  kTechId.GrenadeTech)
 	-- Original
 	else
@@ -41,46 +29,3 @@ function (self, techId, prereq1, prereq2, addOnTechId)
 	end
 end)
 
-local orig_TechTree_AddTargetedActivation
-orig_TechTree_AddTargetedActivation = Class_ReplaceMethod( "TechTree", "AddTargetedActivation",
-function (self, techId, prereq1, prereq2)
-	-- Marines
-	if techId == kTechId.PowerSurge then
-		-- PowerSurge requires robotics factory
-		orig_TechTree_AddTargetedActivation(self, techId, kTechId.RoboticsFactory, prereq2)
-	elseif techId == kTechId.NanoShield then
-		-- Nanoshield requires two chairs
-		orig_TechTree_AddTargetedActivation(self, techId, kTechId.TwoCommandStations, prereq2)
-    elseif techId == kTechId.DropHeavyMachineGun then
-        -- Add HMG
-        orig_TechTree_AddTargetedActivation(self, kTechId.DropHeavyMachineGun, kTechId.AdvancedArmory, prereq2)
-	else
-		-- Original
-		orig_TechTree_AddTargetedActivation(self, techId, prereq1, prereq2)
-	end
-end)
-
-local orig_TechTree_AddBuyNode
-orig_TechTree_AddBuyNode = Class_ReplaceMethod( "TechTree", "AddBuyNode",
-function (self, techId, prereq1, prereq2, addOnTechId)
-    -- Skip focus
-	if techId == kTechId.Focus then
-		--self:AddBuyNode(kTechId.Focus, kTechId.Veil, kTechId.None, kTechId.AllAliens)
-	elseif techId == kTechId.Web then
-		-- also do nothing
-	else
-		orig_TechTree_AddBuyNode(self, techId, prereq1, prereq2, addOnTechId)
-	end
-end)
-
-local orig_TechTree_AddPassive
-orig_TechTree_AddPassive = Class_ReplaceMethod( "TechTree", "AddPassive",
-function (self, techId, prereq1, prereq2)
-	if techId == kTechId.WebTech then
-		-- do nothing
-		orig_TechTree_AddResearchNode(self, kTechId.WebTech, kTechId.BioMassThree, kTechId.None, kTechId.AllAliens)
-		orig_TechTree_AddBuyNode(self, kTechId.Web, kTechId.WebTech)
-	else
-		orig_TechTree_AddPassive(self, techId, prereq1, prereq2)
-	end
-end)

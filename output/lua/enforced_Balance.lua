@@ -25,85 +25,22 @@ kOnosChargeStunCheckInterval = 0.25
 kOnosChargeStunDuration = 0.6
 kOnosMaxSpeed = 7.3
 
-kHeavyMachineGunClipSize = 110
-kHeavyMachineGunDropCost = 25
-kHeavyMachineGunSpread = Math.Radians(4.5)
+kHeavyMachineGunDamage = 8
+kHeavyMachineGunDamageType = kDamageType.MachineGun
 
-kGlobalMarinePickupWeaponTimeLimit = 1
+kHeavyMachineGunCost = 20
 
 -- Alien Enforced overrides
-kXenocideDamage = 160
-
-kBileBombEnergyCost = 22
-
 kStompResearchCost = 30
 
-kDrifterCost = 6
-kDrifterAbilityCooldown = 4
-
 -- Marine Enforced overrides
-kNanoShieldCooldown = 12
-
-kJetpackTechResearchTime = 80
-kExosuitTechResearchTime = 80
-
--- Restore balance changes
--- Restore 297 changes
-kClusterGrenadeCost = 3
-kGasGrenadeCost = 3
-kPulseGrenadeCost = 3
-
-kDualExosuitCost = 60
-kDualRailgunExosuitCost = 60
-
-kMinigunDamage = 22
-kMinigunDamageType = kDamageType.Heavy
-
 kRuptureCost = 2
 kRuptureCooldown = 2
 
 -- Restore 298
-kLerkCost = 20
-kGorgeTunnelCost = 4
-
-kMarineInitialIndivRes = 20
-kAlienInitialIndivRes = 15
-
-kPlayerResPerInterval = 0.1
-
-kBabblerDamage = 10
-
-kBabblerEggBuildTime = 8
-kNumBabblerEggsPerGorge = 3
-kNumBabblersPerEgg = 3
-
-kWebBuildCost = 1
+--kWebBuildCost = 1
 kWebbedDuration = 2
 kWebSlowVelocityScalar = 0.15 -- Note, this was hardcoded previously
-
-kUmbraDuration = 5
-kUmbraRadius = 6
-
-kUmbraShotgunModifier = 0.64
-kUmbraMinigunModifier = 0.70
-kUmbraRailgunModifier = 0.68
-
-kGoreDamage = 100
-kGoreEnergyCost = 12
-
-kPowerSurgeDamage = 0
-kPowerSurgeDamageRadius = 0
-kPowerSurgeElectrifiedDuration = 0
-
--- Restore 299
-kMineCost = 15
-
--- Note that these are the newly named values, since UWE actually made
--- an improvement where they refactored hardcoded values
-kBoneShieldDamageReduction = 0.25
-kBoneShieldCooldown = 2
-kBoneShieldInitialEnergyCost = 10
-kBoneShieldEnergyPerSecond = 13
 
 kContaminationCooldown = 5
 kContaminationLifeSpan = 20
@@ -115,9 +52,3 @@ kBurnDamagePerStackPerSecond = 3
 kFlamethrowerMaxStacks = 20
 kFlamethrowerStackRate = 0.4
 kFlameDamageStackWeight = 0.5
-
-kSporesDustDamagePerSecond = 20
-kSporesDustEnergyCost = 8
-
--- Restore pre311
-kOnosCost = 55
