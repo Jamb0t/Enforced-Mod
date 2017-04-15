@@ -8,9 +8,9 @@ local function showchangelog()
 	end
 end
 
-local function onLoadComplete()
-		showchangelog()
-end
+	--[[local function onLoadComplete()
+			showchangelog()
+	end]]
 
-Event.Hook("LoadComplete", onLoadComplete)
+--Event.Hook("LoadComplete", onLoadComplete)
 Event.Hook("Console_changelog", showchangelog)

@@ -1,1 +1,0 @@
-Script.Load("lua/Client/Changelog.lua")
