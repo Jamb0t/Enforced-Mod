@@ -1,16 +1,18 @@
-// ======= Elixer v.1.72 ========
-//
-//	Put this file in a UNIQUE subdirectory of your mod to avoid any conflicts with other
-//	mods that also include Elixer
-//
-//	Call Elixer.UseVersion( versionNumber ) before trying to call any of these functions 
-//	in your mod to ensure the right versions are loaded into memory
-//
-//	Example usage:
-//		ReplaceUpValue( GUIMinimap.Update, "UpdateStaticBlips", NewUpdateStaticBlips, { LocateRecurse = true; CopyUpValues = true; } )
-//		ReplaceUpValue( GUIMinimap.Initialize, "kBlipInfo", kBlipInfo, { LocateRecurse = true } )
-//
-// ==============================
+
+ --[[======= Elixer v.1.72 ========
+
+	Put this file in a UNIQUE subdirectory of your mod to avoid any conflicts with other
+	mods that also include Elixer
+
+	Call Elixer.UseVersion( versionNumber ) before trying to call any of these functions
+	in your mod to ensure the right versions are loaded into memory
+
+	Example usage:
+		ReplaceUpValue( GUIMinimap.Update, "UpdateStaticBlips", NewUpdateStaticBlips, { LocateRecurse = true; CopyUpValues = true; } )
+		ReplaceUpValue( GUIMinimap.Initialize, "kBlipInfo", kBlipInfo, { LocateRecurse = true } )
+
+ ==============================
+]]
 
 local version = 1.8;
 
@@ -188,9 +190,9 @@ function ELIXER.CopyUpValues( dst, src )
 end;
 
 
-// Example usage:
-// 		ReplaceUpValue( GUIMinimap.Update, "UpdateStaticBlips", NewUpdateStaticBlips, { LocateRecurse = true; CopyUpValues = true; } )
-//		ReplaceUpValue( GUIMinimap.Initialize, "kBlipInfo", kBlipInfo, { LocateRecurse = true } )
+-- Example usage:
+-- 		ReplaceUpValue( GUIMinimap.Update, "UpdateStaticBlips", NewUpdateStaticBlips, { LocateRecurse = true; CopyUpValues = true; } )
+--		ReplaceUpValue( GUIMinimap.Initialize, "kBlipInfo", kBlipInfo, { LocateRecurse = true } )
 
 function ELIXER.ReplaceUpValue( func, localname, newval, options )
 	local val,i;
