@@ -10,7 +10,6 @@ elseif Client then
     ModLoader.SetupFileHook( "lua/Player_Client.lua", "lua/Client/enforced_Player_Client.lua", "post" )
     ModLoader.SetupFileHook( "lua/MarineBuy_Client.lua", "lua/Client/enforced_MarineBuy_Client.lua", "post" )
     ModLoader.SetupFileHook( "lua/AlienTechMap.lua", "lua/Client/enforced_AlienTechMap_Client.lua", "post" )
-	ModLoader.SetupFileHook( "lua/MarineTechMap.lua", "lua/Client/enforced_MarineTechMap_Client.lua", "post" )
     ModLoader.SetupFileHook( "lua/TechTreeButtons.lua", "lua/Client/enforced_TechTreeButtons_Client.lua", "post" )
 
 --  ModLoader.SetupFileHook( "lua/GUIUpgradeChamberDisplay.lua", "lua/Client/GUI/enforced_GUIUpgradeChamberDisplay.lua", "post")
