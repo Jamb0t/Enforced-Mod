@@ -1,2 +1,3 @@
 *.deuser
 Thumbs.db
+.idea/*

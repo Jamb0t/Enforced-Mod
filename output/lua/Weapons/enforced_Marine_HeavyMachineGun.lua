@@ -1,3 +1,9 @@
+function HeavyMachineGun:GetCatalystSpeedBase()
+	if self.deployed then
+		return 1.15
+	end
+	return 1
+end
 
 local original_HeavyMachineGun_GetBarrelPoint
 original_HeavyMachineGun_GetBarrelPoint = Class_ReplaceMethod( "HeavyMachineGun", "GetBarrelPoint",
