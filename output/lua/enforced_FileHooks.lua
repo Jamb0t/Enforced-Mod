@@ -10,6 +10,7 @@ elseif Client then
     ModLoader.SetupFileHook( "lua/Player_Client.lua", "lua/Client/enforced_Player_Client.lua", "post" )
     ModLoader.SetupFileHook( "lua/MarineBuy_Client.lua", "lua/Client/enforced_MarineBuy_Client.lua", "post" )
     ModLoader.SetupFileHook( "lua/AlienTechMap.lua", "lua/Client/enforced_AlienTechMap_Client.lua", "post" )
+	ModLoader.SetupFileHook( "lua/MarineTechMap.lua", "lua/Client/enforced_MarineTechMap_Client.lua", "post" )
     ModLoader.SetupFileHook( "lua/TechTreeButtons.lua", "lua/Client/enforced_TechTreeButtons_Client.lua", "post" )
 
 --  ModLoader.SetupFileHook( "lua/GUIUpgradeChamberDisplay.lua", "lua/Client/GUI/enforced_GUIUpgradeChamberDisplay.lua", "post")
@@ -66,4 +67,6 @@ ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Contamination.lua", "lua/CommA
 --ModLoader.SetupFileHook( "lua/CommAbilities/Alien/MucousMembrane.lua", "lua/CommAbilities/enforced_Alien_MucousMembrane.lua", "post" )
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Rupture.lua", "lua/CommAbilities/enforced_Alien_Rupture.lua", "post" )
 ModLoader.SetupFileHook( "lua/Onos.lua", "lua/Weapons/enforced_Alien_Doomsday.lua", "post" )
+
+ModLoader.SetupFileHook( "lua/MainMenu.lua", "lua/Client/enforced_MainMenuHooks.lua", "post" )
 
