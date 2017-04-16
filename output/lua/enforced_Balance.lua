@@ -1,5 +1,6 @@
 kEMPCost = 2
 kAxeDamage = 28
+kNanoArmorResearchCost = 10
 
 kRuptureParasiteTime = 15
 

@@ -8,6 +8,7 @@ function BuildTechData()
         -- Remove old webs
         local searchTech =
         {
+            kTechId.NanoArmor,
         }
 
 		for _, tech in pairs(searchTech) do
@@ -50,6 +51,15 @@ function BuildTechData()
                 [kTechDataDisplayName] = "Thruster",
                 [kTechDataTooltipInfo] = "MAC_SPEED_TOOLTIP"
             },
+			
+            -- Exo Nano Armor
+            {
+                [kTechDataId] = kTechId.NanoArmor,
+                [kTechDataDisplayName] = "Exo Nano Armor Upgrade",
+                [kTechDataTooltipInfo] = "Self repairing armor",
+				[kTechDataCostKey] = kNanoArmorResearchCost,
+				[kTechDataResearchTimeKey] = kNanoArmorResearchTime
+            },			
         }
 
 		for _, tech in pairs(newBuildTech) do

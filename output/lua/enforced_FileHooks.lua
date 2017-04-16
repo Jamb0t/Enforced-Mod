@@ -68,5 +68,3 @@ ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Contamination.lua", "lua/CommA
 ModLoader.SetupFileHook( "lua/CommAbilities/Alien/Rupture.lua", "lua/CommAbilities/enforced_Alien_Rupture.lua", "post" )
 ModLoader.SetupFileHook( "lua/Onos.lua", "lua/Weapons/enforced_Alien_Doomsday.lua", "post" )
 
-ModLoader.SetupFileHook( "lua/MainMenu.lua", "lua/Client/enforced_MainMenuHooks.lua", "post" )
-

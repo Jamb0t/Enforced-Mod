@@ -80,7 +80,7 @@ function Exo:OnProcessMove(input)
     end
     self.flashlightLastFrame = flashlightPressed
  if self.hasNanoArmor and self.timeLastWeldEffect + 5 < Shared.GetTime() then
-    self:SetArmor(self:GetArmor() + input.time * 100, false)
+    self:SetArmor(self:GetArmor() + input.time * 220, false)
     self.timeLastWeldEffect = Shared.GetTime()
     end
 end
