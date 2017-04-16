@@ -1,4 +1,4 @@
-Script.Load("lua/Client/GUIModChangelog.lua")
+Script.Load("output/lua/Client/GUIModChangelog.lua")
 
 local function showchangelog()
 	MainMenu_Open()
